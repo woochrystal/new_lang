@@ -1,0 +1,19 @@
+참고 : https://youtu.be/efSQffTqw0M?si=T97WscssoIkiWgiY
+
+vscode Tailwind 자동완성 기능
+: Tailwind CSS IntelliSense 설치
+
+자동완성 안된다면
+
+1) 컨트롤 + p 하고 Preferences: Open User Settings(JSON) 검색
+
+2) 내용 넣기
+    "files.associations":{
+        "*html":"html",
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions":{
+        "strings": true
+    }
+
+3) 디렉터리에 tailwind.config.js 파일 생성(내용 없어도 됨)
