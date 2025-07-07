@@ -1,4 +1,4 @@
-# 새로운 언어/기술 공부용 리포지토리
+# 언어/기술 학습, 복습용 리포지토리
 
 *단순 연습용 리포지토리입니다* <br>
 
@@ -19,6 +19,15 @@
       <summary>📖학습과정</summary> 
     
       basic01 - tailwind의 기본 단위, bg, rounded, w h p m, 글자변경, flex, hover, group 사용법
+      
+  </details>
+
+
+### [React💻](https://ko.legacy.reactjs.org/)
+  <details>
+      <summary>📖복습</summary> 
+    
+      basic01 - 첫 세팅
       
   </details>
 
