@@ -1,10 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
   return (
-      <header className="App-header">
-      </header>
+    <BrowserRouter>
+      <Routes>
+        <Route/>
+      </Routes> 
+    </BrowserRouter>
   );
 }
 
