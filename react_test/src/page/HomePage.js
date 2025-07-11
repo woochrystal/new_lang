@@ -4,7 +4,16 @@ function HomePage(props){
     const location = useLocation();
     return(
         <div>
-            
+            <nav>
+                <ul>
+                    {
+                        // menuItem.map((index, item)=>{
+                        //     console.log(index, item)
+                        // })
+                    }
+                    {/* <li><link></link></li> */}
+                </ul>
+            </nav>
         </div>
     )
 }
