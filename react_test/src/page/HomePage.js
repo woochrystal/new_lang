@@ -1,19 +1,10 @@
-import {useLocation, useNavigate} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Nav from './Nav'
+
 function HomePage(props){
-    const navigate = useNavigate();
-    const location = useLocation();
     return(
-        <div>
-            <nav>
-                <ul>
-                    {
-                        // menuItem.map((index, item)=>{
-                        //     console.log(index, item)
-                        // })
-                    }
-                    {/* <li><link></link></li> */}
-                </ul>
-            </nav>
+        <div className='main_page'>
+            <Nav/>
         </div>
     )
 }
