@@ -1,4 +1,5 @@
 import {useLocation, useNavigate} from 'react-router-dom';
+import styles from '../main.module.scss';
 // import {Link} from 'react';
 function Nav(props){
     const navigate = useNavigate();
@@ -12,8 +13,7 @@ function Nav(props){
     return(
         <div className='navWrap'>
             <nav>
-                <ul>
-                    <li>테스트1</li>
+                <ul className={styles.listNav}>
                     {navList.map((item, index) => (
                         <li key={index}>
                             {item.txt}

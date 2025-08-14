@@ -1,0 +1,27 @@
+@import url(./_variavle.scss);
+
+@mixin pcmax{
+    @media (max-width : #{$breakpoint_pcmax}) {
+        @content;
+    }
+}
+@mixin pcmin{
+    @media (max-width : #{$breakpoint_pcmin}) {
+        @content;
+    }
+}
+@mixin tabmax{
+    @media (max-width : #{$breakpoint_tabmax}) {
+        @content;
+    }
+}
+@mixin tabmin{
+    @media (max-width : #{$breakpoint_tabmin}) {
+        @content;
+    }
+}
+@mixin mobile{
+    @media (max-width : #{$breakpoint_mobile}) {
+        @content;
+    }
+}
