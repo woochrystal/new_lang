@@ -23,8 +23,7 @@
             1)  명령어 > npm install -D tailwindcss postcs autoprefixer
                 autoprefixer : CSS를 최적화하고 압축하며 불필요한 공백을 제거
                 tailwindcss : Tailwind 라이브러리
-                PostCSS : @tailwind base;, @tailwind components;, @tailwind utilities;
-                를 이해하지 못하기 때문에 React + Tailwind 환경에서 꼭 같이 사용해야 함
+                PostCSS : @tailwind base;, @tailwind components;, @tailwind utilities;를 이해하지 못하기 때문에 React + Tailwind 환경에서 꼭 같이 사용해야 함
             2)  설치 후 tailwind.config.js, postcss.config.js 파일 생성 확인
             3)  tailwind.config.js 안에 컨텐츠 경로 설정
                 content: [
