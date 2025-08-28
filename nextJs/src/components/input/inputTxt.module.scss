@@ -1,0 +1,29 @@
+.inputTxt{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+
+    &--text{
+        color: #333;
+    }
+    &--password{
+
+    }
+    &--number{
+
+    }
+    &--search{
+        color: #5036BA;
+    }
+    &--textarea{
+
+    }
+    &::placeholder{
+        color:#888888;
+    }
+    &:disabled{
+        background: rgba(0, 0, 0, 0.04);
+        cursor: default;
+    }
+}

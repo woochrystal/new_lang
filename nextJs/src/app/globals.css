@@ -1,0 +1,5 @@
+/*
+  Tailwind CSS Entry Point
+*/
+@import 'tailwindcss/preflight';
+@import 'tailwindcss/utilities';
