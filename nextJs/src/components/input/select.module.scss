@@ -2,6 +2,7 @@
 
 .selectCustom{
     .selectOption{
+        position: relative;
         div{
             @include mixins.basic_box;
             p{
@@ -26,7 +27,9 @@
             box-shadow: 16px 20px 20px 0 rgba(42, 42, 64, 0.04);
             transition: 0.5s ease;
             overflow: hidden;
-            
+            position: absolute;
+            width: 100%;
+            z-index: 1;
             
             li{
                 display: flex;
@@ -58,7 +61,8 @@
 
         }
         &:active,
-        &:global(.active){
+        &:global(.active),
+        &:hover{
             div{
                 background: #EDF0F6;
             }

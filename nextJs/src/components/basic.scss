@@ -1,21 +1,21 @@
-body{background-color: #FBFAFC;}
+body{
+    background-color: #FBFAFC;
+    max-height: 100vh;
+    overflow: hidden;
+}
 
-// 박스 색상(셀렉트, 버튼 위주 참조)
-$boxCl01: #FBFAFC;
-$boxCl02: rgba(102, 77, 204, 0.10);
-$boxCl03: rgba(102, 77, 204, 0.20);
-$boxCl04: rgba(80, 54, 186, 0.04);
-$boxCl05: #664DCC;
+@mixin activeStyle{//아코디언 열렸을때
+    background: rgba(102, 77, 204, 0.10);
+    color: #5036BA;
+    font-weight: 500;
+}
 
-// 회색
-$gray01 :rgba(0, 0, 0, 0.04);//인풋
-$gray02 :#FBFAFC;//바디
-$gray03 :#EDF0F6;//버튼
+@mixin hoverStyle{//마우스 올렸을 때 선 색 생김
+    border: 1px solid rgba(102, 77, 204, 0.40);
+}
+@mixin hoverStyle{//활성화 중일 때
+    background: #664DCC;
+    color: #FFF;
+}
 
-// 선
-$line01 : 1px solid #D2DFFF;//내부컨텐츠
-$line02 :1px solid rgba(102, 77, 204, 0.08);//결재선 서식
-$line03 : 1px solid rgba(102, 77, 204, 0.40);//셀렉트
-$line04 :1px solid #5036BA;//결재선
 
-$dash01 :1px dashed rgba(102, 77, 204, 0.08);//점선

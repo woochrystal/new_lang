@@ -1,26 +1,24 @@
+@use './inputBasic.scss' as basic;
 .inputTxt{
+    @include basic.basic_box;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
-
-    &--text{
+    @include basic.basic_box;
+    
+    &[type="text"]{
         color: #333;
+        cursor: text;
     }
-    &--password{
+    &[type="password"]{
 
     }
-    &--number{
+    &[type="number"]{
 
     }
-    &--search{
+    &[type="search"]{
         color: #5036BA;
-    }
-    &--textarea{
-
-    }
-    &::placeholder{
-        color:#888888;
     }
     &:disabled{
         background: rgba(0, 0, 0, 0.04);

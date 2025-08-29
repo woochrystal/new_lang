@@ -1,12 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react'
 import styles from './table.module.scss'
-export default function TableLayout(){
-    const theadList = ['No.', '상신 일시', '기안자', '기안 부서', '휴가 종류', '휴가 기간', '휴가 일수', '진행 상태']
-    const tbodyList = [ '12', '2025-08-25 14:14:14', '홍길동', '전략기획부', '연차', '2025-08-25 14:14:14', '2', '승인']
-
-
-
+export default function TableLayout({theadList, tbodyList}){
     return(
         <div className={styles.tableLayout}>
             <div>
@@ -16,11 +11,34 @@ export default function TableLayout(){
                     </colgroup>
                     <thead>
                         <tr>
-
+                            <th>No.</th>
+                            {
+                                theadList.map((type, i)=>{
+                                    return <th key={i}>{type}</th>
+                                })
+                            }
                         </tr>
                     </thead>
                     <tbody>
-
+                            {
+                                tbodyList.map((type, i)=>{
+                                    return(
+                                        <tr key={i}>
+                                            {type.map((data, index)=>{
+                                            if (index == 0){
+                                                return (
+                                                <td className={styles.numberTd} key={index}>
+                                                    {i + 1}
+                                                </td>
+                                                )
+                                            }else{
+                                                return <td key={index}>{data}</td>
+                                            }
+                                            })}
+                                        </tr>
+                                    )
+                                })
+                            }
                     </tbody>
                 </table>
             </div>

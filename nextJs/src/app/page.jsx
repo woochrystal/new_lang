@@ -1,12 +1,14 @@
 import "./main.scss";
-import Example from "./groupware/wsj_example";
-import Select from "@/components/input/select";//리스트 아직 준비 안됨
+import Content from "./groupware/contentLayout";
+
+// 전체 레이아웃
 export default function Home() {
   return (
     <div>
-      <main >
-        <Example/>
-        {/* <Select/> */}
+      <main>
+        <div className="container">
+          <Content/>
+        </div>
       </main>
       <footer>
        
