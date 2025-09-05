@@ -2,10 +2,16 @@
 // 프로젝트 전반에서 사용될 색상, 폰트 크기, 중단점(breakpoint) 등 공통 변수를 정의합니다.
 
 // Colors
-$primary-color: #007bff;
+$primary-color: #5036ba;
 $secondary-color: #6c757d;
 $text-color: #333;
-$background-color: #fff;
+$background-color: #fbfafc;
+$placeholder-color: #888;
+$hover-color: #edf0f6;
+
+//border-color
+$primary-border: rgba(0, 0, 0, 0.04);
+$secondary-border: #d2dfff;
 
 // Breakpoints
 $breakpoint-sm: 576px;

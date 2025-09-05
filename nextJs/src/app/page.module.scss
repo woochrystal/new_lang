@@ -1,0 +1,144 @@
+/*
+  Equivalent styles for the create-next-app default page, using SCSS modules.
+*/
+
+.container {
+  display: grid;
+  grid-template-rows: 20px 1fr 20px;
+  align-items: center;
+  justify-items: center;
+  min-height: 100vh;
+  padding: 5rem 2rem 2rem; /* p-8 pb-20 sm:p-20 */
+  gap: 4rem; /* gap-16 */
+  font-family: sans-serif;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* gap-[32px] */
+  grid-row-start: 2;
+  align-items: center;
+}
+
+.logo {
+  @media (prefers-color-scheme: dark) {
+    filter: invert(1);
+  }
+}
+
+.instructionsList {
+  font-family: monospace;
+  list-style-position: inside;
+  list-style-type: decimal;
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.5; /* leading-6 */
+  text-align: center;
+}
+
+.instructionItem {
+  margin-bottom: 0.5rem; /* mb-2 */
+  letter-spacing: -0.01em; /* tracking-[-.01em] */
+}
+
+.codeBlock {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: monospace;
+  font-weight: 600;
+  padding: 0.125rem 0.25rem; /* px-1 py-0.5 */
+  border-radius: 0.25rem; /* rounded */
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem; /* gap-4 */
+  align-items: center;
+  flex-direction: column;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px; /* rounded-full */
+  border: 1px solid transparent;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+  font-weight: 500; /* font-medium */
+  font-size: 0.875rem; /* text-sm */
+  height: 2.5rem; /* h-10 */
+  padding: 0 1rem; /* px-4 */
+  gap: 0.5rem; /* gap-2 */
+}
+
+.buttonPrimary {
+  background-color: #111;
+  color: #fff;
+  &:hover {
+    background-color: #383838;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+}
+
+.buttonSecondary {
+  border-color: rgba(0, 0, 0, 0.08);
+  &:hover {
+    background-color: #f2f2f2;
+    border-color: transparent;
+  }
+  @media (prefers-color-scheme: dark) {
+    border-color: rgba(255, 255, 255, 0.145);
+    &:hover {
+      background-color: #1a1a1a;
+    }
+  }
+}
+
+.footer {
+  grid-row-start: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem; /* gap-[24px] */
+}
+
+.footerLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+/* Media query for responsive layout */
+@media (min-width: 640px) {
+  /* sm: */
+  .container {
+    padding: 5rem;
+  }
+  .main {
+    align-items: flex-start;
+  }
+  .instructionsList {
+    text-align: left;
+  }
+  .buttonGroup {
+    flex-direction: row;
+  }
+  .button {
+    font-size: 1rem; /* sm:text-base */
+    height: 3rem; /* sm:h-12 */
+    padding: 0 1.25rem; /* sm:px-5 */
+  }
+}

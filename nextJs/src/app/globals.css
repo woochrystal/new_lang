@@ -1,5 +1,11 @@
+/* 브라우저의 기본 스타일을 일관되게 만들어주는 normalize.css를 불러옵니다. */
+@import 'normalize.css/normalize.css';
 /*
   Tailwind CSS Entry Point
 */
 @import 'tailwindcss/preflight';
 @import 'tailwindcss/utilities';
+
+/*
+  기본적으로 각 [컴포넌트, 페이지]와 동일한 폴더에 [].module.scss 파일을 이용하여 스타일링 합니다
+ */

@@ -1,0 +1,21 @@
+@use './inputBasic.scss' as basic;
+@use '@/shared/styles/abstracts/variables' as *;
+
+.inputTxt {
+  @include basic.basic_box;
+  cursor: text;
+
+  input {
+    &[type='text'] {
+      color: $text-color;
+      cursor: text;
+    }
+    &[type='search'] {
+      color: $primary-color;
+    }
+    // &[type='password'] {
+    // }
+    // &[type='number'] {
+    // }
+  }
+}

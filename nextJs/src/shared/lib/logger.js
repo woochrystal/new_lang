@@ -16,16 +16,22 @@
  * });
  */
 
-import pino from 'pino';
 import { AsyncLocalStorage } from 'async_hooks';
+
+import pino from 'pino';
 
 const isBrowser = typeof window !== 'undefined';
 
 // --- LoggingContext --- //
-const contextStorage = new AsyncLocalStorage();
+let contextStorage;
+
+if (!isBrowser) {
+  contextStorage = new AsyncLocalStorage();
+}
 
 /**
  * 비동기 작업 흐름 전반에 걸쳐 컨텍스트 정보를 전파합니다.
+ * 브라우저 환경에서는 no-op으로 동작합니다.
  */
 export class LoggingContext {
   /**
@@ -35,7 +41,10 @@ export class LoggingContext {
    * @param {() => any} callback - 실행할 함수
    */
   static run(context, callback) {
-    contextStorage.run(new Map(Object.entries(context)), callback);
+    if (isBrowser || !contextStorage) {
+      return callback();
+    }
+    return contextStorage.run(new Map(Object.entries(context)), callback);
   }
 
   /**
@@ -44,6 +53,9 @@ export class LoggingContext {
    * @param {any} value
    */
   static set(key, value) {
+    if (isBrowser || !contextStorage) {
+      return;
+    }
     const store = contextStorage.getStore();
     if (store) {
       store.set(key, value);
@@ -53,21 +65,21 @@ export class LoggingContext {
 
 // --- Logger Configuration --- //
 const getLogLevel = () => {
-  return (
-    process.env.LOG_LEVEL ||
-    (process.env.NODE_ENV === 'production' ? 'warn' : 'debug')
-  );
+  return process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'warn' : 'debug');
 };
 
 const rootLogger = pino({
   level: getLogLevel(),
   mixin() {
+    if (!contextStorage) {
+      return {};
+    } // Return empty object in browser
     const store = contextStorage.getStore();
     return store ? Object.fromEntries(store) : {};
   },
   ...(isBrowser
     ? {
-        browser: { asObject: true },
+        browser: { asObject: true }
       }
     : {
         transport:
@@ -75,20 +87,21 @@ const rootLogger = pino({
             ? {
                 target: 'pino-pretty',
                 options: {
-                  colorize: true,
+                  colorize: process.platform !== 'win32',
                   translateTime: 'yyyy-mm-dd HH:MM:ss',
                   ignore: 'pid,hostname',
-                },
+                  sync: true
+                }
               }
             : undefined,
         formatters:
           process.env.NODE_ENV === 'production'
             ? {
-                level: label => ({ level: label }),
-                log: obj => ({ ...obj, timestamp: new Date().toISOString() }),
+                level: (label) => ({ level: label }),
+                log: (obj) => ({ ...obj, timestamp: new Date().toISOString() })
               }
-            : undefined,
-      }),
+            : undefined
+      })
 });
 
 // --- Logger & LoggerFactory --- //
@@ -97,7 +110,7 @@ const rootLogger = pino({
  * 컨텍스트 기반의 로거 클래스.
  * LoggerFactory를 통해 인스턴스를 생성해야 합니다.
  */
-class Logger {
+export class Logger {
   constructor(name, pinoLogger) {
     this.name = name;
     this.logger = pinoLogger;
@@ -108,7 +121,9 @@ class Logger {
    * @private
    */
   formatMessage(message, ...args) {
-    if (typeof message !== 'string') return message;
+    if (typeof message !== 'string') {
+      return message;
+    }
     let i = 0;
     return message.replace(/{}/g, () => (i < args.length ? args[i++] : '{}'));
   }
@@ -121,10 +136,7 @@ class Logger {
     const lastArg = args[args.length - 1];
     if (lastArg instanceof Error) {
       const formatArgs = args.slice(0, -1);
-      this.logger[level](
-        { err: lastArg },
-        this.formatMessage(message, ...formatArgs)
-      );
+      this.logger[level]({ err: lastArg }, this.formatMessage(message, ...formatArgs));
     } else {
       this.logger[level](this.formatMessage(message, ...args));
     }
@@ -187,15 +199,19 @@ class Logger {
   isTraceEnabled() {
     return this.logger.isLevelEnabled('trace');
   }
+
   isDebugEnabled() {
     return this.logger.isLevelEnabled('debug');
   }
+
   isInfoEnabled() {
     return this.logger.isLevelEnabled('info');
   }
+
   isWarnEnabled() {
     return this.logger.isLevelEnabled('warn');
   }
+
   isErrorEnabled() {
     return this.logger.isLevelEnabled('error');
   }
@@ -221,8 +237,7 @@ export class LoggerFactory {
    * const logger = LoggerFactory.getLogger(UserService);
    */
   static getLogger(nameOrClass) {
-    const name =
-      typeof nameOrClass === 'string' ? nameOrClass : nameOrClass.name;
+    const name = typeof nameOrClass === 'string' ? nameOrClass : nameOrClass.name;
     if (!name) {
       throw new Error('Logger name must be provided as a string or a class.');
     }

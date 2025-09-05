@@ -1,0 +1,83 @@
+@use './inputBasic.scss' as mixins;
+@use '@/shared/styles/abstracts/variables' as *;
+
+.selectCustom {
+  .selectOption {
+    position: relative;
+    z-index: 10;
+    div {
+      p {
+        @include mixins.basic_box;
+        color: $placeholder-color;
+        padding: 13px 16px;
+        width: 100%;
+      }
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+      }
+    }
+    ul {
+      display: flex;
+      padding: 0 16px;
+      max-height: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 16px 20px 20px 0 rgba(42, 42, 64, 0.04);
+      transition: 0.5s ease;
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+
+      li {
+        display: flex;
+        color: $text-color;
+        font-feature-settings:
+          'liga' off,
+          'clig' off;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: -0.28px;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+
+        &:hover {
+          color: $primary-color;
+          font-weight: 500;
+        }
+      }
+    }
+    &:global(.active) {
+      //클릭하고
+      i {
+        transform: rotate(180deg);
+      }
+      ul {
+        padding: 16px;
+        max-height: 500px;
+        margin-top: 10px;
+      }
+    }
+    &:active,
+    &:global(.active),
+    &:hover {
+      div {
+        background: $hover-color;
+      }
+    }
+    &:global(.has_value),
+    &:active {
+      p {
+        color: $text-color;
+      }
+    }
+  }
+}

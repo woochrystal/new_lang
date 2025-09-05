@@ -1,0 +1,15 @@
+@use "@/shared/styles/abstracts/variables" as *;
+@mixin activeStyle {
+  //아코디언 열렸을때
+  background: rgba(102, 77, 204, 0.1);
+  color: $primary-color;
+  font-weight: 500;
+}
+
+@mixin hoverStyle {
+  //마우스 올렸을 때 선 색 생김
+  border: 1px solid rgba(102, 77, 204, 0.4);
+  //활성화 중일 때
+  background: #664dcc;
+  color: #fff;
+}
