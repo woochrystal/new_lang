@@ -1,0 +1,92 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/mixins' as *;
+.leftMenu {
+  min-width: 300px;
+  border-radius: 0 40px 40px 0;
+  background: #fff;
+  mix-blend-mode: multiply;
+  box-shadow: 8px 20px 40px 0 rgba(6, 1, 17, 0.04);
+  padding: 30px 28px 0 36px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 40px 0;
+
+  > div {
+    @include centerCenter;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .leftTop {
+    @include centerCenter;
+    flex-direction: column;
+    gap: 28px 0;
+  }
+
+  .leftLogobox {
+    display: flex;
+    gap: 0 4px;
+    align-items: center;
+    h1 {
+      color: $text-color;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 100%; /* 18px */
+      letter-spacing: -0.36px;
+    }
+  }
+  ul {
+    li {
+      margin-bottom: 8px;
+      a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: $basic-radious;
+        background: $background-color;
+        padding: 2px 12px;
+        transition: 0.3s;
+        color: $text-color;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: -0.28px;
+
+        i {
+          @include menuA;
+          padding: 12px 0;
+        }
+        svg {
+          transition: 0.3s;
+          stroke: $text-color;
+        }
+      }
+      &:hover a,
+      &.active a {
+        @include menuHover;
+      }
+
+      ol {
+        li {
+          margin-top: 8px;
+          padding: 2px 0;
+          margin-bottom: 0;
+          a {
+            @include menuA;
+            padding: 12px 0 12px 34px;
+            border: 1px solid transparent;
+          }
+          &:hover a {
+            border: 1px solid $hover-border;
+          }
+          &.on a {
+            background: $primary-color;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

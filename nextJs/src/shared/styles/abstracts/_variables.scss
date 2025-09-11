@@ -1,19 +1,31 @@
+@use '@/shared/styles/abstracts/figma-token' as *;
 // src/shared/styles/abstracts/_variables.scss
 // 프로젝트 전반에서 사용될 색상, 폰트 크기, 중단점(breakpoint) 등 공통 변수를 정의합니다.
+// 피그마 토큰으로 대치
 
 // Colors
-$primary-color: #5036ba;
-$secondary-color: #6c757d;
-$text-color: #333;
-$background-color: #fbfafc;
-$placeholder-color: #888;
-$hover-color: #edf0f6;
+$primary-color: $foundation-primary-font; //5036ba
+$text-color: $foundation-grayscale-shade-33; //333333
+$background-color: $foundation-light-bg; //fbfafc
+$placeholder-color: $foundation-grayscale-shade-88; //888888
+$hover-color: $foundation-light-grid; //edf0f6
+$pagenation-color: $foundation-grayscale-shade-75; //757575
+$menu-active: $foundation-primary-alpha-8percent; //664dcc14
+$input-color: $foundation-grayscale-shade-66; //666666
+$fff: $foundation-light-base-shade-100;
 
 //border-color
-$primary-border: rgba(0, 0, 0, 0.04);
-$secondary-border: #d2dfff;
+$primary-border: $foundation-grayscale-base-shade-4; //0000000a
+$secondary-border: $foundation-light-line-shade-100; //d2dfff
+$hover-border: $foundation-primary-alpha-40percent; //664dcc66
+$round-border: $foundation-primary-alpha-80percent; //664dcccc
 
 // Breakpoints
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
+
+// border-radious
+$basic-radious: 8px;
+$btn-radious: 0.375rem;
+$wrap-radious: 10px;

@@ -1,18 +1,19 @@
+// http://localhost:3000/groupware/vacation
 'use client';
-import { useState, useEffect } from 'react';
+import CheckBox from '@/shared/ui/Input/checkBox';
 import '@/shared/ui/Input/inputBasic.scss';
 import styles from '@/shared/ui/Input/inputCustom.module.scss';
-import PageTit from '@/shared/ui/Title/pageTit';
-import Select from '@/shared/ui/Input/select';
-import InputTxt from '@/shared/ui/Input/inputTxt';
-import TableLayout from '@/shared/ui/Table/table';
-import Search from '@/shared/ui/Input/search';
-import CheckBox from '@/shared/ui/Input/checkBox';
+import InputBox from '@/shared/ui/Input/inputBox';
 import RadioGroup from '@/shared/ui/Input/radioGroup';
+import Search from '@/shared/ui/Input/search';
+import Select from '@/shared/ui/Input/select';
+import TableLayout from '@/shared/ui/Table/tableList';
+import PageTit from '@/shared/ui/Title/pageTit';
+import { useState } from 'react';
+import styles02 from './layout.module.scss';
 
 // 임시 예시 게시판(휴가관리)
 export default function VacationExample() {
-
   // pageTitCon 페이지 제목
   const pageTitCon = {
     pageTitle: '휴가 관리',
@@ -33,11 +34,13 @@ export default function VacationExample() {
   };
 
   // textInfo 텍스트인풋
-  const txt01 = {
-    txtTit : '텍스트인풋제목',
-    txtId :"nickname",
-    defaultTxt : "모델명 입력"
-  }
+  const txtextbox = {
+    inputType: 'text',
+    txtTit: '텍스트인풋제목',
+    txtId: 'nickname',
+    defaultTxt: '모델명 입력',
+    essential: false
+  };
 
   // 테이블 헤드
   const tableHead = ['상신 일시', '기안자', '기안 부서', '휴가 종류', '휴가 기간', '휴가 일수', '진행 상태'];
@@ -68,48 +71,50 @@ export default function VacationExample() {
 
   // searchInfo 검색
   const search01 = {
-    searchTit : '검색인풋', 
-    searchId : 'searchInput', 
-    defaultTxt : "모델명 검색",
-    disabled : false,
-
+    searchTit: '검색인풋',
+    searchId: 'searchInput',
+    defaultTxt: '모델명 검색',
+    disabled: false
   };
 
-  //라디오버튼
+  //라디오버튼값 확인용
   const [choice, setChoice] = useState('');
 
-  const radioGroup01={
-    name: 'radio',
-    radioOp:[
-      {radioTit: '라디오1', value: 'aaa', },
-      {radioTit: '라디오2', value: 'bbb', },
-      {radioTit: '라디오3', value: 'ccc', },
+  const radioGroup01 = {
+    name: 'radio input',
+    radioOp: [
+      { radioTit: '라디오1', value: 'aaa' },
+      { radioTit: '라디오2', value: 'bbb' },
+      { radioTit: '라디오3', value: 'ccc' }
     ],
-    onChange: (on) => setChoice(on)
-  }
+    onChange: (val) => setChoice(val) //값확인용
+  };
 
   return (
-    <div>
+    <div className="pageWrap">
       <PageTit pageTitCon={pageTitCon} />
-      <div className="inputAlign hasInput03">
-        <Select selectInfo={select01} />
-        <Select selectInfo={select02} />
-        <InputTxt txtInfo={txt01} />
-      </div>
-      <div className="inputAlign hasInput03">
-        <Search searchInfo={search01} />
-        <div>
-          <div className={styles.columnArea}>
-            <CheckBox checkInfo={check01} />
-            <CheckBox checkInfo={check02} />
-          </div>
-          <div className={styles.rowArea}>
-            {/* <RadioGroup radioGroupInfo={radioGroup01}/>
-            <p>값:{choice}</p> */}
+      <div className={styles02.pageScroll}>
+        <div className="inputAlign hasInput03">
+          <Select selectInfo={select01} />
+          <Select selectInfo={select02} />
+          <InputBox txtInfo={txtextbox} />
+        </div>
+        <div className="inputAlign hasInput03">
+          <Search searchInfo={search01} />
+          <InputBox txtInfo={txtextbox} />
+          <div>
+            <div className={styles.columnArea}>
+              <CheckBox checkInfo={check01} />
+              <CheckBox checkInfo={check02} />
+            </div>
+            <div className={styles.rowArea}>
+              <RadioGroup radioGroupInfo={radioGroup01} />
+              <p>클릭값:{choice}</p>
+            </div>
           </div>
         </div>
+        <TableLayout theadList={tableHead} tbodyList={tableBody} />
       </div>
-      <TableLayout theadList={tableHead} tbodyList={tableBody} />
     </div>
   );
 }

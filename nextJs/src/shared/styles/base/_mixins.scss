@@ -1,15 +1,108 @@
-@use "@/shared/styles/abstracts/variables" as *;
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+
+// flex 정렬 //부모요소에 적용
+//중앙 - 왼쪽
+@mixin centerLeft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+//중앙 - 중앙
+@mixin centerCenter {
+  @include centerLeft;
+  justify-content: center;
+}
+
+//중앙 - 오른쪽
+@mixin centerRight {
+  @include centerLeft;
+  justify-content: flex-end;
+}
+
+//상단 왼쪽
+@mixin topLeft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+//상단 - 중앙
+@mixin topCenter {
+  @include topLeft;
+  justify-content: center;
+}
+//상단 - 오른쪽
+@mixin topRight {
+  @include topLeft;
+  justify-content: flex-end;
+}
+
+//하단 왼쪽
+@mixin btmLeft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+//하단 - 중앙
+@mixin btmCenter {
+  @include btmLeft;
+  justify-content: center;
+}
+//하단 - 오른쪽
+@mixin btmRight {
+  @include btmLeft;
+  justify-content: flex-end;
+}
+
 @mixin activeStyle {
   //아코디언 열렸을때
-  background: rgba(102, 77, 204, 0.1);
+  background: $primary-border;
   color: $primary-color;
   font-weight: 500;
 }
 
 @mixin hoverStyle {
   //마우스 올렸을 때 선 색 생김
-  border: 1px solid rgba(102, 77, 204, 0.4);
+  border: 1px solid $hover-border;
   //활성화 중일 때
-  background: #664dcc;
-  color: #fff;
+  background: $round-border;
+  color: $fff;
+}
+
+// 메뉴공통
+@mixin menuHover {
+  background: $menu-active;
+  color: $primary-color;
+  font-weight: 500;
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+@mixin menuA {
+  display: flex;
+  align-items: center;
+  gap: 0 8px;
+}
+
+// 버튼 공통
+@mixin buttonBasic {
+  display: flex;
+  padding: 8px 12px;
+  min-width: 45px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: $basic-radious;
+  border: 1px solid $foundation-primary-alpha-8percent;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: -0.24px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: $foundation-primary-alpha-20percent;
+  &:hover {
+    background-color: $foundation-primary-alpha-80percent;
+  }
 }

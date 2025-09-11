@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from 'next/font/google';
+import 'modern-css-reset/dist/reset.min.css';
 import './globals.css';
 import '@/shared/styles/main.scss';
 

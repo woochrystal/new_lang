@@ -1,0 +1,53 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/mixins' as basic;
+@use './tableBasic.scss' as tableBasic;
+
+.listLayout {
+  padding-top: 20px;
+  > div {
+    border-radius: $wrap-radious;
+    border: 1px solid $primary-border;
+    overflow: hidden;
+  }
+  table {
+    @include tableBasic.basic_table;
+    thead {
+      tr {
+        border-bottom: 0;
+        text-align: center;
+        background: $hover-color;
+        overflow: hidden;
+        th {
+          @include tableBasic.basic_thtd;
+          border-right-color: $primary-border;
+        }
+      }
+    }
+    tbody {
+      tr {
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid $primary-border;
+        background: #fff;
+        cursor: pointer;
+        &:last-child {
+          border-bottom: 0;
+        }
+        &:hover {
+          td {
+            @include basic.activeStyle;
+            font-weight: 400;
+          }
+        }
+        td {
+          @include tableBasic.basic_thtd;
+          border-right-color: rgba(210, 223, 255, 0.2);
+          transition: 0.2s;
+        }
+        &.numberTd {
+          width: 80px;
+        }
+      }
+      overflow-y: auto;
+    }
+  }
+}

@@ -1,8 +1,9 @@
 @use './inputBasic.scss' as basic;
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
 
-$search-width: 20px;//검색버튼
-$clear-width: 16px;//삭제아이콘
+$search-width: 20px; //검색버튼
+$clear-width: 16px; //삭제아이콘
 
 .inputSearch {
   @include basic.basic_box;
@@ -11,7 +12,7 @@ $clear-width: 16px;//삭제아이콘
   input {
     color: $primary-color;
     font-weight: 500;
-    padding-right: calc($search-width + 2*16px);
+    padding-right: calc($search-width + 2 * 16px);
     position: relative;
     z-index: 1;
 
@@ -35,25 +36,21 @@ $clear-width: 16px;//삭제아이콘
     width: $clear-width;
     height: $clear-width;
     display: none;
-    justify-content: center;
-    align-items: center;
     position: relative;
     z-index: 0;
     position: absolute;
     z-index: 0;
-    right: calc($clear-width + 2*16px);
+    right: calc($clear-width + 2 * 16px);
 
     &.hasDelete {
-      display: flex;
+      @include centerCenter;
     }
   }
 
   button {
+    @include centerCenter;
     min-width: $search-width;
     min-height: $search-width;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
     padding: 16px;
     right: 0;

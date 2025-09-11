@@ -1,4 +1,10 @@
 .innerLayout {
-  overflow-y: auto;
   height: 100%;
+  width: calc(100% - 300px);
+  min-width: 850px;
+  padding: 28px 48px 0;
+}
+.pageScroll {
+  height: calc(100% - 80px);
+  overflow: auto;
 }

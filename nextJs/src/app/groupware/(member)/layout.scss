@@ -1,0 +1,13 @@
+// CSS Module for member layout
+.main {
+  height: 100vh;
+}
+
+.containWrap {
+  height: 100%;
+  display: flex;
+}
+
+.pageWrap {
+  height: calc(100vh - 110px);
+}

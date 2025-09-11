@@ -1,0 +1,38 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+.paginationCustom {
+  border: none !important;
+  padding: 24px 0 28px;
+  ul {
+    @include centerCenter;
+    gap: 4px;
+    li {
+      a {
+        @include centerCenter;
+        min-width: 32px;
+        height: 32px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: -0.28px;
+        color: $pagenation-color;
+        &:hover,
+        &:active,
+        &.on {
+          color: $text-color;
+          font-weight: 500;
+        }
+        &.on {
+          border-radius: $basic-radious;
+          border: 1px solid $primary-border;
+          background: #fff;
+        }
+        svg {
+          path {
+            stroke: $pagenation-color;
+          }
+        }
+      }
+    }
+  }
+}

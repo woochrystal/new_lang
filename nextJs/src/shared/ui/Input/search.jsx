@@ -4,7 +4,7 @@ import InputTit from './inputTit';
 import styles from './search.module.scss';
 
 export default function Search({ searchInfo }) {
-  const{ searchTit, searchId, defaultTxt, disabled } = searchInfo;
+  const { searchTit, searchId, defaultTxt, disabled } = searchInfo;
   const [txtData, setTxtData] = useState('');
 
   useEffect(() => {}, [txtData]); //search에 값 들어올때마다

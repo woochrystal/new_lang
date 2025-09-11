@@ -1,14 +1,13 @@
-@use "@/shared/styles/abstracts/variables" as *;
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
 .inputTit {
-  display: flex;
+  @include btmLeft;
   min-height: 32px;
   padding-left: 16px;
   padding-bottom: 8px;
-  align-items: flex-end;
-  justify-content: flex-start;
 
   span {
-    color: #666;
+    color: $input-color;
     font-size: 13px;
     font-style: normal;
     font-weight: 500;
@@ -21,7 +20,7 @@
       position: relative;
 
       &::before {
-        content: "*";
+        content: '*';
         color: $primary-color;
         position: absolute;
         left: 0;

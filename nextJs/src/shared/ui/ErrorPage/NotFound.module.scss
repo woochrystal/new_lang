@@ -1,3 +1,4 @@
+@use '@/shared/styles/abstracts/variables' as *;
 .container {
   min-height: 100vh;
   display: flex;
@@ -34,7 +35,7 @@
   color: white;
   font-weight: 700;
   padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  border-radius: $btn-radious;
   text-decoration: none;
   display: inline-block;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);

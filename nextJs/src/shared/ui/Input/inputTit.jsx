@@ -1,4 +1,4 @@
-import styles from "./inputTit.module.scss";
+import styles from './inputTit.module.scss';
 
 export default function InputTit({ inputTit, essential }) {
   return (

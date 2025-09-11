@@ -1,0 +1,14 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+.btnBasic {
+  @include buttonBasic;
+
+  &.logout {
+    background-color: $foundation-light-base-shade-100;
+    border-color: $foundation-grayscale-base-shade-8;
+    &:hover {
+      background-color: $foundation-light-bg;
+    }
+  }
+}

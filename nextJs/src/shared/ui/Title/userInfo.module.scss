@@ -1,0 +1,35 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+$img-size: 64px;
+
+.userBox {
+  @include centerCenter;
+  gap: 8px;
+  flex-direction: column;
+  .porfile {
+    width: $img-size;
+    height: $img-size;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .userName {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    span {
+      color: $text-color;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%;
+      &:last-child {
+        padding-left: 2px;
+        letter-spacing: 0.64px;
+      }
+    }
+  }
+}

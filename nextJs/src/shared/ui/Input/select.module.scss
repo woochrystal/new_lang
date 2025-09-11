@@ -1,5 +1,6 @@
 @use './inputBasic.scss' as mixins;
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
 
 .selectCustom {
   .selectOption {
@@ -13,20 +14,18 @@
         width: 100%;
       }
       i {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include centerCenter;
         transition: 0.3s;
+        stroke: $text-color;
       }
     }
     ul {
       display: flex;
+      align-items: flex-start;
       padding: 0 16px;
       max-height: 0;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-      border-radius: 10px;
+      border-radius: $wrap-radious;
       background: #fff;
       box-shadow: 16px 20px 20px 0 rgba(42, 42, 64, 0.04);
       transition: 0.5s ease;
@@ -48,6 +47,7 @@
         display: block;
         width: 100%;
         cursor: pointer;
+        padding: 8px 0;
 
         &:hover {
           color: $primary-color;
@@ -69,7 +69,7 @@
     &:active,
     &:global(.active),
     &:hover {
-      div {
+      p {
         background: $hover-color;
       }
     }

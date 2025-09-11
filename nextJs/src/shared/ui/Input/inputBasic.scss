@@ -1,12 +1,13 @@
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
 /* mixins.scss */
 // 인풋 기본 박스 스타일
 @mixin basic_box {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   align-self: stretch;
-  border-radius: 10px;
+  border-radius: $wrap-radious;
   border: 1px solid $secondary-border;
   background-color: #fff;
   font-size: 16px;
@@ -18,7 +19,7 @@
   cursor: pointer;
   input {
     width: 100%;
-    padding: 13px 16px;
+    padding: 11px 16px;
     &::placeholder {
       color: $placeholder-color;
       font-size: 16px;
@@ -39,11 +40,9 @@
 }
 
 .inputAlign {
-  display: flex;
+  @include topLeft;
   width: 100%;
   gap: 12px;
-  justify-content: flex-start;
-  align-items: flex-start;
 
   &.hasInput02 {
     > div {
@@ -62,9 +61,9 @@
   }
 }
 
-
 //체크박스
 .checkWrap {
+  width: 100%;
   input[type='checkbox'] {
     border: 0;
     width: 0;
@@ -72,22 +71,18 @@
     display: none;
   }
   label {
-    display: flex;
+    @include centerLeft;
     gap: 4px;
-    justify-content: flex-start;
-    align-items: center;
     cursor: pointer;
     padding: 4px 0;
 
     i {
       border-radius: 4px;
       border: 1px solid $secondary-border;
-      display: flex;
+      @include centerCenter;
+      flex-direction: column;
       width: 16px;
       height: 16px;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       gap: 5px;
 
       img {
@@ -105,7 +100,7 @@
   &.hasFFF {
     i {
       border-color: rgba(255, 255, 255, 0.4);
-      background-color: #664dcc;
+      background-color: $round-border;
     }
     span {
       font-weight: 500;
