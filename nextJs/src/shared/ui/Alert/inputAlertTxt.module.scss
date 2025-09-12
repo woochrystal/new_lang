@@ -1,0 +1,13 @@
+@use '@/shared/styles/abstracts/figma-token' as *;
+.inputAlertTxt {
+  padding: 6px 0 0 16px;
+  p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+
+    &.alertTxtRed {
+      color: $foundation-warning-shade-100;
+    }
+  }
+}

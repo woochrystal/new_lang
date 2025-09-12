@@ -1,4 +1,4 @@
-import styles from './topTit.module.scss';
+import styles from './TopTit.module.scss';
 
 export default function Top({ title }) {
   return (

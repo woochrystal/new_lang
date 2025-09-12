@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
-import InputTit from './inputTit';
+import InputTit from './InputTit';
 import styles from './select.module.scss';
 
 export default function Select({ selectInfo }) {
@@ -40,9 +40,9 @@ export default function Select({ selectInfo }) {
       <div
         // className={`${styles.selectOption} option_wrap`}
         className={`
-          ${styles.selectOption} 
-          option_wrap 
-          ${isOpen ? 'active' : ''} 
+          ${styles.selectOption}
+          option_wrap
+          ${isOpen ? 'active' : ''}
           ${clickLi !== defaultTxt ? 'has_value' : ''}
           `}
         onClick={activeToggle} //박스 클릭하면 열림/닫힘

@@ -1,0 +1,133 @@
+// 모달 오버레이
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+// 모달 컨테이너
+.modalContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+// 모달 헤더
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 16px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #333;
+  }
+
+  &:focus {
+    outline: 2px solid #5036ba;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+// 모달 바디
+.modalBody {
+  padding: 16px 24px 24px 24px;
+}
+
+.modalMessage {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  margin: 0 0 24px 0;
+  word-break: keep-all;
+}
+
+// 모달 푸터 (버튼 영역)
+.modalFooter {
+  padding: 0 24px 24px 24px;
+}
+
+.confirmButton {
+  width: 100%;
+  background-color: #5036ba;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #4529a3;
+  }
+
+  &:focus {
+    outline: 2px solid #5036ba;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: #3d2490;
+  }
+}
+
+// 애니메이션
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

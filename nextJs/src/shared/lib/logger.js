@@ -16,17 +16,23 @@
  * });
  */
 
-import { AsyncLocalStorage } from 'async_hooks';
-
 import pino from 'pino';
 
 const isBrowser = typeof window !== 'undefined';
 
 // --- LoggingContext --- //
+let AsyncLocalStorage;
 let contextStorage;
 
 if (!isBrowser) {
-  contextStorage = new AsyncLocalStorage();
+  try {
+    const { AsyncLocalStorage: AsyncLocalStorageImport } = require('async_hooks');
+    AsyncLocalStorage = AsyncLocalStorageImport;
+    contextStorage = new AsyncLocalStorage();
+  } catch {
+    // async_hooks를 사용할 수 없는 환경
+    contextStorage = null;
+  }
 }
 
 /**

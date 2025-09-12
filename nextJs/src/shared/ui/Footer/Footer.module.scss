@@ -1,0 +1,36 @@
+.footer {
+  width: 100%;
+  padding: 24px 0;
+  margin-top: auto;
+}
+
+.footerContent {
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerBrand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footerLogo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #5036ba;
+}
+
+.footerInfo {
+  font-size: 13px;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.footerCopyright {
+  font-size: 13px;
+  color: #6c757d;
+}

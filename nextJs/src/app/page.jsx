@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import styles from './page.module.scss';
 
-// 기존 휴가 샘플은 src/app/groupware/(member)/vacation/page.jsx 에서 확인할 수 있으며
-// 웹 페이지는 http://localhost:3000/groupware/vacation 에 접속하여 확인할 수 있습니다
 export default function Home() {
   return (
     <div className={styles.container}>

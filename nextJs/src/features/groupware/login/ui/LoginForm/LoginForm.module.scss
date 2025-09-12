@@ -1,0 +1,181 @@
+.loginSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  max-width: 512px;
+  width: 100%;
+}
+
+.loginCard {
+  width: 100%;
+}
+
+.loginHeader {
+  text-align: left;
+}
+
+.loginTitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.loginSubtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+// 폼 스타일
+.loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 4px;
+
+  &::after {
+    content: ' *';
+    color: #ef4444;
+  }
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  transition:
+    border-color 250ms ease,
+    box-shadow 250ms ease;
+  background-color: #ffffff;
+
+  &:focus {
+    outline: none;
+    border-color: #5036ba;
+    box-shadow: 0 0 0 3px rgba(80, 54, 186, 0.1);
+  }
+
+  &:disabled {
+    background-color: #f3f4f6;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &.error {
+    border-color: #ef4444;
+    background-color: #fecaca;
+  }
+}
+
+.fieldError {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 4px;
+  line-height: 1.5;
+  min-height: 16px;
+}
+
+// 로그인 버튼
+.loginButton {
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #5036ba;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 250ms ease,
+    transform 150ms ease;
+  margin-top: 16px;
+
+  &:hover:not(:disabled) {
+    background-color: #5b21b6;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.6;
+  }
+}
+
+// 링크 섹션
+.linkSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #111827;
+}
+
+.forgotPassword {
+  color: #5036ba;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+    color: #5b21b6;
+  }
+}
+
+// 캡스락 경고
+.capsLockContainer {
+  min-height: 40px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.capsLockWarning {
+  background-color: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: #d97706;
+  font-weight: 500;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -1,5 +1,5 @@
 'use client';
-import RadioBtn from '@/shared/ui/Input/radioBtn';
+import RadioBtn from '@/shared/ui/Input/RadioBtn';
 import { useEffect, useState } from 'react';
 import styles from './radioCustom.module.scss';
 

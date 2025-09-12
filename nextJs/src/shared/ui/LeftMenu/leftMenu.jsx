@@ -1,5 +1,5 @@
-import LoginOutBtn from '@/shared/ui/Button/loginOutBtn';
-import UserInfo from '@/shared/ui/Title/userInfo';
+import LoginOutBtn from '@/shared/ui/Button/LoginOutBtn';
+import UserInfo from '@/shared/ui/Title/UserInfo';
 import styles from './leftMenu.module.scss';
 export default function LeftMenu() {
   const menu = [

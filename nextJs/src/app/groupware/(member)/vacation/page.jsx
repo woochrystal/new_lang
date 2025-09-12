@@ -1,15 +1,16 @@
 // http://localhost:3000/groupware/vacation
 'use client';
-import CheckBox from '@/shared/ui/Input/checkBox';
+import { useState } from 'react';
+import CheckBox from '@/shared/ui/Input/CheckBox';
+import InputBox from '@/shared/ui/Input/InputBox';
+import InputHasAlert from '@/shared/ui/Input/InputHasAlert';
+import RadioGroup from '@/shared/ui/Input/RadioGroup';
+import Search from '@/shared/ui/Input/Search';
+import Select from '@/shared/ui/Input/Select';
+import TableLayout from '@/shared/ui/Table/TableList';
+import PageTit from '@/shared/ui/Title/PageTit';
 import '@/shared/ui/Input/inputBasic.scss';
 import styles from '@/shared/ui/Input/inputCustom.module.scss';
-import InputBox from '@/shared/ui/Input/inputBox';
-import RadioGroup from '@/shared/ui/Input/radioGroup';
-import Search from '@/shared/ui/Input/search';
-import Select from '@/shared/ui/Input/select';
-import TableLayout from '@/shared/ui/Table/tableList';
-import PageTit from '@/shared/ui/Title/pageTit';
-import { useState } from 'react';
 import styles02 from './layout.module.scss';
 
 // 임시 예시 게시판(휴가관리)
@@ -34,12 +35,19 @@ export default function VacationExample() {
   };
 
   // textInfo 텍스트인풋
-  const txtextbox = {
+  const txtinput = {
     inputType: 'text',
     txtTit: '텍스트인풋제목',
     txtId: 'nickname',
     defaultTxt: '모델명 입력',
     essential: false
+  };
+  const pwBox = {
+    inputType: 'password',
+    txtTit: '비밀번호',
+    txtId: 'password',
+    defaultTxt: '비밀번호를 입력해주세요',
+    essential: true
   };
 
   // 테이블 헤드
@@ -83,36 +91,46 @@ export default function VacationExample() {
   const radioGroup01 = {
     name: 'radio input',
     radioOp: [
-      { radioTit: '라디오1', value: 'aaa' },
-      { radioTit: '라디오2', value: 'bbb' },
-      { radioTit: '라디오3', value: 'ccc' }
+      { radioTit: '라디오1', value: '1값' },
+      { radioTit: '라디오2', value: '2값' },
+      { radioTit: '라디오3', value: '3값' }
     ],
     onChange: (val) => setChoice(val) //값확인용
   };
 
   return (
     <div className="pageWrap">
+      {/* 상단 현재 메뉴명 */}
       <PageTit pageTitCon={pageTitCon} />
       <div className={styles02.pageScroll}>
         <div className="inputAlign hasInput03">
+          {/* 셀렉트 */}
           <Select selectInfo={select01} />
+          {/* 필수표시한 셀렉트 */}
           <Select selectInfo={select02} />
-          <InputBox txtInfo={txtextbox} />
+          {/* 일반 텍스트 인풋 */}
+          <InputBox txtInfo={txtinput} />
         </div>
         <div className="inputAlign hasInput03">
+          {/* 검색 */}
           <Search searchInfo={search01} />
-          <InputBox txtInfo={txtextbox} />
+          {/* 비밀번호 인풋 */}
+          <InputHasAlert txtInfo={pwBox} />
           <div>
             <div className={styles.columnArea}>
+              {/* 체크박스 기본 흰색 */}
               <CheckBox checkInfo={check01} />
+              {/* 체크박스 보라색 */}
               <CheckBox checkInfo={check02} />
             </div>
             <div className={styles.rowArea}>
+              {/* 라디오버튼 그룹 */}
               <RadioGroup radioGroupInfo={radioGroup01} />
               <p>클릭값:{choice}</p>
             </div>
           </div>
         </div>
+        {/* 테이블 */}
         <TableLayout theadList={tableHead} tbodyList={tableBody} />
       </div>
     </div>

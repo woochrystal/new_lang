@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import InputTit from './inputTit';
+import InputTit from './InputTit';
 import styles from './search.module.scss';
 
 export default function Search({ searchInfo }) {
