@@ -1,5 +1,7 @@
 @use './inputBasic.scss' as basic;
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
 
 .inputTxt {
   @include basic.basic_box;
@@ -18,4 +20,23 @@
     // &[type='number'] {
     // }
   }
+}
+.inputPw {
+  position: relative;
+}
+.textarea {
+  @include topLeft;
+  min-height: 156px;
+  justify-content: space-between;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  padding: 16px;
+  outline: none;
+  border-radius: $wrap-radious;
+  border: 1px solid $foundation-light-line-shade-100;
+  background: $foundation-light-base-shade-100;
+  resize: none;
+  width: 100%;
 }

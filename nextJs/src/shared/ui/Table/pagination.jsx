@@ -1,7 +1,6 @@
 import styles from './pagination.module.scss';
 export default function Pagination() {
   const pageNum = Array.from({ length: 6 }, (_, i) => i); //페이지 번호
-  const clickNum = () => {};
   if (pageNum == 1) {
   }
 
@@ -44,7 +43,8 @@ export default function Pagination() {
             // console.log()
             return (
               <li key={i}>
-                <a>{i + 1}</a>
+                {/* <a className={ i == 0 ? styles.on : ''}>{i + 1}</a> */}
+                <a className={i == 0 ? styles.on : ''}>{i + 1}</a>
               </li>
             );
           })

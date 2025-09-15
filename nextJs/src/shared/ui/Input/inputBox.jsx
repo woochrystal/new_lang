@@ -1,3 +1,4 @@
+// 인풋 레이블 + 텍스트인풋 합본
 import InputTit from './InputTit';
 import InputTxt from './InputTxt';
 import styles from './inputTxt.module.scss';

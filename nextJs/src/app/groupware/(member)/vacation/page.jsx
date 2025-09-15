@@ -1,14 +1,24 @@
 // http://localhost:3000/groupware/vacation
 'use client';
 import { useState } from 'react';
-import CheckBox from '@/shared/ui/Input/CheckBox';
+
+// component
+import PageTit from '@/shared/ui/Title/PageTit';
+import InputTit from '@/shared/ui/Input/InputTit';
 import InputBox from '@/shared/ui/Input/InputBox';
-import InputHasAlert from '@/shared/ui/Input/InputHasAlert';
-import RadioGroup from '@/shared/ui/Input/RadioGroup';
 import Search from '@/shared/ui/Input/Search';
 import Select from '@/shared/ui/Input/Select';
+import InputHasAlert from '@/shared/ui/Input/InputHasAlert';
+import CheckBox from '@/shared/ui/Input/CheckBox';
+import RadioGroup from '@/shared/ui/Input/RadioGroup';
+import PrimaryBtn from '@/shared/ui/Button/PrimaryBtn';
+import SecondBtn from '@/shared/ui/Button/SecondBtn';
+import BasicBtn from '@/shared/ui/Button/BasicBtn';
 import TableLayout from '@/shared/ui/Table/TableList';
-import PageTit from '@/shared/ui/Title/PageTit';
+import TableBox from '@/shared/ui/Table/TableBox';
+import Textarea from '@/shared/ui/Input/Textarea';
+
+// scss
 import '@/shared/ui/Input/inputBasic.scss';
 import styles from '@/shared/ui/Input/inputCustom.module.scss';
 import styles02 from './layout.module.scss';
@@ -56,12 +66,7 @@ export default function VacationExample() {
   const tableBody = [
     ['', '2025-08-25 14:14:14', '홍길동', '전략기획부', '연차', '2025-08-25 14:14:14', '2', '승인'],
     ['', '2025-08-26 14:14:15', '김길동', '전략기획', '반차', '2025-08-25 14:14:15', '1', '승인'],
-    ['', '2025-08-25 14:14:14', '홍길동', '전략기획부', '연차', '2025-08-25 14:14:14', '2', '승인'],
-    ['', '2025-08-26 14:14:15', '김길동', '전략기획', '반차', '2025-08-25 14:14:15', '1', '승인'],
-    ['', '2025-08-25 14:14:14', '홍길동', '전략기획부', '연차', '2025-08-25 14:14:14', '2', '승인'],
-    ['', '2025-08-26 14:14:15', '김길동', '전략기획', '반차', '2025-08-25 14:14:15', '1', '승인'],
-    ['', '2025-08-25 14:14:14', '홍길동', '전략기획부', '연차', '2025-08-25 14:14:14', '2', '승인'],
-    ['', '2025-08-26 14:14:15', '김길동', '전략기획', '반차', '2025-08-25 14:14:15', '1', '승인']
+    ['', '2025-08-25 14:14:14', '홍길동', '전략기획부', '연차', '2025-08-25 14:14:14', '2', '승인']
   ];
 
   //checkInfo 체크박스
@@ -97,6 +102,10 @@ export default function VacationExample() {
     ],
     onChange: (val) => setChoice(val) //값확인용
   };
+  const textarea01 = {
+    inputTit: 'Textarea',
+    essential: true
+  };
 
   return (
     <div className="pageWrap">
@@ -130,8 +139,22 @@ export default function VacationExample() {
             </div>
           </div>
         </div>
+        <div className="inputAlign hasInput03">
+          <div className={styles.rowArea}>
+            <PrimaryBtn />
+            <SecondBtn />
+            <BasicBtn />
+          </div>
+          <div>
+            {/* Textarea */}
+            <InputTit inputTit={textarea01.inputTit} essential={textarea01.essential} />
+            <Textarea />
+          </div>
+        </div>
         {/* 테이블 */}
         <TableLayout theadList={tableHead} tbodyList={tableBody} />
+        {/* 테이블 컴포넌트 나눈 버전 */}
+        <TableBox theadList={tableHead} tbodyList={tableBody} />
       </div>
     </div>
   );

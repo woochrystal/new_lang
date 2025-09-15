@@ -1,4 +1,5 @@
-import LoginOutBtn from '@/shared/ui/Button/LoginOutBtn';
+import LogoutBtn from '@/shared/ui/Button/LogoutBtn';
+import BrandInfo from '@/shared/ui/Title/BrandInfo';
 import UserInfo from '@/shared/ui/Title/UserInfo';
 import styles from './leftMenu.module.scss';
 export default function LeftMenu() {
@@ -6,6 +7,10 @@ export default function LeftMenu() {
     // [menuIcon:"/menuIcon/menuIcon1.svg", menuName:"전자 결재"]
   ];
   const title = '기업 맞춤형 IT 솔루션, 펜타웨어';
+  const BrandInfo01 = {
+    logoimg: '/logo/logo.png',
+    brandname: '펜타웨어'
+  };
   const userInfo01 = {
     nickname: 'islayruth',
     username: '기은'
@@ -14,16 +19,13 @@ export default function LeftMenu() {
     <div className={styles.leftMenu}>
       <div>
         <div className={styles.leftTop}>
-          <div className={styles.leftLogobox}>
-            <img src="/logo/logo.png" alt="로고" />
-            <h1>펜타웨어</h1>
-          </div>
+          <BrandInfo BrandInfo={BrandInfo01} />
           {/* 사용자정보 */}
           <UserInfo userInfo={userInfo01} />
         </div>
 
         {/* 로그인버튼 */}
-        <LoginOutBtn />
+        <LogoutBtn />
       </div>
 
       <ul>

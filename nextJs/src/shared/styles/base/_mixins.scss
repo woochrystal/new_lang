@@ -86,7 +86,7 @@
 }
 
 // 버튼 공통
-@mixin buttonBasic {
+@mixin btnBasic {
   display: flex;
   padding: 8px 12px;
   min-width: 45px;
@@ -94,15 +94,43 @@
   align-items: center;
   gap: 4px;
   border-radius: $basic-radious;
-  border: 1px solid $foundation-primary-alpha-8percent;
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
   letter-spacing: -0.24px;
   cursor: pointer;
   transition: 0.3s;
-  background-color: $foundation-primary-alpha-20percent;
+}
+// 버튼 색상
+
+@mixin btnPrimeColor {
+  //주요버튼
+  border: 1px solid $foundation-primary-font;
+  background-color: $foundation-primary-bg;
+  color: $foundation-light-base-shade-100;
   &:hover {
+    border: 1px solid $foundation-primary-alpha-8percent;
     background-color: $foundation-primary-alpha-80percent;
+  }
+}
+
+@mixin btnSeconColor {
+  //보조버튼
+  border: 1px solid $foundation-primary-alpha-8percent;
+  background-color: $foundation-primary-alpha-20percent;
+  color: $foundation-primary-bg;
+  &:hover {
+    background-color: $foundation-primary-alpha-40percent;
+  }
+}
+
+@mixin btnBasicColor {
+  //일반흰색
+  background-color: $foundation-light-base-shade-100;
+  border: 1px solid $foundation-grayscale-base-shade-8;
+  color: $foundation-grayscale-shade-33;
+  &:hover {
+    background-color: $foundation-light-bg;
+    border: 1px solid $foundation-primary-alpha-8percent;
   }
 }
