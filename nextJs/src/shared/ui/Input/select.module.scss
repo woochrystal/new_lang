@@ -1,5 +1,5 @@
-@use './inputBasic.scss' as mixins;
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
 @use '@/shared/styles/base/_mixins.scss' as *;
 
 .selectCustom {
@@ -8,7 +8,7 @@
     z-index: 10;
     div {
       p {
-        @include mixins.basic_box;
+        @include basic_box;
         color: $placeholder-color;
         padding: 13px 16px;
         width: 100%;
@@ -77,6 +77,28 @@
     &:active {
       p {
         color: $text-color;
+      }
+    }
+  }
+
+  &.selectGray {
+    div {
+      p {
+        // padding: 8px 10px 8px 16px;
+        border: 1px solid $foundation-grayscale-base-shade-4;
+        background: $foundation-light-grid;
+        color: $foundation-grayscale-shade-33;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 14px; /* 100% */
+        letter-spacing: -0.28px;
+        padding: 8px 10px 8px 16px;
+        height: 40px;
+        i,
+        svg {
+          height: 16px;
+          width: 16px;
+        }
       }
     }
   }

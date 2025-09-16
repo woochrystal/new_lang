@@ -1,6 +1,7 @@
 @use '@/shared/styles/abstracts/variables' as *;
 @use '@/shared/styles/abstracts/_figma-token' as *;
 @use '@/shared/styles/base/_mixins.scss' as *;
+
 .paginationCustom {
   border: none !important;
   padding: 24px 0 28px;
@@ -22,6 +23,9 @@
         &.on {
           color: $foundation-grayscale-shade-33;
           font-weight: 500;
+          svg path {
+            stroke: $foundation-grayscale-shade-33;
+          }
         }
         &.on {
           border-radius: $basic-radious;

@@ -6,7 +6,7 @@ $search-width: 20px; //검색버튼
 $clear-width: 16px; //삭제아이콘
 
 .inputSearch {
-  @include basic.basic_box;
+  @include basic_box;
   cursor: text;
   position: relative;
   input {

@@ -1,37 +1,6 @@
 @use '@/shared/styles/abstracts/variables' as *;
 @use '@/shared/styles/base/mixins.scss' as *;
 /* mixins.scss */
-// 인풋 기본 박스 스타일
-@mixin basic_box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-self: stretch;
-  border-radius: $wrap-radious;
-  border: 1px solid $secondary-border;
-  background-color: #fff;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  width: 100%;
-  overflow: hidden;
-  cursor: pointer;
-  input {
-    width: 100%;
-    padding: 11px 16px;
-    &::placeholder {
-      color: $placeholder-color;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 100%;
-    }
-    &:disabled {
-      background: rgba(0, 0, 0, 0.04);
-      cursor: default;
-    }
-  }
-}
 @mixin basic_placeholder {
   color: $placeholder-color;
   font-size: 16px;
@@ -39,26 +8,9 @@
   line-height: 100%;
 }
 
-.inputAlign {
-  @include topLeft;
-  width: 100%;
-  gap: 12px;
-
-  &.hasInput02 {
-    > div {
-      width: calc(100% / 2);
-    }
-  }
-  &.hasInput03 {
-    > div {
-      width: calc(100% / 3);
-    }
-  }
-  &.hasInput04 {
-    > div {
-      width: calc(100% / 4);
-    }
-  }
+// 인풋 정렬시 itemAlign + hasItem(인풋개수) class 두개 다 사용
+.itemAlign {
+  @include btmRight;
 }
 
 //체크박스
@@ -77,7 +29,7 @@
     padding: 4px 0;
 
     i {
-      border-radius: 4px;
+      border-radius: $input-radious;
       border: 1px solid $secondary-border;
       @include centerCenter;
       flex-direction: column;

@@ -1,10 +1,9 @@
-@use './inputBasic.scss' as basic;
 @use '@/shared/styles/abstracts/variables' as *;
 @use '@/shared/styles/abstracts/_figma-token' as *;
 @use '@/shared/styles/base/_mixins.scss' as *;
 
 .inputTxt {
-  @include basic.basic_box;
+  @include basic_box;
   cursor: text;
 
   input {
@@ -15,6 +14,15 @@
     &[type='search'] {
       color: $primary-color;
     }
+    &[type='file'] {
+      //reset
+      position: absolute;
+      width: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+    }
     // &[type='password'] {
     // }
     // &[type='number'] {
@@ -24,6 +32,7 @@
 .inputPw {
   position: relative;
 }
+
 .textarea {
   @include topLeft;
   min-height: 156px;
@@ -39,4 +48,69 @@
   background: $foundation-light-base-shade-100;
   resize: none;
   width: 100%;
+}
+
+// 기본 파일첨부 알맹이 정렬
+@mixin fileTxtBasic {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.28px;
+}
+
+.inputFileWrap {
+  position: relative;
+  > div {
+    @include topLeft;
+    width: calc(100% - 20px);
+    gap: 8px;
+  }
+}
+.inputFile {
+  @include topCenter;
+  justify-content: space-between;
+  align-self: stretch;
+  flex: 1;
+
+  input[type='file'] {
+    //reset
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
+  span {
+    @include fileTxtBasic;
+    color: $foundation-grayscale-shade-88;
+    width: calc(100% - 20px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  i {
+    width: 20px;
+    height: 20px;
+    @include centerCenter;
+  }
+}
+.inputFileWrap {
+  @include centerLeft;
+  width: 100%;
+
+  .fileNameBtn {
+    @include centerLeft;
+    gap: 4px;
+    span {
+      @include fileTxtBasic;
+      color: $file-color;
+      text-decoration: underline;
+    }
+    i {
+      @include centerCenter;
+      width: 16px;
+      height: 16px;
+    }
+  }
 }

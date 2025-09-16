@@ -1,9 +1,10 @@
 'use client';
-import RadioBtn from '@/shared/ui/Input/RadioBtn';
+import RadioCircle from '@/shared/ui/Input/RadioCircle';
+import RadioButton from '@/shared/ui/Input/RadioButton';
 import { useEffect, useState } from 'react';
 import styles from './radioCustom.module.scss';
 
-export default function RadioGroup({ radioGroupInfo }) {
+export default function RadioGroup({ radioGroupInfo, type = 'circle' }) {
   const { defaultValue, name, radioOp, onChange } = radioGroupInfo;
 
   //기본으로 첫번째 라디오버튼 선택
@@ -31,11 +32,13 @@ export default function RadioGroup({ radioGroupInfo }) {
     }
   };
 
+  const RadioComp = type === 'button' ? RadioButton : RadioCircle;
+
   return (
     <div className={styles.radioBox}>
       {radioOp.map((option, i) => {
         return (
-          <RadioBtn
+          <RadioComp
             key={i}
             name={name}
             radioTit={option.radioTit}

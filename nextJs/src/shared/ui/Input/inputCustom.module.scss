@@ -16,8 +16,10 @@
 }
 .columnArea {
   display: flex;
-  background-color: #a3a3a3;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
+}
+.bg_gray {
+  background-color: #a3a3a3;
 }

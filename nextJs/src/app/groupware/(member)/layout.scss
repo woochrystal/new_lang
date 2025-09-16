@@ -1,3 +1,5 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
 // CSS Module for member layout
 .main {
   height: 100vh;
@@ -7,7 +9,77 @@
   height: 100%;
   display: flex;
 }
-
+.innerLayout {
+  height: 100%;
+  width: calc(100% - 300px);
+  min-width: 850px;
+  padding: 28px 48px 0;
+}
+//스크롤되는 페이지 내부 영역(PageTit 영역 제외)
+.pageScroll {
+  height: calc(100% - 80px);
+  overflow: auto;
+}
 .pageWrap {
   height: calc(100vh - 110px);
+}
+
+// 인풋 가로 정렬
+//hasItem02/03/04 와 함께 사용
+.itemAlign {
+  @include btmRight;
+}
+
+//흰색 박스 레이아웃
+.boxStyle {
+  @include basic_box;
+  padding: 13px 16px;
+}
+
+// 정렬 (세로 - 가로)
+//중앙 - 왼쪽
+.centerLeft {
+  @include centerLeft;
+}
+//중앙 - 중앙
+.centerCenter {
+  @include centerCenter;
+}
+
+//중앙 - 오른쪽
+.centerRight {
+  @include centerRight;
+}
+
+//상단 왼쪽
+.topLeft {
+  @include topLeft;
+}
+//상단 - 중앙
+.topCenter {
+  @include topCenter;
+}
+//상단 - 오른쪽
+.topRight {
+  @include topRight;
+}
+
+//하단 왼쪽
+.btmLeft {
+  @include btmLeft;
+}
+//하단 - 중앙
+.btmCenter {
+  @include btmCenter;
+}
+//하단 - 오른쪽
+.btmRight {
+  @include btmRight;
+}
+
+// 버튼들 정렬/사이여백
+.btnWrap {
+  @include centerLeft;
+  flex-direction: row;
+  gap: 8px;
 }

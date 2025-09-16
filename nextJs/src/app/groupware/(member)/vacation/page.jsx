@@ -8,6 +8,7 @@ import InputTit from '@/shared/ui/Input/InputTit';
 import InputBox from '@/shared/ui/Input/InputBox';
 import Search from '@/shared/ui/Input/Search';
 import Select from '@/shared/ui/Input/Select';
+import SelectGray from '@/shared/ui/Input/SelectGray';
 import InputHasAlert from '@/shared/ui/Input/InputHasAlert';
 import CheckBox from '@/shared/ui/Input/CheckBox';
 import RadioGroup from '@/shared/ui/Input/RadioGroup';
@@ -17,6 +18,7 @@ import BasicBtn from '@/shared/ui/Button/BasicBtn';
 import TableLayout from '@/shared/ui/Table/TableList';
 import TableBox from '@/shared/ui/Table/TableBox';
 import Textarea from '@/shared/ui/Input/Textarea';
+import InputFile from '@/shared/ui/Input/InputFile';
 
 // scss
 import '@/shared/ui/Input/inputBasic.scss';
@@ -38,10 +40,8 @@ export default function VacationExample() {
     defaultTxt: '선택해주세요'
   };
   const select02 = {
-    selectTit: '필수셀렉트별표시',
-    list: ['전체2', '연차2', '반차2', '병가2', '경조사2', '리프레시2', '기타2'],
-    defaultTxt: '선택해주세요2',
-    essential: true //필수 별표시
+    list: ['10건 보기', '20건 보기', '30건 보기'],
+    defaultTxt: '20건 보기'
   };
 
   // textInfo 텍스트인풋
@@ -90,11 +90,10 @@ export default function VacationExample() {
     disabled: false
   };
 
-  //라디오버튼값 확인용
+  //기본 라디오버튼값 확인용
   const [choice, setChoice] = useState('');
-
   const radioGroup01 = {
-    name: 'radio input',
+    name: 'radio input01',
     radioOp: [
       { radioTit: '라디오1', value: '1값' },
       { radioTit: '라디오2', value: '2값' },
@@ -102,8 +101,33 @@ export default function VacationExample() {
     ],
     onChange: (val) => setChoice(val) //값확인용
   };
+
+  //버튼모양 라디오버튼
+  const [choice02, setChoice02] = useState('');
+  const radioGroup02 = {
+    name: 'radio input02',
+    radioOp: [
+      { radioTit: '버튼1', value: '1값' },
+      { radioTit: '버튼2', value: '2값' },
+      { radioTit: '버튼3', value: '3값' }
+    ],
+    onChange: (val) => setChoice02(val) //값확인용
+  };
+
+  //Textarea
   const textarea01 = {
     inputTit: 'Textarea',
+    essential: true
+  };
+
+  // 버튼명
+  const btnName01 = '메인기능버튼';
+  const btnName02 = '보조기능버튼';
+  const btnName03 = '기본버튼';
+
+  // 첨부파일 기본형
+  const InputFile01 = {
+    inputTit: '첨부파일 기본형',
     essential: true
   };
 
@@ -111,44 +135,61 @@ export default function VacationExample() {
     <div className="pageWrap">
       {/* 상단 현재 메뉴명 */}
       <PageTit pageTitCon={pageTitCon} />
-      <div className={styles02.pageScroll}>
-        <div className="inputAlign hasInput03">
+
+      {/* pageScroll : 스크롤되는 페이지 내부 영역(PageTit 영역 제외) */}
+      <div className="pageScroll">
+        {/* 같은 크기로 가로 정렬 시 itemAlign + hasItem02/03/04 class 두개 다 사용 필요 */}
+        {/* 2 3 4의 배수로 정렬 시 사용 */}
+        <div className="itemAlign hasItem03">
           {/* 셀렉트 */}
           <Select selectInfo={select01} />
-          {/* 필수표시한 셀렉트 */}
-          <Select selectInfo={select02} />
+          {/* 필수표시한 셀렉트 (테이블 목록용)*/}
+          <SelectGray selectInfo={select02} />
           {/* 일반 텍스트 인풋 */}
           <InputBox txtInfo={txtinput} />
-        </div>
-        <div className="inputAlign hasInput03">
           {/* 검색 */}
           <Search searchInfo={search01} />
           {/* 비밀번호 인풋 */}
           <InputHasAlert txtInfo={pwBox} />
+
           <div>
-            <div className={styles.columnArea}>
+            <div className="boxStyle">
+              {/* 라디오버튼 그룹 */}
+              <RadioGroup radioGroupInfo={radioGroup01} type="circle" />
+              <p>클릭값:{choice}</p>
+            </div>
+            <div className="boxStyle">
+              {/* 라디오버튼 그룹 */}
+              <RadioGroup radioGroupInfo={radioGroup02} type="button" />
+              <p>버튼:{choice02}</p>
+            </div>
+          </div>
+
+          <div className={`${styles.rowArea} boxStyle`}>
+            <div className="btnWrap">
+              <PrimaryBtn btnName={btnName01} />
+              <SecondBtn btnName={btnName02} />
+              <BasicBtn btnName={btnName03} />
+            </div>
+            <div className={`${styles.columnArea} ${styles.bg_gray} boxStyle`}>
               {/* 체크박스 기본 흰색 */}
               <CheckBox checkInfo={check01} />
               {/* 체크박스 보라색 */}
               <CheckBox checkInfo={check02} />
             </div>
-            <div className={styles.rowArea}>
-              {/* 라디오버튼 그룹 */}
-              <RadioGroup radioGroupInfo={radioGroup01} />
-              <p>클릭값:{choice}</p>
-            </div>
           </div>
-        </div>
-        <div className="inputAlign hasInput03">
-          <div className={styles.rowArea}>
-            <PrimaryBtn />
-            <SecondBtn />
-            <BasicBtn />
-          </div>
+
           <div>
             {/* Textarea */}
             <InputTit inputTit={textarea01.inputTit} essential={textarea01.essential} />
             <Textarea />
+          </div>
+
+          <div>
+            <InputTit inputTit={InputFile01.inputTit} essential={InputFile01.essential} />
+            <div className="boxStyle">
+              <InputFile />
+            </div>
           </div>
         </div>
         {/* 테이블 */}
