@@ -1,0 +1,37 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+.uploadBox {
+  // 파일
+  &.fileBox {
+    @include input_file;
+    border-radius: $wrap-radious;
+    border: 1px solid $foundation-light-line-shade-100;
+    background: $foundation-light-base-shade-100;
+    .plusWrap {
+      height: 96px;
+      @include centerCenter;
+    }
+
+    .fileBoxName {
+      border-top: 1px solid $foundation-light-line-shade-100;
+      min-height: 48px;
+      @include centerCenter;
+      span {
+        @include centerCenter;
+        color: $foundation-grayscale-shade-88;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+      }
+    }
+
+    .fileDelete {
+      @include file_name;
+      @include centerCenter;
+      gap: 0 4px;
+    }
+  }
+}

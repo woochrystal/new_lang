@@ -1,4 +1,5 @@
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
 @use '@/shared/styles/base/mixins.scss' as *;
 /* mixins.scss */
 @mixin basic_placeholder {
@@ -36,6 +37,7 @@
       width: 16px;
       height: 16px;
       gap: 5px;
+      background-color: $foundation-light-base-shade-100;
 
       img {
         display: none;

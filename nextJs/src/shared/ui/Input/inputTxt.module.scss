@@ -16,12 +16,7 @@
     }
     &[type='file'] {
       //reset
-      position: absolute;
-      width: 0;
-      height: 0;
-      padding: 0;
-      overflow: hidden;
-      border: 0;
+      @include input_reset;
     }
     // &[type='password'] {
     // }
@@ -50,14 +45,6 @@
   width: 100%;
 }
 
-// 기본 파일첨부 알맹이 정렬
-@mixin fileTxtBasic {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: -0.28px;
-}
-
 .inputFileWrap {
   position: relative;
   > div {
@@ -71,16 +58,7 @@
   justify-content: space-between;
   align-self: stretch;
   flex: 1;
-
-  input[type='file'] {
-    //reset
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
-  }
+  @include input_file;
   span {
     @include fileTxtBasic;
     color: $foundation-grayscale-shade-88;
@@ -98,19 +76,7 @@
 .inputFileWrap {
   @include centerLeft;
   width: 100%;
-
   .fileNameBtn {
-    @include centerLeft;
-    gap: 4px;
-    span {
-      @include fileTxtBasic;
-      color: $file-color;
-      text-decoration: underline;
-    }
-    i {
-      @include centerCenter;
-      width: 16px;
-      height: 16px;
-    }
+    @include file_name;
   }
 }

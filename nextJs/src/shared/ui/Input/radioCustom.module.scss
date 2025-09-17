@@ -1,4 +1,6 @@
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
 
 @mixin spanStyle {
   color: $input-color;
@@ -63,6 +65,42 @@
       span {
         @include spanStyle;
         color: $text-color;
+      }
+    }
+  }
+
+  .radioButton {
+    //버튼형식
+    span {
+      @include centerCenter;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 100%;
+      color: $foundation-grayscale-shade-33;
+      min-height: 30px;
+      padding: 9px 12px;
+      background: $foundation-light-line-shade-20;
+      border: 1px solid $foundation-light-line-shade-100;
+      border-radius: $basic-radious;
+      transition: 0.3s;
+    }
+    input {
+      &[type='radio']:checked {
+        //체크된거
+        & + span {
+          //체크된 글자
+          font-size: 12px;
+          background: $foundation-primary-bg;
+          border: 1px solid $foundation-primary-bg;
+          color: $foundation-light-base-shade-100;
+        }
+      }
+    }
+
+    &:hover {
+      span {
+        font-size: 12px;
+        background: $foundation-light-line-shade-100;
       }
     }
   }

@@ -34,6 +34,7 @@
 .boxStyle {
   @include basic_box;
   padding: 13px 16px;
+  cursor: auto;
 }
 
 // 정렬 (세로 - 가로)

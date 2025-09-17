@@ -113,11 +113,9 @@
 
 // 버튼 공통
 @mixin btnBasic {
-  display: flex;
+  @include centerCenter;
   padding: 8px 12px;
   min-width: 45px;
-  justify-content: center;
-  align-items: center;
   gap: 4px;
   border-radius: $basic-radious;
   font-size: 12px;
@@ -160,11 +158,19 @@
     border: 1px solid $foundation-primary-alpha-8percent;
   }
 }
+// 인풋 리셋
+@mixin input_reset {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
 
 // 인풋 기본 박스 스타일
 @mixin basic_box {
-  display: flex;
-  align-items: center;
+  @include centerCenter;
   justify-content: space-between;
   align-self: stretch;
   border-radius: $wrap-radious;
@@ -190,5 +196,38 @@
       background: rgba(0, 0, 0, 0.04);
       cursor: default;
     }
+  }
+}
+
+// 파일인풋
+@mixin input_file {
+  input[type='file'] {
+    //reset
+    @include input_reset;
+  }
+}
+
+// 기본 파일첨부 알맹이 정렬
+@mixin fileTxtBasic {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.28px;
+}
+
+// 파란 밑줄 파일명
+@mixin file_name {
+  @include centerLeft;
+  gap: 4px;
+  cursor: pointer;
+  span {
+    @include fileTxtBasic;
+    color: $file-color;
+    text-decoration: underline;
+  }
+  i {
+    @include centerCenter;
+    width: 16px;
+    height: 16px;
   }
 }

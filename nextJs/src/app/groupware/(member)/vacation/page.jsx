@@ -19,6 +19,7 @@ import TableLayout from '@/shared/ui/Table/TableList';
 import TableBox from '@/shared/ui/Table/TableBox';
 import Textarea from '@/shared/ui/Input/Textarea';
 import InputFile from '@/shared/ui/Input/InputFile';
+import FileBox from '@/shared/ui/uploadBox/FileBox';
 
 // scss
 import '@/shared/ui/Input/inputBasic.scss';
@@ -131,6 +132,11 @@ export default function VacationExample() {
     essential: true
   };
 
+  // 첨부파일 버튼형(내정보)
+  const fileBox01 = { inputTit: '프로필' };
+  const fileBox02 = { inputTit: '자격증빙' };
+  const fileBox03 = { inputTit: '경력증빙' };
+
   return (
     <div className="pageWrap">
       {/* 상단 현재 메뉴명 */}
@@ -171,7 +177,7 @@ export default function VacationExample() {
               <SecondBtn btnName={btnName02} />
               <BasicBtn btnName={btnName03} />
             </div>
-            <div className={`${styles.columnArea} ${styles.bg_gray} boxStyle`}>
+            <div className={`${styles.columnArea} ${styles.bgPurple} boxStyle`}>
               {/* 체크박스 기본 흰색 */}
               <CheckBox checkInfo={check01} />
               {/* 체크박스 보라색 */}
@@ -189,6 +195,21 @@ export default function VacationExample() {
             <InputTit inputTit={InputFile01.inputTit} essential={InputFile01.essential} />
             <div className="boxStyle">
               <InputFile />
+            </div>
+
+            <div className="itemAlign hasItem03">
+              <div>
+                <InputTit inputTit={fileBox01.inputTit + ' 파일 업로드'} />
+                <FileBox inputTit={fileBox01.inputTit}></FileBox>
+              </div>
+              <div>
+                <InputTit inputTit={fileBox02.inputTit + ' 파일 업로드'} />
+                <FileBox inputTit={fileBox02.inputTit}></FileBox>
+              </div>
+              <div>
+                <InputTit inputTit={fileBox03.inputTit + ' 파일 업로드'} />
+                <FileBox inputTit={fileBox03.inputTit}></FileBox>
+              </div>
             </div>
           </div>
         </div>
