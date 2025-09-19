@@ -63,9 +63,7 @@
     @include fileTxtBasic;
     color: $foundation-grayscale-shade-88;
     width: calc(100% - 20px);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    @include txt_ellipsis;
   }
   i {
     width: 20px;

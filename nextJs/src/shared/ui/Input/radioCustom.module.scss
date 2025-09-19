@@ -13,8 +13,8 @@
 }
 
 .radioBox {
-  display: flex;
-  gap: 0 8px;
+  @include topLeft;
+  gap: 8px;
   .radioCustom {
     cursor: pointer;
     display: block;

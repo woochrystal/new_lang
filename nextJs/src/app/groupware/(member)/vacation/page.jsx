@@ -7,6 +7,7 @@ import PageTit from '@/shared/ui/Title/PageTit';
 import InputTit from '@/shared/ui/Input/InputTit';
 import InputBox from '@/shared/ui/Input/InputBox';
 import Search from '@/shared/ui/Input/Search';
+import SearchInput from '@/shared/ui/Input/SearchInput';
 import Select from '@/shared/ui/Input/Select';
 import SelectGray from '@/shared/ui/Input/SelectGray';
 import InputHasAlert from '@/shared/ui/Input/InputHasAlert';
@@ -20,6 +21,9 @@ import TableBox from '@/shared/ui/Table/TableBox';
 import Textarea from '@/shared/ui/Input/Textarea';
 import InputFile from '@/shared/ui/Input/InputFile';
 import FileBox from '@/shared/ui/uploadBox/FileBox';
+import StatusBox from '@/shared/ui/uploadBox/StatusBox';
+import EmptyUpBox from '@/shared/ui/uploadBox/EmptyUpBox';
+import PostInfoBox from '@/shared/ui/Table/PostInfoBox';
 
 // scss
 import '@/shared/ui/Input/inputBasic.scss';
@@ -31,13 +35,28 @@ export default function VacationExample() {
   // pageTitCon 페이지 제목
   const pageTitCon = {
     pageTitle: '휴가 관리',
-    pageInfo: '휴가를 상신하고 결재 상태를 조회할 수 있습니다.'
+    pageInfo: '휴가를 상신하고 결재 상태를 조회할 수 있지만 지금은 컨포넌트 확인용'
   };
 
   //selectInfo 셀렉트인풋
   const select01 = {
     selectTit: '셀렉트제목1',
-    list: ['전체', '연차', '반차', '병가', '경조사', '리프레시', '기타'],
+    list: [
+      '전체',
+      '연차',
+      '반차',
+      '병가',
+      '경조사',
+      '리프레시',
+      '기타',
+      '전체',
+      '연차',
+      '반차',
+      '병가',
+      '경조사',
+      '리프레시',
+      '기타'
+    ],
     defaultTxt: '선택해주세요'
   };
   const select02 = {
@@ -137,6 +156,26 @@ export default function VacationExample() {
   const fileBox02 = { inputTit: '자격증빙' };
   const fileBox03 = { inputTit: '경력증빙' };
 
+  // 결재 상세 이력
+  const fileBox04 = { inputTit: '팀장' };
+  // searchInfo 검색
+  const search02 = {
+    // searchTit: '검색인풋',
+    searchId: 'memberInputTeam',
+    defaultTxt: '회원명',
+    disabled: false
+  };
+  const search03 = {
+    // searchTit: '검색인풋',
+    searchId: 'memberInputCeo',
+    defaultTxt: '회원명',
+    disabled: false
+  };
+  const fileBox05 = { inputTit: '대표이사' };
+
+  // th - td 테이블
+  // const infoTa = [];
+
   return (
     <div className="pageWrap">
       {/* 상단 현재 메뉴명 */}
@@ -144,9 +183,8 @@ export default function VacationExample() {
 
       {/* pageScroll : 스크롤되는 페이지 내부 영역(PageTit 영역 제외) */}
       <div className="pageScroll">
-        {/* 같은 크기로 가로 정렬 시 itemAlign + hasItem02/03/04 class 두개 다 사용 필요 */}
-        {/* 2 3 4의 배수로 정렬 시 사용 */}
-        <div className="itemAlign hasItem03">
+        {/* 2 3 4의 배수 같은 크기로 가로 정렬 시 사용 */}
+        <div className="hasItem03">
           {/* 셀렉트 */}
           <Select selectInfo={select01} />
           {/* 필수표시한 셀렉트 (테이블 목록용)*/}
@@ -197,7 +235,7 @@ export default function VacationExample() {
               <InputFile />
             </div>
 
-            <div className="itemAlign hasItem03">
+            <div className="hasItem03">
               <div>
                 <InputTit inputTit={fileBox01.inputTit + ' 파일 업로드'} />
                 <FileBox inputTit={fileBox01.inputTit}></FileBox>
@@ -207,11 +245,28 @@ export default function VacationExample() {
                 <FileBox inputTit={fileBox02.inputTit}></FileBox>
               </div>
               <div>
-                <InputTit inputTit={fileBox03.inputTit + ' 파일 업로드'} />
+                <InputTit inputTit={fileBox03.inputTit} />
                 <FileBox inputTit={fileBox03.inputTit}></FileBox>
               </div>
             </div>
           </div>
+
+          <div className="hasItem03 btmCenter">
+            <div className="btmLeft">
+              <InputTit inputTit={fileBox04.inputTit} />
+              <StatusBox searchInfo={search02} />
+            </div>
+            <div className="btmLeft">
+              <InputTit inputTit={fileBox05.inputTit} />
+              <StatusBox searchInfo={search03} />
+            </div>
+            <div className="btmLeft">
+              <EmptyUpBox />
+            </div>
+          </div>
+
+          {/* th - td 테이블 */}
+          <div>{/* <PostInfoBox/> */}</div>
         </div>
         {/* 테이블 */}
         <TableLayout theadList={tableHead} tbodyList={tableBody} />

@@ -5,10 +5,13 @@
 // 1. Abstracts (Variables, Mixins, etc.)
 // 변수, 믹스인 등 CSS로 직접 출력되지 않는 추상적인 코드들을 불러옵니다.
 @use 'abstracts/variables' as *;
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
 
 // 2. Base (Reset, Typography, etc.)
 // 프로젝트 전반에 적용될 기본 스타일(body, a 태그 등)을 불러옵니다.
 @use 'base/base';
+@use 'base/layout';
 
 // 3. Layout specific styles (Header, Footer, etc.)
 // 헤더, 푸터, 그리드 등 주요 레이아웃 스타일을 이곳에서 관리합니다.

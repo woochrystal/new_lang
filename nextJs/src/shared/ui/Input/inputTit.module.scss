@@ -7,6 +7,7 @@
   padding-bottom: 8px;
 
   span {
+    @include txt_ellipsis;
     color: $input-color;
     font-size: 13px;
     font-style: normal;

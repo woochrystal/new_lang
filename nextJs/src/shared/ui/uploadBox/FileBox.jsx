@@ -25,7 +25,7 @@ export default function FileBox({ inputTit }) {
           <img src="/fileUploadPlus.svg" alt="" />
         </div>
       </label>
-      <div className={styles.fileBoxName}>
+      <div className={`${styles.uploadBoxName} ${styles.fileBoxName}`}>
         {file ? (
           <div className={styles.fileDelete} onClick={removeFile}>
             <span>{file.name}</span>

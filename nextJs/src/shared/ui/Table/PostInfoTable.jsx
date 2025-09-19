@@ -2,7 +2,7 @@
 'use client';
 import styles from './table.module.scss';
 
-export default function Table({ children }) {
+export default function PostInfoTable({ children }) {
   return (
     <div>
       <table className={styles.table}>{children}</table>

@@ -3,7 +3,7 @@
 import { RouteGuard } from '@/shared/ui/Guards/RouteGuard';
 import { Loading } from '@/shared/ui/Loading/Loading';
 import LeftMenu from '@/shared/ui/LeftMenu/LeftMenu';
-import styles from './layout.scss';
+// import './layout.scss';
 
 // 페이지 내부 컨텐츠 레이아웃
 export default function ContentLayout({ children }) {

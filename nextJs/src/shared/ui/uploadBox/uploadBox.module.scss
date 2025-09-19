@@ -3,35 +3,78 @@
 @use '@/shared/styles/base/mixins.scss' as *;
 
 .uploadBox {
+  border-radius: $wrap-radious;
+  border: 1px solid $foundation-light-line-shade-100;
+  background: $foundation-light-base-shade-100;
+  width: 100%;
+  .plusWrap {
+    height: 96px;
+    @include centerCenter;
+  }
+  .uploadBoxName {
+    @include centerCenter;
+    border-top: 1px solid $foundation-light-line-shade-100;
+    min-height: 48px;
+
+    span {
+      @include txt_ellipsis;
+      font-weight: 400;
+      line-height: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+  }
+
   // 파일
   &.fileBox {
     @include input_file;
-    border-radius: $wrap-radious;
-    border: 1px solid $foundation-light-line-shade-100;
-    background: $foundation-light-base-shade-100;
-    .plusWrap {
-      height: 96px;
-      @include centerCenter;
-    }
-
     .fileBoxName {
-      border-top: 1px solid $foundation-light-line-shade-100;
-      min-height: 48px;
-      @include centerCenter;
+      padding: 0px 10px;
       span {
-        @include centerCenter;
         color: $foundation-grayscale-shade-88;
         text-align: center;
         font-size: 14px;
-        font-weight: 400;
-        line-height: 100%;
       }
     }
 
     .fileDelete {
       @include file_name;
       @include centerCenter;
+      @include txt_ellipsis;
+      max-width: 100%;
       gap: 0 4px;
+      span {
+        width: calc(100% - 20px);
+      }
+    }
+  }
+
+  // 결재
+  &.statusBox {
+    .inputSearch {
+      border: 0;
+    }
+  }
+
+  // 추가전 레이아웃
+  &.emptyBox {
+    background: none;
+    border-style: dashed;
+    cursor: pointer;
+    &:hover {
+      border-style: solid;
+      .uploadBoxName {
+        border-style: solid;
+      }
+    }
+
+    .uploadBoxName {
+      border-style: dashed;
+      span {
+        color: $foundation-grayscale-shade-75;
+        font-size: 16px;
+        font-weight: 400;
+      }
     }
   }
 }

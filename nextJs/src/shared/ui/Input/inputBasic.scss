@@ -9,11 +9,6 @@
   line-height: 100%;
 }
 
-// 인풋 정렬시 itemAlign + hasItem(인풋개수) class 두개 다 사용
-.itemAlign {
-  @include btmRight;
-}
-
 //체크박스
 .checkWrap {
   width: 100%;

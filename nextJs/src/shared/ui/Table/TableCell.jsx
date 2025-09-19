@@ -2,6 +2,6 @@
 'use client';
 import styles from './table.module.scss';
 
-export default function TableCell({ children, className }) {
-  return <td className={`${styles.numberTd} ${className || ''}`}>{children}</td>;
+export default function TableCell({ children, className = '' }) {
+  return <td className={`${styles.numberTd} ${className}`}>{children}</td>;
 }

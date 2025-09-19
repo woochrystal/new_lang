@@ -13,7 +13,7 @@ export default function TableBox({ theadList, tbodyList }) {
         <TableHeader columns={theadList} />
         <TableBody rows={tbodyList} />
       </Table>
-      <Pagination />
+      {/* <Pagination /> */}
     </div>
   );
 }

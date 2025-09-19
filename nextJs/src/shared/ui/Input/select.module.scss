@@ -62,7 +62,8 @@
       }
       ul {
         padding: 16px;
-        max-height: 500px;
+        max-height: 250px;
+        overflow-y: auto;
         margin-top: 10px;
       }
     }

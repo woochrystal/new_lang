@@ -1,6 +1,11 @@
 @use '@/shared/styles/abstracts/variables' as *;
 @use '@/shared/styles/abstracts/figma-token' as *;
 
+@mixin hasItem {
+  @include topLeft;
+  width: 100%;
+  gap: 20px 12px;
+}
 // flex 정렬 //부모요소에 적용
 //중앙 - 왼쪽
 @mixin centerLeft {
@@ -55,29 +60,6 @@
 @mixin btmRight {
   @include btmLeft;
   justify-content: flex-end;
-}
-
-// 인풋 정렬시 itemAlign + hasItem(인풋개수) class 두개 다 사용
-@mixin btmRight {
-  @include topLeft;
-  width: 100%;
-  gap: 20px 12px;
-
-  &.hasItem02 {
-    > div {
-      width: calc(100% / 2 - 12px);
-    }
-  }
-  &.hasItem03 {
-    > div {
-      width: calc(100% / 3 - 8px);
-    }
-  }
-  &.hasItem04 {
-    > div {
-      width: calc(100% / 4 - 9px);
-    }
-  }
 }
 
 @mixin activeStyle {
@@ -172,10 +154,10 @@
 @mixin basic_box {
   @include centerCenter;
   justify-content: space-between;
-  align-self: stretch;
+  // align-self: stretch;
   border-radius: $wrap-radious;
   border: 1px solid $secondary-border;
-  background-color: #fff;
+  background-color: $foundation-light-base-shade-100;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -183,6 +165,7 @@
   width: 100%;
   overflow: hidden;
   cursor: pointer;
+  gap: 13px 0;
   input {
     width: 100%;
     padding: 11px 16px;
@@ -193,7 +176,7 @@
       line-height: 100%;
     }
     &:disabled {
-      background: rgba(0, 0, 0, 0.04);
+      background: $foundation-grayscale-base-shade-4;
       cursor: default;
     }
   }
@@ -229,5 +212,35 @@
     @include centerCenter;
     width: 16px;
     height: 16px;
+  }
+}
+
+// 텍스트 말줄임
+@mixin txt_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 인풋 search
+@mixin searchInput {
+  color: $primary-color;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+
+  /* IE */
+  &::-ms-clear,
+  &::-ms-reveal {
+    opacity: 0;
+    cursor: pointer;
+  }
+  /* chrome */
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    opacity: 0;
+    cursor: pointer;
   }
 }
