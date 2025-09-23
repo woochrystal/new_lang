@@ -9,7 +9,7 @@ export default function StatusBox({ searchInfo }) {
     <div className={`${styles.uploadBox} ${styles.statusBox}`}>
       <div>
         <div className={styles.plusWrap}>
-          <img src="/uploadPlus.svg" alt="" />
+          <img src="/uploadPlus.svg" alt="추가" />
         </div>
       </div>
       <div className={styles.uploadBoxName}>

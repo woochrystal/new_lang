@@ -25,7 +25,7 @@ export default function Search({ searchInfo }) {
           <img src="/delete.png" alt="검색어 작성 삭제" />
         </i>
         <button>
-          <img src="/search.png" alt="검색하기" />
+          <img src="/search.png" alt="돋보기 아이콘" />
         </button>
       </div>
     </div>

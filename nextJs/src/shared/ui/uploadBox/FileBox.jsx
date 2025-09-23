@@ -22,7 +22,7 @@ export default function FileBox({ inputTit }) {
       <label className={styles.inputFile}>
         <input type="file" name="" id="" ref={fileInputRef} onChange={fileChange} />
         <div className={styles.plusWrap}>
-          <img src="/fileUploadPlus.svg" alt="" />
+          <img src="/fileUploadPlus.svg" alt="추가" />
         </div>
       </label>
       <div className={`${styles.uploadBoxName} ${styles.fileBoxName}`}>

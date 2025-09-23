@@ -1,6 +1,7 @@
 // http://localhost:3000/groupware/vacation
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 // component
 import PageTit from '@/shared/ui/Title/PageTit';
@@ -20,10 +21,12 @@ import TableLayout from '@/shared/ui/Table/TableList';
 import TableBox from '@/shared/ui/Table/TableBox';
 import Textarea from '@/shared/ui/Input/Textarea';
 import InputFile from '@/shared/ui/Input/InputFile';
+import InputFileBox from '@/shared/ui/Input/InputFileBox';
 import FileBox from '@/shared/ui/uploadBox/FileBox';
 import StatusBox from '@/shared/ui/uploadBox/StatusBox';
 import EmptyUpBox from '@/shared/ui/uploadBox/EmptyUpBox';
 import PostInfoBox from '@/shared/ui/Table/PostInfoBox';
+import PostInfoTableRow from '@/shared/ui/Table/PostInfoTableRow';
 
 // scss
 import '@/shared/ui/Input/inputBasic.scss';
@@ -32,6 +35,11 @@ import styles02 from './layout.module.scss';
 
 // 임시 예시 게시판(휴가관리)
 export default function VacationExample() {
+  const router = useRouter();
+  const handleNavigate = () => {
+    router.push('/groupware/compoments/layout01');
+  };
+
   // pageTitCon 페이지 제목
   const pageTitCon = {
     pageTitle: '휴가 관리',
@@ -59,6 +67,8 @@ export default function VacationExample() {
     ],
     defaultTxt: '선택해주세요'
   };
+
+  // 셀렉트 회색
   const select02 = {
     list: ['10건 보기', '20건 보기', '30건 보기'],
     defaultTxt: '20건 보기'
@@ -72,6 +82,8 @@ export default function VacationExample() {
     defaultTxt: '모델명 입력',
     essential: false
   };
+
+  // 비밀번호
   const pwBox = {
     inputType: 'password',
     txtTit: '비밀번호',
@@ -95,11 +107,13 @@ export default function VacationExample() {
     checkId: 'aaa',
     checkTxt: '기본'
   };
+
+  //checkInfo 체크박스 보라색
   const check02 = {
     checkName: 'bb',
     checkId: 'bbb',
     checkTxt: '흰색',
-    fff: true //체크표시 흰색
+    fff: true //체크표시 흰색으로
   };
 
   // searchInfo 검색
@@ -110,7 +124,7 @@ export default function VacationExample() {
     disabled: false
   };
 
-  //기본 라디오버튼값 확인용
+  //기본 라디오버튼 + 값 확인용
   const [choice, setChoice] = useState('');
   const radioGroup01 = {
     name: 'radio input01',
@@ -122,7 +136,7 @@ export default function VacationExample() {
     onChange: (val) => setChoice(val) //값확인용
   };
 
-  //버튼모양 라디오버튼
+  //버튼형식 라디오버튼(게시판 리스트에 사용) + 값 확인용
   const [choice02, setChoice02] = useState('');
   const radioGroup02 = {
     name: 'radio input02',
@@ -158,6 +172,7 @@ export default function VacationExample() {
 
   // 결재 상세 이력
   const fileBox04 = { inputTit: '팀장' };
+
   // searchInfo 검색
   const search02 = {
     // searchTit: '검색인풋',
@@ -173,8 +188,12 @@ export default function VacationExample() {
   };
   const fileBox05 = { inputTit: '대표이사' };
 
-  // th - td 테이블
-  // const infoTa = [];
+  // PostInfoTable (th - td) 테이블
+  // searchInfo 검색
+  const PostInfoTable01 = {
+    searchId: 'PostInfoTable',
+    defaultTxt: '모델명 검색'
+  };
 
   return (
     <div className="pageWrap">
@@ -211,8 +230,11 @@ export default function VacationExample() {
 
           <div className={`${styles.rowArea} boxStyle`}>
             <div className="btnWrap">
-              <PrimaryBtn btnName={btnName01} />
+              {/* 메인버튼 디자인 */}
+              <PrimaryBtn btnName={btnName01} onClick={handleNavigate} />
+              {/* 보조버튼 디자인 */}
               <SecondBtn btnName={btnName02} />
+              {/* 기본버튼 디자인 */}
               <BasicBtn btnName={btnName03} />
             </div>
             <div className={`${styles.columnArea} ${styles.bgPurple} boxStyle`}>
@@ -230,10 +252,9 @@ export default function VacationExample() {
           </div>
 
           <div>
+            {/* 첨부파일 기본 인풋 */}
             <InputTit inputTit={InputFile01.inputTit} essential={InputFile01.essential} />
-            <div className="boxStyle">
-              <InputFile />
-            </div>
+            <InputFileBox />
 
             <div className="hasItem03">
               <div>
@@ -265,8 +286,39 @@ export default function VacationExample() {
             </div>
           </div>
 
-          {/* th - td 테이블 */}
-          <div>{/* <PostInfoBox/> */}</div>
+          {/* 한줄짜리 테이블 기본 ex) 게시물 작성 제목, 첨부파일부분 */}
+          <div className="itemCol2">
+            <PostInfoBox>
+              <PostInfoTableRow
+                row={[
+                  // isTh : true 설정 시 th
+                  { content: '제목', isTh: true },
+                  // colspan : 숫자 지정 시 해당 숫자 만큼 colspan
+                  { content: <input id="title" type="text" placeholder="제목 입력" />, colspan: 3 }
+                ]}
+              />
+            </PostInfoBox>
+
+            {/* 한줄짜리 테이블 2개 ex) 게시물 작성 제목, 첨부파일부분 */}
+            <PostInfoBox colWidths={['120px', 'calc(50% - 120px)', '120px', 'calc(50% - 120px)']}>
+              <PostInfoTableRow
+                row={[
+                  // isTh : true 설정 시 th
+                  { content: '제목', isTh: true },
+                  // colspan : 숫자 지정 시 해당 숫자 만큼 colspan
+                  { content: <input id="title02" type="text" placeholder="제목 입력" />, colspan: 3 }
+                ]}
+              />
+              <PostInfoTableRow
+                row={[
+                  { content: '제목', isTh: true },
+                  { content: <input id="title03" type="text" placeholder="제목 입력" /> },
+                  { content: '파일첨부', isTh: true },
+                  { content: <InputFile /> }
+                ]}
+              />
+            </PostInfoBox>
+          </div>
         </div>
         {/* 테이블 */}
         <TableLayout theadList={tableHead} tbodyList={tableBody} />

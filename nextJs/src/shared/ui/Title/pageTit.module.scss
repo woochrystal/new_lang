@@ -1,11 +1,14 @@
 @use '@/shared/styles/abstracts/variables' as *;
 @use '@/shared/styles/base/mixins.scss' as *;
+
+$padding-bottom: 28px;
+
 .pageTit {
   display: flex;
   color: $text-color;
   gap: 12px;
   align-items: center;
-  padding-bottom: 28px;
+  padding-bottom: $padding-bottom;
 
   h2 {
     line-height: 100%;
@@ -18,5 +21,14 @@
     font-size: 16px;
     font-weight: 400;
     letter-spacing: -0.32px;
+  }
+}
+
+.TitBtnWrap {
+  @include topLeft;
+  justify-content: space-between;
+  .topBtn {
+    @include topRight;
+    gap: 8px;
   }
 }

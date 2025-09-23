@@ -62,29 +62,32 @@
   justify-content: flex-end;
 }
 
-@mixin activeStyle {
-  //아코디언 열렸을때
-  background: $primary-border;
-  color: $primary-color;
-  font-weight: 500;
+// active reset
+@mixin activeStyleReset {
+  background: none;
+  color: inherit;
+  font-weight: normal;
 }
 
-@mixin hoverStyle {
+@mixin activeStyle($use: true) {
+  // @include activeStyle(false); 하면 취소 가능
+  //아코디언 열렸을때
+  @if $use {
+    background: $primary-border;
+    color: $primary-color;
+    font-weight: 500;
+  } @else {
+    @include activeStyleReset;
+  }
+}
+
+@mixin hoverStyle($use: true) {
+  // @include hoverStyle(false); 하면 취소 가능
   //마우스 올렸을 때 선 색 생김
   border: 1px solid $hover-border;
   //활성화 중일 때
   background: $round-border;
   color: $fff;
-}
-
-// 메뉴공통
-@mixin menuHover {
-  background: $menu-active;
-  color: $primary-color;
-  font-weight: 500;
-  svg {
-    transform: rotate(180deg);
-  }
 }
 
 @mixin menuA {
@@ -105,7 +108,7 @@
   line-height: 14px;
   letter-spacing: -0.24px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: $second03;
 }
 // 버튼 색상
 
@@ -200,11 +203,10 @@
 
 // 파란 밑줄 파일명
 @mixin file_name {
-  @include centerLeft;
-  gap: 4px;
   cursor: pointer;
   span {
     @include fileTxtBasic;
+    padding-right: 4px;
     color: $file-color;
     text-decoration: underline;
   }
@@ -242,5 +244,25 @@
   &::-webkit-search-results-decoration {
     opacity: 0;
     cursor: pointer;
+  }
+}
+
+// 테이블
+@mixin basic_table {
+  width: 100%;
+}
+
+// 테이블thtd
+@mixin basic_thtd {
+  border-right: 1px solid;
+  color: $text-color;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+  text-align: center;
+  padding: 13px 0;
+
+  &:last-child {
+    border-right: 0;
   }
 }

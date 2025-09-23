@@ -6,7 +6,7 @@ export default function EmptyUpBox(props) {
     <div className={`${styles.uploadBox} ${styles.emptyBox}`}>
       <div>
         <div className={styles.plusWrap}>
-          <img src="/uploadPlus.svg" alt="" />
+          <img src="/uploadPlus.svg" alt="추가" />
         </div>
       </div>
       <div className={styles.uploadBoxName}>

@@ -1,11 +1,17 @@
 'use client';
-import PostInfoTable from './PostInfoTable';
 import styles from './table.module.scss';
 
-export default function PostInfoBox({ children }) {
+export default function PostInfoBox({ children, colWidths = [] }) {
   return (
     <div className={`${styles.postInfoBox}`}>
-      <PostInfoTable>{children}</PostInfoTable>
+      <table className={styles.table}>
+        <colgroup>
+          {colWidths.map((width, i) => (
+            <col key={i} style={{ width }} />
+          ))}
+        </colgroup>
+        <tbody>{children}</tbody>
+      </table>
     </div>
   );
 }

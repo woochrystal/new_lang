@@ -10,12 +10,12 @@
       p {
         @include basic_box;
         color: $placeholder-color;
-        padding: 13px 16px;
+        padding: $basic-padding;
         width: 100%;
       }
       i {
         @include centerCenter;
-        transition: 0.3s;
+        transition: $second03;
         stroke: $text-color;
       }
     }
@@ -26,8 +26,8 @@
       max-height: 0;
       flex-direction: column;
       border-radius: $wrap-radious;
-      background: #fff;
-      box-shadow: 16px 20px 20px 0 rgba(42, 42, 64, 0.04);
+      background: $foundation-light-base-shade-100;
+      box-shadow: 16px 20px 20px 0 $list-shadow;
       transition: 0.5s ease;
       overflow: hidden;
       position: absolute;

@@ -58,6 +58,7 @@
   justify-content: space-between;
   align-self: stretch;
   flex: 1;
+  max-width: 100%;
   @include input_file;
   span {
     @include fileTxtBasic;
@@ -74,7 +75,7 @@
 .inputFileWrap {
   @include centerLeft;
   width: 100%;
-  .fileNameBtn {
-    @include file_name;
-  }
+}
+.fileNameBtn {
+  @include file_name;
 }

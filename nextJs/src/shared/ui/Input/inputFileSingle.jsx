@@ -1,28 +1,15 @@
-// 기본 파일첨부 인풋 알맹이(여러 파일 업로드)
+// 기본 파일첨부 인풋 알맹이(파일 1개 업로드 - 박스 레이아웃 합본)
 
 'use client';
 import { useState } from 'react';
 
 import styles from '@/shared/ui/Input/inputTxt.module.scss';
-export default function InputFile() {
+export default function InputFileSingle() {
   const [fileList, setFileList] = useState([]);
-
-  //파일 올리는 즉시 파일 리스트 뜨는 hover 오류 위한 useState
-  const [hover, setHover] = useState(false);
-  const [disableHover, setDisableHover] = useState(false);
 
   const fileChange = (e) => {
     setFileList([...e.target.files]);
     e.target.value = null; //리셋
-
-    // 마우스 이벤트 일시 비활성화
-    setDisableHover(true);
-    setHover(false);
-
-    // 1초 후 다시 활성화
-    setTimeout(() => {
-      setDisableHover(false);
-    }, 500);
   };
 
   const removeFile = (index) => {
@@ -31,26 +18,11 @@ export default function InputFile() {
     setFileList(newFiles);
   };
 
-  const handleMouseEnter = () => {
-    if (!disableHover) {
-      setHover(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!disableHover) {
-      setHover(false);
-    }
-  };
-
   return (
-    <div
-      onMouseEnter={handleMouseEnter} //마우스 올렸을떄 fileNameList에 class 추가
-      onMouseLeave={handleMouseLeave}
-    >
+    <>
       {/* span으로 하나씩 나오게01 - 파일명*/}
       {fileList.length > 0 ? (
-        <div className={`fileNameList ${hover ? 'show' : ''}`}>
+        <div className={`fileNameList`}>
           {fileList.map((file, i) => (
             <div key={i} className={`${styles.fileNameBtn} fileNameBtn`} onClick={() => removeFile(i)}>
               <span>{file.name}</span>
@@ -63,31 +35,23 @@ export default function InputFile() {
       ) : null}
       <div className={styles.inputFileWrap}>
         <label className={styles.inputFile}>
-          {/* 글자 한줄로 나오게 */}
-          {/* <span>{fileName}</span> */}
-
           {/* span으로 하나씩 나오게02 - 디폴트 문구*/}
           {fileList.length == 0 ? (
             //0개 일 경우
             <span>파일을 첨부해주세요.</span>
-          ) : fileList.length == 1 ? (
+          ) : (
             // 1개 일 경우
             <p className={styles.fileNameBtn}>
               <span>{fileList[0].name}</span>
             </p>
-          ) : (
-            //2개 이상 일 경우
-            <p className={styles.fileNameBtn}>
-              <span>{fileList[0].name}</span> 외 {fileList.length - 1}개
-            </p>
           )}
 
-          <input type="file" name="" id="" multiple onChange={fileChange} />
+          <input type="file" name="" id="" onChange={fileChange} />
           <i>
             <img src="/search.png" alt="돋보기 아이콘" />
           </i>
         </label>
       </div>
-    </div>
+    </>
   );
 }

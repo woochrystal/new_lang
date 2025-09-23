@@ -1,4 +1,5 @@
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
 @use '@/shared/styles/base/mixins.scss' as *;
 // CSS Module for member layout
 .main {
@@ -27,27 +28,100 @@
 .hasItem02 {
   @include hasItem;
   > div {
+    flex-grow: 1;
     width: calc(100% / 2 - 12px);
   }
 }
 .hasItem03 {
   @include hasItem;
   > div {
+    flex-grow: 1;
     width: calc(100% / 3 - 8px);
+
+    &.itemCol1 {
+      // 1:2 상황에서 2의 넓이
+      flex-grow: 0;
+      width: calc((100% / 3 - 8px) * 2);
+    }
+    &.itemCol2 {
+      // 1:2 상황에서 2의 넓이
+      flex-grow: 0;
+      width: calc((100% / 3 - 8px) * 2);
+    }
   }
 }
 .hasItem04 {
   @include hasItem;
   > div {
+    flex-grow: 1;
     width: calc(100% / 4 - 9px);
+
+    &.itemCol1 {
+      // 1:3 상황에서 3의 넓이
+      flex-grow: 0;
+    }
+    &.itemCol3 {
+      // 1:3 상황에서 3의 넓이
+      flex-grow: 0;
+      width: calc((100% / 4 - 9px) * 3);
+    }
   }
 }
 
 //흰색 박스 레이아웃
 .boxStyle {
   @include basic_box;
-  padding: 13px 16px;
+  padding: $basic-padding;
   cursor: auto;
+  overflow: inherit;
+  position: relative;
+}
+
+// 첨부파일 리스트
+$fileNameList-margin: 8px;
+
+.fileNameList {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  bottom: 100%;
+  background: $foundation-light-base-shade-100;
+  padding: $basic-padding;
+  width: 100%;
+  left: 0;
+  border-radius: $wrap-radious;
+  border: 1px solid $foundation-light-grid;
+  background: $foundation-light-base-shade-100;
+  box-shadow: 20px -8px 20px 0 $list-shadow;
+  margin-bottom: $fileNameList-margin;
+  transition: $second03;
+  &::after {
+    content: '';
+    height: $fileNameList-margin + 16px;
+    width: 100%;
+    display: block;
+    // background-color: #ccc;
+    background-color: transparent;
+    position: absolute;
+    bottom: -($fileNameList-margin + 16px);
+    left: 0;
+  }
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .fileNameBtn {
+    @include centerLeft;
+    gap: 4px;
+    margin-bottom: 16px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &:hover {
+    cursor: cell;
+  }
 }
 
 // 정렬 (세로 - 가로)

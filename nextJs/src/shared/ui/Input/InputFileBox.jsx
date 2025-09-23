@@ -1,10 +1,10 @@
-// 기본 파일첨부 인풋 알맹이(여러 파일 업로드)
+// 기본 파일첨부 인풋 알맹이(여러 파일 업로드 - 박스 레이아웃 합본)
 
 'use client';
 import { useState } from 'react';
 
 import styles from '@/shared/ui/Input/inputTxt.module.scss';
-export default function InputFile() {
+export default function InputFileBox() {
   const [fileList, setFileList] = useState([]);
 
   //파일 올리는 즉시 파일 리스트 뜨는 hover 오류 위한 useState
@@ -30,7 +30,6 @@ export default function InputFile() {
     newFiles.splice(index, 1); //index 위치의 1개 아이템 삭제
     setFileList(newFiles);
   };
-
   const handleMouseEnter = () => {
     if (!disableHover) {
       setHover(true);
@@ -45,6 +44,7 @@ export default function InputFile() {
 
   return (
     <div
+      className="boxStyle"
       onMouseEnter={handleMouseEnter} //마우스 올렸을떄 fileNameList에 class 추가
       onMouseLeave={handleMouseLeave}
     >
