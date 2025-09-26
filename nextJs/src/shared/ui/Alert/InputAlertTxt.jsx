@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import styles from './inputAlertTxt.module.scss';
 
 export default function InputAlertTxt({ targetId }) {
-  const [massage, setMassage] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     const input = document.getElementById(targetId);
@@ -12,9 +12,9 @@ export default function InputAlertTxt({ targetId }) {
 
     const handler = (e) => {
       if (e.getModifierState && e.getModifierState('CapsLock')) {
-        setMassage(<p className={styles.alertTxtRed}>Caps Lock이 켜져 있습니다</p>); //CapsLock on/off
+        setMessage(<p className={styles.alertTxtRed}>Caps Lock이 켜져 있습니다</p>); //CapsLock on/off
       } else {
-        setMassage(null); //문구없음 기본
+        setMessage(null); //문구없음 기본
       }
     };
 
@@ -27,7 +27,7 @@ export default function InputAlertTxt({ targetId }) {
     }; //키보드이벤트 clean
   }, [targetId]);
 
-  if (!massage) return null; //조건 해당 안되면 실행x
+  if (!message) return null; //조건 해당 안되면 실행x
 
-  return <div className={styles.inputAlertTxt}>{massage}</div>;
+  return <div className={styles.inputAlertTxt}>{message}</div>;
 }

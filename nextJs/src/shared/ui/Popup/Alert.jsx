@@ -1,7 +1,4 @@
-/**
- * @fileoverview Alert 컴포넌트
- * @description 모달 형태 알림 메시지 컴포넌트
- */
+'use client';
 
 import { useEffect, useState } from 'react';
 import styles from './Alert.module.scss';

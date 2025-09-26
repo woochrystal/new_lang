@@ -10,16 +10,16 @@ $background-color: $foundation-light-bg; //fbfafc
 $placeholder-color: $foundation-grayscale-shade-88; //888888
 $hover-color: $foundation-light-grid; //edf0f6
 $pagenation-color: $foundation-grayscale-shade-75; //757575
-$menu-active: $foundation-primary-alpha-8percent; //664dcc14
+$menu-active: $foundation-primary-alpha-8percent; //f0eefa
 $input-color: $foundation-grayscale-shade-66; //666666
 $fff: $foundation-light-base-shade-100;
 $file-color: #0068e8;
 
 //border-color
-$primary-border: $foundation-grayscale-base-shade-4; //0000000a
+$primary-border: $foundation-grayscale-base-shade-4; //fafafa
 $secondary-border: $foundation-light-line-shade-100; //d2dfff
-$hover-border: $foundation-primary-alpha-40percent; //664dcc66
-$round-border: $foundation-primary-alpha-80percent; //664dcccc
+$hover-border: $foundation-primary-alpha-40percent; //b5a3e8
+$round-border: $foundation-primary-alpha-80percent; //7a61d4
 
 // Breakpoints
 $breakpoint-sm: 576px;
@@ -31,6 +31,7 @@ $basic-radious: 8px;
 $input-radious: 4px;
 $btn-radious: 0.375rem;
 $wrap-radious: 10px;
+$square-radious: 12px;
 
 //padding
 $basic-padding: 13px 16px;
@@ -41,3 +42,12 @@ $list-shadow: rgba(42, 42, 64, 0.04);
 // transition
 $second02: 0.2s;
 $second03: 0.3s;
+
+//레이아웃 높이값을 위한 패딩 설정
+$toptit-fz: 24px;
+$topRight-pBtm: 40px;
+$innerLayout-pTop: 28px;
+$pageWrap-margin: $toptit-fz + $topRight-pBtm + $innerLayout-pTop;
+
+$pageTit-pBtm: 28px;
+$pageTit-h2: 24px;

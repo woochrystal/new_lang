@@ -1,8 +1,3 @@
-/**
- * @fileoverview UI 요소 권한 기반 조건부 렌더링 가드
- * @description 메뉴 항목, 버튼 등 UI 요소의 권한별 표시/숨김 처리 (리다이렉트 없음)
- */
-
 'use client';
 
 import { useAuth } from '@/shared/auth';

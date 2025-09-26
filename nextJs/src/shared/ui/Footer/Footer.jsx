@@ -1,8 +1,3 @@
-/**
- * @fileoverview Footer 컴포넌트
- * @description 푸터 컴포넌트
- */
-
 import styles from './Footer.module.scss';
 
 /**

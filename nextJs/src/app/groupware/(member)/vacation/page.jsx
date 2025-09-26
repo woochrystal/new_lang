@@ -8,7 +8,7 @@ import PageTit from '@/shared/ui/Title/PageTit';
 import InputTit from '@/shared/ui/Input/InputTit';
 import InputBox from '@/shared/ui/Input/InputBox';
 import Search from '@/shared/ui/Input/Search';
-import SearchInput from '@/shared/ui/Input/SearchInput';
+import BtnWrap from '@/shared/ui/Button/BtnWrap';
 import Select from '@/shared/ui/Input/Select';
 import SelectGray from '@/shared/ui/Input/SelectGray';
 import InputHasAlert from '@/shared/ui/Input/InputHasAlert';
@@ -229,14 +229,14 @@ export default function VacationExample() {
           </div>
 
           <div className={`${styles.rowArea} boxStyle`}>
-            <div className="btnWrap">
+            <BtnWrap className={'BtnWrap'}>
               {/* 메인버튼 디자인 */}
               <PrimaryBtn btnName={btnName01} onClick={handleNavigate} />
               {/* 보조버튼 디자인 */}
               <SecondBtn btnName={btnName02} />
               {/* 기본버튼 디자인 */}
               <BasicBtn btnName={btnName03} />
-            </div>
+            </BtnWrap>
             <div className={`${styles.columnArea} ${styles.bgPurple} boxStyle`}>
               {/* 체크박스 기본 흰색 */}
               <CheckBox checkInfo={check01} />

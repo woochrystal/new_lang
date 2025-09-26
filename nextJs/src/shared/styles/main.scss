@@ -4,8 +4,8 @@
 
 // 1. Abstracts (Variables, Mixins, etc.)
 // 변수, 믹스인 등 CSS로 직접 출력되지 않는 추상적인 코드들을 불러옵니다.
-@use 'abstracts/variables' as *;
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
 @use '@/shared/styles/base/_mixins.scss' as *;
 
 // 2. Base (Reset, Typography, etc.)

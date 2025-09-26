@@ -6,7 +6,12 @@
 
 * {
   color: $text-color;
-  font-family: Pretendard;
+  font-family:
+    'Pretendard',
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    sans-serif;
 }
 body {
   background: $background-color;

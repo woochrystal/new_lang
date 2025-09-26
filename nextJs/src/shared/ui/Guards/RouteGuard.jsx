@@ -1,8 +1,3 @@
-/**
- * @fileoverview 페이지 라우트 접근 가드
- * @description 페이지 전체를 보호하고 인증/권한 실패 시 리다이렉트 처리하는 컴포넌트
- */
-
 'use client';
 
 import { useEffect, useState } from 'react';

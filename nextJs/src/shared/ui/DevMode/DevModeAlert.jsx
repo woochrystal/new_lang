@@ -1,8 +1,3 @@
-/**
- * @fileoverview 개발 모드 알림 컴포넌트
- * @description 개발 환경에서만 표시되는 정보 알림 배너
- */
-
 'use client';
 
 import { useState } from 'react';

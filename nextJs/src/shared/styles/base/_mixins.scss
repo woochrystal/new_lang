@@ -143,6 +143,15 @@
     border: 1px solid $foundation-primary-alpha-8percent;
   }
 }
+
+// 완전 기본 박스 (선, 10px라운딩, 흰색백그라운드, 가로 100%)
+@mixin basicBox {
+  border-radius: $wrap-radious;
+  border: 1px solid $foundation-light-line-shade-100;
+  background: $foundation-light-base-shade-100;
+  width: 100%;
+}
+
 // 인풋 리셋
 @mixin input_reset {
   position: absolute;

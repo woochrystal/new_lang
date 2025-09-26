@@ -30,6 +30,7 @@
 
 .textarea {
   @include topLeft;
+  @include basicBox;
   min-height: 156px;
   justify-content: space-between;
   font-size: 16px;
@@ -38,11 +39,7 @@
   line-height: 100%;
   padding: 16px;
   outline: none;
-  border-radius: $wrap-radious;
-  border: 1px solid $foundation-light-line-shade-100;
-  background: $foundation-light-base-shade-100;
   resize: none;
-  width: 100%;
 }
 
 .inputFileWrap {

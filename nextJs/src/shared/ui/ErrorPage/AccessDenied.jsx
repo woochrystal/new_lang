@@ -1,8 +1,3 @@
-/**
- * @fileoverview 접근 거부 공용 컴포넌트
- * @description 권한 부족 시 표시되는 제네릭 접근 제한 페이지
- */
-
 'use client';
 
 import Link from 'next/link';

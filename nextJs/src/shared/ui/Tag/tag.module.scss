@@ -1,0 +1,99 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// tag color
+$approve-color: #05cb98;
+
+$approve-bgc: #e5faf5; //#05CD991A
+$reject-bgc: #ffebec; //#FF000A14
+$pending-bgc: $foundation-light-line-shade-20; //하늘
+$waiting-bgc: $foundation-primary-alpha-8percent; //연보라
+
+$approve-bd: #ebfbf7; //#05CD9914
+$reject-bd: #fff5f5; //#FF000A0A
+$pending-bd: $foundation-primary-alpha-4percent; //하늘
+$waiting-bd: $foundation-primary-alpha-8percent; //연보라
+
+@mixin basicTxt {
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 150%;
+  font-weight: 600;
+}
+@mixin tabBoxBasic {
+  @include centerCenter;
+  padding: 7px;
+  gap: 10px;
+  border-radius: $square-radious;
+  border: 0.5px solid;
+}
+
+.approve {
+  //승인
+  @include basicTxt;
+  color: $approve-color;
+}
+.reject {
+  //반려
+  @include basicTxt;
+  color: $foundation-warning-shade-100;
+}
+.pending {
+  //미결
+  @include basicTxt;
+  font-weight: 500;
+  color: $foundation-grayscale-shade-66;
+}
+.waiting {
+  //대기
+  @include basicTxt;
+  color: $foundation-primary-font;
+}
+
+.text {
+  letter-spacing: -0.32px;
+}
+
+.tableTxt {
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+.square {
+  @include tabBoxBasic;
+  font-size: 13px;
+}
+
+.panel {
+  @include tabBoxBasic;
+  font-size: 14px;
+  width: 80px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.square,
+.panel {
+  &.approve {
+    //승인
+    background-color: $approve-bgc;
+    border-color: $approve-bd;
+  }
+  &.reject {
+    //반려
+    background-color: $reject-bgc;
+    border-color: $reject-bd;
+  }
+  &.pending {
+    //미결
+    background-color: $pending-bgc;
+    border-color: $pending-bd;
+  }
+  &.waiting {
+    //대기
+    background-color: $waiting-bgc;
+    border-color: $waiting-bd;
+  }
+}
