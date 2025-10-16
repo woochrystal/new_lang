@@ -1,4 +1,4 @@
-import styles from './topTit.module.scss';
+import styles from './title.module.scss';
 
 export default function Top({ title }) {
   //시간 가져오기
@@ -8,9 +8,9 @@ export default function Top({ title }) {
   const day = ('0' + today.getDate()).slice(-2);
   const date = year + '.' + month + '.' + day;
 
-  const hour = today.getHours();
-  const minutes = today.getMinutes();
-  const seconds = today.getSeconds();
+  const hour = ('0' + today.getHours()).slice(-2);
+  const minutes = ('0' + today.getMinutes()).slice(-2);
+  const seconds = ('0' + today.getSeconds()).slice(-2);
 
   // 최종 출력
   const now = `${date} ${hour}:${minutes}:${seconds}`;

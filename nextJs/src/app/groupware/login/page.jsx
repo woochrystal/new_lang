@@ -1,6 +1,6 @@
 import { BrandingSection, LoginForm } from '@/features/groupware/login';
-import { Footer } from '@/shared/ui/Footer/Footer';
 import styles from './page.module.scss';
+import Footer from '@/shared/ui/Footer/Footer';
 
 export default function LoginPage() {
   return (

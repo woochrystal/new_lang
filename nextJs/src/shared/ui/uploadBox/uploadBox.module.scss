@@ -6,7 +6,13 @@
   @include basicBox;
   .plusWrap {
     height: 96px;
+    position: relative;
     @include centerCenter;
+
+    &:hover .clearBtn {
+      visibility: visible;
+      opacity: 1;
+    }
   }
   .uploadBoxName {
     @include centerCenter;
@@ -19,6 +25,17 @@
       line-height: 100%;
       max-width: 100%;
       min-width: 0;
+    }
+    .inputSearch {
+      border-radius: 0 0 10px 10px;
+      input {
+        min-height: 48px;
+        padding-right: 47px;
+        @include searchXDelete;
+      }
+      i {
+        display: none;
+      }
     }
   }
 
@@ -48,9 +65,6 @@
 
   // 결재
   &.statusBox {
-    .inputSearch {
-      border: 0;
-    }
   }
 
   // 추가전 레이아웃
@@ -95,5 +109,31 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 100%;
+  }
+
+  .clearBtn {
+    transition: 0.3s;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+    rect {
+      fill: #f4f5f6;
+    }
+    path {
+      fill: #757575;
+    }
+  }
+
+  .teamName {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    width: 100%;
+    padding: 0 24px;
   }
 }

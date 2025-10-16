@@ -1,4 +1,5 @@
 @use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
 @use '@/shared/styles/base/_mixins.scss' as *;
 .inputTit {
   @include btmLeft;
@@ -15,6 +16,9 @@
     line-height: normal;
     letter-spacing: -0.26px;
 
+    &.disabled {
+      color: $foundation-grayscale-shade-88;
+    }
     &.hasStar {
       //앞에 *표시 있는거
       padding-left: 14px;
@@ -30,6 +34,12 @@
         height: 16px;
         font-size: 16px;
       }
+      &.disabled::before {
+        color: $foundation-primary-alpha-20percent;
+      }
     }
   }
+}
+:global(.innerWrap) .inputTit {
+  padding-left: 4px;
 }

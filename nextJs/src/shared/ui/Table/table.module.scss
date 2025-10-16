@@ -5,12 +5,12 @@
 .tableLayout {
   padding-top: 20px;
   > div {
-    border-radius: $wrap-radious;
     border: 1px solid $primary-border;
-    overflow: hidden;
   }
   table {
     @include basic_table;
+    border-radius: $wrap-radious;
+    overflow: hidden;
     thead {
       tr {
         border-bottom: 0;
@@ -42,7 +42,7 @@
       td {
         @include basic_thtd;
         border-right-color: rgba(210, 223, 255, 0.2);
-        transition: $second02;
+        transition: $transition-base;
       }
       &.numberTd {
         width: 80px;
@@ -83,7 +83,7 @@
       td {
         @include basic_thtd;
         border-right-color: rgba(210, 223, 255, 0.2);
-        transition: $second02;
+        transition: $transition-base;
       }
       &.numberTd {
         width: 80px;
@@ -117,7 +117,7 @@
           box-sizing: border-box;
           font-size: 14px;
           text-align: left;
-          padding: $basic-padding;
+          padding: 0;
           font-weight: normal;
           position: relative;
           input {
@@ -126,11 +126,17 @@
         }
         th {
           @include name;
+          padding: $basic-padding;
           cursor: default;
         }
         td {
-          input {
+          input[type='text'],
+          label {
             width: 100%;
+            min-height: 47px;
+            padding: 0 16px;
+          }
+          .inputFile {
           }
         }
         &:first-child {

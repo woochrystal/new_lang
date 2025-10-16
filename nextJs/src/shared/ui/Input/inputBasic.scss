@@ -1,13 +1,6 @@
 @use '@/shared/styles/abstracts/variables' as *;
 @use '@/shared/styles/abstracts/_figma-token' as *;
 @use '@/shared/styles/base/mixins.scss' as *;
-/* mixins.scss */
-@mixin basic_placeholder {
-  color: $placeholder-color;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 100%;
-}
 
 //체크박스
 .checkWrap {

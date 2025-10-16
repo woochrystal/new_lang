@@ -1,0 +1,203 @@
+@use '@/shared/styles/abstracts/variables' as *;
+
+// 모달 오버레이
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $bg-overlay;
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-5;
+  animation: fadeIn $transition-slow ease-out;
+}
+
+// 모달 컨테이너 (Alert보다 더 큼)
+.modalContainer {
+  background: $text-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  width: 100%;
+  max-height: 90vh;
+  position: relative;
+  animation: modalSlideIn $transition-slow ease-out;
+  display: flex;
+  flex-direction: column;
+
+  // 크기별 스타일
+  &.small {
+    max-width: 400px;
+  }
+
+  &.medium {
+    max-width: 600px;
+  }
+
+  &.large {
+    max-width: 800px;
+  }
+}
+
+// 모달 헤더
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-6 $space-6 $space-5 $space-6;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.modalTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: $font-size-3xl;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: $font-size-3xl;
+  height: $font-size-3xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+  transition: color $transition-base;
+  border-radius: $radius-sm;
+
+  &:hover {
+    color: $text-primary;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
+
+// 모달 메인 (본문)
+.modalMain {
+  padding: $space-6;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0; // flexbox에서 overflow 작동하도록
+}
+
+// 모달 푸터 (버튼 영역)
+.modalFooter {
+  padding: $space-5 $space-6 $space-6 $space-6;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  gap: $space-3;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.confirmButton {
+  background-color: $primary-color;
+  color: $text-white;
+  border: none;
+  border-radius: $radius-base;
+  padding: $space-3 $space-6;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: background-color $transition-base;
+  min-width: 80px;
+
+  &:hover {
+    background-color: #4632a5;
+  }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: #3d2991;
+  }
+}
+
+.cancelButton {
+  background-color: $bg-secondary;
+  color: $text-secondary;
+  border: 1px solid #dee2e6;
+  border-radius: $radius-base;
+  padding: $space-3 $space-6;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-base;
+  min-width: 80px;
+
+  &:hover {
+    background-color: #e9ecef;
+    color: $text-primary;
+    border-color: #adb5bd;
+  }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: #dee2e6;
+  }
+}
+
+// 애니메이션
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// 반응형
+@media (max-width: $breakpoint-md) {
+  .modalContainer {
+    margin: $space-3;
+    max-height: calc(100vh - #{$space-6});
+
+    &.small,
+    &.medium,
+    &.large {
+      max-width: none;
+    }
+  }
+
+  .modalFooter {
+    flex-direction: column-reverse;
+
+    .confirmButton,
+    .cancelButton {
+      width: 100%;
+    }
+  }
+}

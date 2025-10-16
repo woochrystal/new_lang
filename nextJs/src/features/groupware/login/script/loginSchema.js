@@ -4,9 +4,9 @@ import { z } from 'zod';
  * 로그인 폼 검증 스키마
  */
 export const loginSchema = z.object({
-  userId: z.string().min(1, '아이디를 입력해주세요.'),
+  loginId: z.string().min(1, '아이디를 입력해주세요.'),
 
-  userPw: z.string().min(1, '비밀번호를 입력해주세요.')
+  loginPwd: z.string().min(1, '비밀번호를 입력해주세요.')
 });
 
 /**

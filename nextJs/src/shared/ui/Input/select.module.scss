@@ -15,7 +15,7 @@
       }
       i {
         @include centerCenter;
-        transition: $second03;
+        transition: $transition-base;
         stroke: $text-color;
       }
     }

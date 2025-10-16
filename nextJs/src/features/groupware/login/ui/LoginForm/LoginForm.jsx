@@ -8,9 +8,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/shared/auth';
 import { getTenantBasePath } from '@/shared/lib/routing';
-import { Alert } from '@/shared/ui/Alert/Alert';
+import { Alert } from '@/shared/ui/Popup/Alert';
+import Button from '@/shared/ui/Button/Button';
 import { validateField, validateLoginForm, LoginInput } from '../../index';
-import { useCapsLockDetector } from '../../lib/capsLockDetector';
+import { useCapsLockDetector } from '../../script/capsLockDetector';
 import styles from './LoginForm.module.scss';
 
 /**
@@ -31,13 +32,13 @@ export const LoginForm = ({
   const { capsLockOn } = useCapsLockDetector();
 
   const [credentials, setCredentials] = useState({
-    userId: '',
-    userPw: ''
+    loginId: '',
+    loginPwd: ''
   });
 
   const [fieldErrors, setFieldErrors] = useState({
-    userId: '',
-    userPw: ''
+    loginId: '',
+    loginPwd: ''
   });
 
   const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
@@ -102,32 +103,32 @@ export const LoginForm = ({
 
         <form className={styles.loginForm} onSubmit={handleSubmit}>
           <LoginInput
-            id="userId"
-            name="userId"
+            id="loginId"
+            name="loginId"
             type="text"
             label="아이디"
-            value={credentials.userId}
+            value={credentials.loginId}
             onChange={handleChange}
             placeholder="최소 5자리 ~ 최대 12자리, 영문 대소문자.."
             required
             disabled={isLoading}
-            error={fieldErrors.userId}
+            error={fieldErrors.loginId}
             formGroupClass={styles.formGroup}
             inputClass={styles.formInput}
             errorClass={styles.fieldError}
           />
 
           <LoginInput
-            id="userPw"
-            name="userPw"
+            id="loginPwd"
+            name="loginPwd"
             type="password"
             label="비밀번호"
-            value={credentials.userPw}
+            value={credentials.loginPwd}
             onChange={handleChange}
             placeholder="비밀번호를 입력하세요"
             required
             disabled={isLoading}
-            error={fieldErrors.userPw}
+            error={fieldErrors.loginPwd}
             formGroupClass={styles.formGroup}
             inputClass={styles.formInput}
             errorClass={styles.fieldError}
@@ -151,9 +152,13 @@ export const LoginForm = ({
 
           {error && <Alert title="로그인 오류" message={error} type="error" confirmText="확인" onClose={clearError} />}
 
-          <button type="submit" className={styles.loginButton} disabled={isLoading}>
-            {isLoading ? '로그인 중...' : '로그인'}
-          </button>
+          <Button
+            type="submit"
+            variant="primary"
+            className={styles.loginButton}
+            disabled={isLoading}
+            label={isLoading ? '로그인 중...' : '로그인'}
+          />
         </form>
       </div>
     </section>

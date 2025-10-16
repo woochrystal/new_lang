@@ -10,6 +10,7 @@
     &[type='text'] {
       color: $text-color;
       cursor: text;
+      min-height: 46px;
     }
     &[type='search'] {
       color: $primary-color;
@@ -40,6 +41,9 @@
   padding: 16px;
   outline: none;
   resize: none;
+  &::placeholder {
+    @include basic_placeholder;
+  }
 }
 
 .inputFileWrap {
@@ -51,7 +55,7 @@
   }
 }
 .inputFile {
-  @include topCenter;
+  @include centerCenter;
   justify-content: space-between;
   align-self: stretch;
   flex: 1;
@@ -75,4 +79,11 @@
 }
 .fileNameBtn {
   @include file_name;
+}
+.inputData {
+  padding: $basic-padding;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
 }

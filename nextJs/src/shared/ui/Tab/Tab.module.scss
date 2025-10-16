@@ -1,0 +1,42 @@
+@use '../../styles/base/mixins' as *;
+
+.tabContainer {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.5rem 0.75rem;
+}
+
+.tabItem {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child)::after {
+    content: '|';
+    margin: 0 0.5rem;
+    color: var(--color-gray-300);
+    font-size: 0.875rem;
+  }
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  vertical-align: middle;
+  color: var(--color-gray-500);
+
+  &:hover {
+    color: var(--color-gray-700);
+  }
+
+  &.active {
+    color: var(--color-black);
+  }
+}

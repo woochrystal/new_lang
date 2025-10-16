@@ -63,6 +63,8 @@ $waiting-bd: $foundation-primary-alpha-8percent; //연보라
 
 .square {
   @include tabBoxBasic;
+  min-width: 48px;
+  min-height: 44px;
   font-size: 13px;
 }
 
@@ -95,5 +97,26 @@ $waiting-bd: $foundation-primary-alpha-8percent; //연보라
     //대기
     background-color: $waiting-bgc;
     border-color: $waiting-bd;
+  }
+}
+.dateCount {
+  padding: 0 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 100%; /* 16px */
+  letter-spacing: -0.32px;
+  position: relative;
+
+  &::after {
+    @include afterBar;
+  }
+  &:last-child::after {
+    display: none;
+  }
+
+  span {
+    color: $foundation-primary-bg;
+    font-size: 16px;
+    font-weight: 600;
   }
 }

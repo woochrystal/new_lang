@@ -3,6 +3,7 @@
 // 프로젝트의 전반적인 타이포그래피, 링크 스타일 등을 이곳에서 설정합니다.
 
 @use '../abstracts/variables' as *;
+@use '../abstracts/figma-token' as *;
 
 * {
   color: $text-color;
@@ -12,11 +13,41 @@
     BlinkMacSystemFont,
     system-ui,
     sans-serif;
+
+  //스크롤바 넓이
+  &::-webkit-scrollbar {
+    width: calc($barWidth + 2 * $barMargin);
+    height: calc($barWidth + 2 * $barMargin);
+  }
+
+  //스크롤바 배경
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  //스크롤바
+  &::-webkit-scrollbar-thumb {
+    background: $foundation-light-grid;
+    border-radius: calc($barWidth + 2 * $barMargin);
+    border: $barMargin solid $background-color; //여백
+  }
 }
+
 body {
   background: $background-color;
   overflow-y: hidden;
+  //스크롤바 배경
+  &::-webkit-scrollbar-thumb {
+    border: $barMargin solid $background-color; //여백
+  }
 }
+.innerWrap {
+  &::-webkit-scrollbar-thumb {
+    background: $foundation-light-grid;
+    border: $barMargin solid $foundation-light-base-shade-100; //여백
+  }
+}
+
 a,
 button,
 label {

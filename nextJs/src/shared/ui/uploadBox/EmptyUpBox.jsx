@@ -1,7 +1,7 @@
 'use client';
 import styles from '@/shared/ui/uploadBox/uploadBox.module.scss';
 
-export default function EmptyUpBox(props) {
+export default function EmptyUpBox() {
   return (
     <div className={`${styles.uploadBox} ${styles.emptyBox}`}>
       <div>

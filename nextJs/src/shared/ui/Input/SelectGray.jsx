@@ -1,21 +1,22 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
-import InputTit from './InputTit';
 import styles from './select.module.scss';
 
-export default function SelectGray({ selectInfo }) {
-  const { list, defaultTxt } = selectInfo;
+export default function SelectGray() {
+  //더미데이터
+  const defaultTxt = '셀렉트 회색';
+  const list = ['전체', '연차', '반차', '병가', '경조사', '리프레시', '기타'];
 
   const [clickLi, setClickLi] = useState(defaultTxt);
   const [isOpen, setIsOpen] = useState(false); //열고닫기
   const selectRef = useRef(null);
 
   const activeToggle = () => {
-    setIsOpen((a) => !a); //클릭할때마다 값 변경
+    setIsOpen((prev) => !prev); //열고닫기
   };
-  const liClick = (b, e) => {
+  const liClick = (item, e) => {
     e.stopPropagation();
-    setClickLi(b);
+    setClickLi(item);
     setIsOpen(false); //선택하고 바로 닫음
   };
 
@@ -37,7 +38,6 @@ export default function SelectGray({ selectInfo }) {
   return (
     <div className={`${styles.selectCustom} ${styles.selectGray}`} ref={selectRef}>
       <div
-        // className={`${styles.selectOption} option_wrap`}
         className={`
           ${styles.selectOption}
           option_wrap
@@ -61,7 +61,7 @@ export default function SelectGray({ selectInfo }) {
         <ul className="option_list">
           {list.map((option, index) => {
             return (
-              <li key={index} data-value={index} onClick={(e) => liClick(option, e)}>
+              <li key={index} onClick={(e) => liClick(option, e)}>
                 {option}
               </li>
             );

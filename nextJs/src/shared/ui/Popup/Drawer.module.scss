@@ -1,0 +1,183 @@
+@use '@/shared/styles/abstracts/variables' as *;
+
+// Drawer 오버레이
+.drawerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $bg-overlay;
+  z-index: $z-modal;
+  animation: fadeIn $transition-slow ease-out;
+}
+
+// Drawer 컨테이너
+.drawerContainer {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  background: $text-white;
+  box-shadow: $shadow-lg;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // Drawer 기본 설정
+  &.right {
+    right: 0;
+    width: 40%;
+    animation: slideInRight $transition-slow ease-out;
+
+    // 모바일에서는 전체 너비의 85%
+    @media (max-width: $breakpoint-md) {
+      width: 85%;
+    }
+
+    // 작은 화면에서는 전체 너비
+    @media (max-width: $breakpoint-sm) {
+      width: 100%;
+    }
+  }
+
+  // 왼쪽에서 나오는 설정 (확장 기능)
+  &.left {
+    left: 0;
+    width: 40%;
+    animation: slideInLeft $transition-slow ease-out;
+
+    @media (max-width: $breakpoint-md) {
+      width: 85%;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      width: 100%;
+    }
+  }
+}
+
+// Drawer 헤더
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-6;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  background: $text-white;
+  z-index: 1;
+}
+
+.drawerTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: $font-size-3xl;
+  line-height: 1;
+  cursor: pointer;
+  padding: $space-1;
+  width: $space-8;
+  height: $space-8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+  transition: all $transition-base;
+  border-radius: $radius-sm;
+
+  &:hover {
+    color: $text-primary;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Drawer 컨텐츠
+.drawerContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: $space-6;
+  background: $text-white;
+}
+
+// 애니메이션
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// 스크롤바 커스터마이징 (Drawer 컨텐츠)
+.drawerContent {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+// 데스크탑 크기 제한 (최대 600px)
+@media (min-width: $breakpoint-xl) {
+  .drawerContainer.right,
+  .drawerContainer.left {
+    max-width: 600px;
+  }
+}
+
+// 초대형 화면에서도 적절한 크기 유지
+@media (min-width: 1600px) {
+  .drawerContainer.right,
+  .drawerContainer.left {
+    width: 35%;
+    max-width: 700px;
+  }
+}

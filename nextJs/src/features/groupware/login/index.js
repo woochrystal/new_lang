@@ -4,7 +4,7 @@
  */
 
 // Model
-export { validateField, validateLoginForm, loginSchema } from './model/loginSchema';
+export { validateField, validateLoginForm, loginSchema } from './script/loginSchema';
 
 // UI Component
 export { LoginForm } from './ui/LoginForm/LoginForm';

@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import styles from './table.module.scss';
-import Pagination from './Pagination';
 export default function TableLayout({ theadList, tbodyList }) {
   // 목록 최신순으로 나열 필요
   // 헤더/바디 컨포넌트 안나눈  테이블 구조
@@ -43,7 +42,6 @@ export default function TableLayout({ theadList, tbodyList }) {
           </tbody>
         </table>
       </div>
-      <Pagination />
     </div>
   );
 }

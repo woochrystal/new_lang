@@ -1,0 +1,153 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+.boardForm {
+  width: 100%;
+  margin: 0 auto;
+  @include topLeft;
+  gap: 24px;
+}
+
+.loadingContainer {
+  @include centerCenter;
+  min-height: 400px;
+}
+
+.errorMessage {
+  padding: 12px 16px;
+  background-color: rgba(#ef4444, 0.1);
+  border: 1px solid rgba(#ef4444, 0.2);
+  border-radius: 8px;
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.formSection {
+  @include topLeft;
+  gap: 32px;
+  width: 100%;
+}
+
+.formGroup {
+  @include topLeft;
+  gap: 8px;
+  width: 100%;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-color;
+  @include centerLeft;
+  gap: 4px;
+}
+
+.required {
+  color: $primary-color;
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid $secondary-border;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &:disabled {
+    background-color: $foundation-grayscale-base-shade-4;
+    color: $foundation-grayscale-shade-66;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $foundation-grayscale-shade-66;
+  }
+}
+
+.inputError {
+  border-color: #ef4444 !important;
+
+  &:focus {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(#ef4444, 0.1) !important;
+  }
+}
+
+.fieldError {
+  font-size: 12px;
+  color: #ef4444;
+  font-weight: 500;
+  @include centerLeft;
+  gap: 4px;
+
+  &::before {
+    content: '⚠';
+    font-size: 12px;
+  }
+}
+
+.charCount {
+  font-size: 12px;
+  color: $foundation-grayscale-shade-66;
+  text-align: right;
+  margin-top: 4px;
+
+  &.warning {
+    color: #f59e0b;
+  }
+
+  &.error {
+    color: #ef4444;
+  }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+  .boardForm {
+    max-width: 100%;
+    gap: 20px;
+    padding: 0 16px;
+  }
+
+  .formSection {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .boardForm {
+    padding: 0 12px;
+    gap: 16px;
+  }
+
+  .formSection {
+    gap: 20px;
+  }
+
+  .errorMessage {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .fieldError {
+    font-size: 11px;
+  }
+
+  .charCount {
+    font-size: 11px;
+  }
+}
+
+// 다크모드 대응 (향후 확장)

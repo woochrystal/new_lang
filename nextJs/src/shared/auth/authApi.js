@@ -4,6 +4,7 @@
  */
 
 import { apiClient } from '@/shared/api/client';
+import { isMultiTenantMode, getTenantId } from '@/shared/lib/routing';
 
 /**
  * 인증 관련 API 서비스
@@ -12,12 +13,32 @@ export const authApi = {
   /**
    * 로그인
    * @param {Object} credentials - 로그인 자격증명
-   * @param {string} credentials.userId - 사용자 ID
-   * @param {string} credentials.userPw - 비밀번호
+   * @param {string} credentials.loginId - 사용자 ID
+   * @param {string} credentials.loginPwd - 비밀번호
    * @returns {Promise<Object>} 로그인 응답
    */
   login: async (credentials) => {
-    const response = await apiClient.post('/api/auth/login', credentials);
+    // 환경 기반 테넌트 ID 설정
+    let domainPath;
+
+    if (isMultiTenantMode()) {
+      // 멀티 테넌트 모드: URL에서 테넌트 ID 추출
+      domainPath = getTenantId();
+      if (!domainPath) {
+        throw new Error('멀티 테넌트 모드에서 테넌트 ID를 찾을 수 없습니다.');
+      }
+    } else {
+      // 싱글 테넌트 모드: 고정 테넌트 ID 사용
+      domainPath = 'pentas';
+    }
+
+    const loginData = {
+      ...credentials,
+      domainPath,
+      tenantId: null
+    };
+
+    const response = await apiClient.post('/api/auth/login', loginData);
     return response.data;
   },
 

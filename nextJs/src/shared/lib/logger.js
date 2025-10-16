@@ -74,41 +74,43 @@ const getLogLevel = () => {
   return process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'warn' : 'debug');
 };
 
-const rootLogger = pino({
-  level: getLogLevel(),
-  mixin() {
-    if (!contextStorage) {
-      return {};
-    } // Return empty object in browser
-    const store = contextStorage.getStore();
-    return store ? Object.fromEntries(store) : {};
-  },
-  ...(isBrowser
-    ? {
-        browser: { asObject: true }
-      }
-    : {
-        transport:
-          process.env.NODE_ENV === 'development'
-            ? {
-                target: 'pino-pretty',
-                options: {
-                  colorize: process.platform !== 'win32',
-                  translateTime: 'yyyy-mm-dd HH:MM:ss',
-                  ignore: 'pid,hostname',
-                  sync: true
-                }
-              }
-            : undefined,
-        formatters:
-          process.env.NODE_ENV === 'production'
-            ? {
-                level: (label) => ({ level: label }),
-                log: (obj) => ({ ...obj, timestamp: new Date().toISOString() })
-              }
-            : undefined
-      })
+// 브라우저용 간단한 로거
+const createBrowserLogger = () => ({
+  trace: (msg) => console.debug(`[TRACE] ${msg}`),
+  debug: (msg) => console.debug(`[DEBUG] ${msg}`),
+  info: (msg) => console.info(`[INFO] ${msg}`),
+  warn: (msg) => console.warn(`[WARN] ${msg}`),
+  error: (msg) => console.error(`[ERROR] ${msg}`),
+  fatal: (msg) => console.error(`[FATAL] ${msg}`),
+  child: () => createBrowserLogger(),
+  isLevelEnabled: () => true
 });
+
+// 서버용 pino 로거
+const createServerLogger = () =>
+  pino({
+    level: getLogLevel(),
+    mixin() {
+      if (!contextStorage) {
+        return {};
+      }
+      const store = contextStorage.getStore();
+      return store && store.size > 0 ? Object.fromEntries(store) : {};
+    },
+    ...(process.env.NODE_ENV === 'development'
+      ? {
+          prettyPrint: false // pino-pretty 대신 기본 출력
+        }
+      : {
+          formatters: {
+            level: (label) => ({ level: label }),
+            log: (obj) => ({ ...obj, timestamp: new Date().toISOString() })
+          }
+        })
+  });
+
+// 환경별 로거 선택
+const rootLogger = isBrowser ? createBrowserLogger() : createServerLogger();
 
 // --- Logger & LoggerFactory --- //
 
@@ -140,11 +142,23 @@ export class Logger {
    */
   log(level, message, ...args) {
     const lastArg = args[args.length - 1];
-    if (lastArg instanceof Error) {
-      const formatArgs = args.slice(0, -1);
-      this.logger[level]({ err: lastArg }, this.formatMessage(message, ...formatArgs));
+
+    if (isBrowser) {
+      // 브라우저: 간단한 문자열 로깅
+      const formattedMessage = this.formatMessage(message, ...args.filter((arg) => !(arg instanceof Error)));
+      if (lastArg instanceof Error) {
+        this.logger[level](`${formattedMessage} | Error: ${lastArg.message}`);
+      } else {
+        this.logger[level](formattedMessage);
+      }
     } else {
-      this.logger[level](this.formatMessage(message, ...args));
+      // 서버: pino 방식 로깅
+      if (lastArg instanceof Error) {
+        const formatArgs = args.slice(0, -1);
+        this.logger[level]({ err: lastArg }, this.formatMessage(message, ...formatArgs));
+      } else {
+        this.logger[level](this.formatMessage(message, ...args));
+      }
     }
   }
 

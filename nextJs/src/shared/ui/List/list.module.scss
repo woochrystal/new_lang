@@ -1,0 +1,132 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+
+@mixin sm-gray {
+  overflow: hidden;
+  color: $foundation-grayscale-shade-75;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+@mixin sm-black {
+  overflow: hidden;
+  color: $foundation-grayscale-shade-33;
+  text-overflow: ellipsis;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.listBasic {
+  @include centerLeft;
+  width: 100%;
+} //ul end
+
+.listBasicLi {
+  a {
+    display: block;
+    padding: 18px 16px;
+  }
+} //li end
+
+.assetLi {
+  ol {
+    display: flex;
+    gap: 5px 0;
+    flex-direction: column;
+    padding: 13px 20px;
+    li {
+      @include centerLeft;
+      gap: 8px;
+    }
+  }
+  .assetsLiName {
+    @include sm-gray;
+    letter-spacing: 0.28px;
+    min-width: 58px;
+    display: inline-block;
+  }
+  .assetsLiData {
+    @include sm-black;
+  }
+}
+
+.boardDoc {
+  width: 100%;
+  border-bottom: 1px solid $foundation-light-line-shade-20;
+  &:last-child {
+    border-bottom: none;
+  }
+  a {
+    @include topLeft;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 16px;
+  }
+  .bdDocWrap {
+    flex-grow: 1;
+  }
+  .bdDocInfo {
+    @include centerLeft;
+    justify-content: space-between;
+    padding-bottom: 6px;
+    gap: 6px 16px;
+  }
+  .bdDocTit {
+    @include sm-black;
+    font-weight: 600;
+    font-size: 16px;
+    padding-right: 16px;
+  }
+  .bdDocNum {
+    color: $foundation-grayscale-shade-75;
+    @include sm-gray;
+  }
+
+  .docInfoRight {
+    @include centerLeft;
+    gap: 0 16px;
+    span {
+      @include sm-gray;
+    }
+    .bdDocName {
+      color: $foundation-grayscale-shade-33;
+      font-weight: 400;
+    }
+    .bdDocNum {
+      font-weight: 300;
+    }
+  }
+  p {
+    @include sm-black;
+  }
+}
+
+.bdList {
+  width: 100%;
+  a {
+    width: 100%;
+  }
+  .bdLiTit {
+    @include sm-black;
+    font-weight: 600;
+    font-size: 16px;
+    padding-bottom: 8px;
+  }
+  .bdLiInfo {
+    display: flex;
+    justify-content: space-between;
+    span {
+      @include sm-gray;
+      font-weight: 500;
+    }
+    .bdLiDate {
+      color: $foundation-grayscale-shade-33;
+    }
+  }
+}

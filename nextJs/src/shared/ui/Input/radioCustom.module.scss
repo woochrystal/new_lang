@@ -27,12 +27,12 @@
       rect {
         stroke: $round-border;
         stroke-opacity: 0.4;
-        transition: $second03;
+        transition: $transition-base;
       }
       .circleOn {
         stroke: none;
         fill: none;
-        transition: $second03;
+        transition: $transition-base;
       }
     }
 
@@ -82,7 +82,7 @@
       background: $foundation-light-line-shade-20;
       border: 1px solid $foundation-light-line-shade-100;
       border-radius: $basic-radious;
-      transition: $second03;
+      transition: $transition-base;
     }
     input {
       &[type='radio']:checked {

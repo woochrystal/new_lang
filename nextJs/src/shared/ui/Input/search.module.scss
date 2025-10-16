@@ -13,6 +13,10 @@ $clear-width: 16px; //삭제아이콘
   input {
     padding-right: calc($search-width + 2 * 16px);
     @include searchInput;
+
+    &:disabled ~ button {
+      cursor: default;
+    }
   }
 
   i {

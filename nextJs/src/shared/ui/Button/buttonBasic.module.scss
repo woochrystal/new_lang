@@ -23,14 +23,14 @@
   transform: translateY(-50%);
 }
 
-.BtnWrapsStyle {
+.btnWrapsStyle {
   @include topRight;
   gap: 8px;
 
-  &.BtnGroup {
+  &.btnGroup {
     width: 100%;
   }
-  &.BtnTitOnly {
+  &.btnTitOnly {
     width: 100%;
     padding-bottom: 20px;
   }

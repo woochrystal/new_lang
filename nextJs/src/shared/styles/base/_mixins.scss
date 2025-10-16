@@ -108,7 +108,7 @@
   line-height: 14px;
   letter-spacing: -0.24px;
   cursor: pointer;
-  transition: $second03;
+  transition: $transition-slow;
 }
 // 버튼 색상
 
@@ -152,6 +152,18 @@
   width: 100%;
 }
 
+@mixin boxStyle {
+  @include basic_box;
+  padding: $basic-padding;
+  cursor: auto;
+  overflow: inherit;
+  position: relative;
+  border-radius: $wrap-radious;
+  border: 1px solid $foundation-light-line-shade-100;
+  background: $foundation-light-base-shade-100;
+  padding: 13px 28px;
+}
+
 // 인풋 리셋
 @mixin input_reset {
   position: absolute;
@@ -160,6 +172,13 @@
   padding: 0;
   overflow: hidden;
   border: 0;
+}
+/* mixins.scss */
+@mixin basic_placeholder {
+  color: $placeholder-color;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
 }
 
 // 인풋 기본 박스 스타일
@@ -182,14 +201,14 @@
     width: 100%;
     padding: 11px 16px;
     &::placeholder {
-      color: $placeholder-color;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 100%;
+      @include basic_placeholder;
     }
     &:disabled {
-      background: $foundation-grayscale-base-shade-4;
+      background: $input-onGray;
       cursor: default;
+      @at-root .inputTxt {
+        border-color: $input-onGray;
+      }
     }
   }
 }
@@ -233,13 +252,7 @@
   white-space: nowrap;
 }
 
-// 인풋 search
-@mixin searchInput {
-  color: $primary-color;
-  font-weight: 500;
-  position: relative;
-  z-index: 1;
-
+@mixin searchXClear {
   /* IE */
   &::-ms-clear,
   &::-ms-reveal {
@@ -253,6 +266,35 @@
   &::-webkit-search-results-decoration {
     opacity: 0;
     cursor: pointer;
+  }
+}
+@mixin searchXDelete {
+  /* IE */
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+  }
+  /* chrome */
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+// 인풋 search
+@mixin searchInput {
+  color: $primary-color;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  @include searchXClear;
+
+  &:focus,
+  &:target,
+  &:active {
+    background-color: $foundation-primary-alpha-4percent;
   }
 }
 
@@ -274,4 +316,16 @@
   &:last-child {
     border-right: 0;
   }
+}
+
+@mixin afterBar {
+  content: '';
+  width: 1px;
+  height: 13px;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $foundation-grayscale-base-shade-20;
 }

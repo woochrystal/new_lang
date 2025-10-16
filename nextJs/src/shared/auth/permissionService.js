@@ -82,8 +82,6 @@ export const setupDevUser = (setUser) => {
   // AuthStore의 user 상태에 직접 설정
   setUser(devUser);
 
-  logger.info('[DEV] 더미 사용자 설정 완료: {} (권한: {})', devUser.name, devUser.permissions.length);
-
   return devUser;
 };
 
@@ -178,6 +176,8 @@ export const hasFeatureFlag = (userFeatures, feature) => {
 // CONVENIENCE HOOK
 // ============================================================================
 
+import { useAuth } from './useAuth';
+
 /**
  * 권한 관리 Hook (authStore 기반)
  * ⚠️ 권한 데이터는 useAuth()의 user.permissions에서 관리됩니다.
@@ -186,7 +186,7 @@ export const hasFeatureFlag = (userFeatures, feature) => {
  */
 export const usePermissions = () => {
   // authStore에서 사용자 정보 획득
-  const { user } = require('./useAuth').useAuth();
+  const { user } = useAuth();
 
   return {
     // 권한 체크 (사용자 객체 기반)
@@ -225,7 +225,7 @@ export const usePermissions = () => {
     get features() {
       return user?.features || [];
     },
-    get userId() {
+    get loginId() {
       return user?.id || null;
     },
     get currentTenantId() {

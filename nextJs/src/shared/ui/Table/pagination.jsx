@@ -1,8 +1,6 @@
 import styles from './pagination.module.scss';
 export default function Pagination() {
-  const pageNum = Array.from({ length: 6 }, (_, i) => i); //페이지 번호
-  if (pageNum == 1) {
-  }
+  const pageNum = Array.from({ length: 6 }, (_, i) => i); //페이지 번호 더미
 
   return (
     <div className={styles.paginationCustom}>
@@ -36,19 +34,15 @@ export default function Pagination() {
           </a>
         </li>
 
-        {/* 숫자리스트 */}
-        {
-          //페이지 번호
-          pageNum.map((num, i) => {
-            // console.log()
-            return (
-              <li key={i}>
-                {/* <a className={ i == 0 ? styles.on : ''}>{i + 1}</a> */}
-                <a className={i == 0 ? styles.on : ''}>{i + 1}</a>
-              </li>
-            );
-          })
-        }
+        {/* 번호 */}
+        {pageNum.map((num, i) => {
+          return (
+            <li key={i}>
+              <a className={i == 0 ? styles.on : ''}>{i + 1}</a>
+            </li>
+          );
+        })}
+        {/* 번호끝 */}
 
         <li>
           <a>
