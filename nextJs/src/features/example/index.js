@@ -1,13 +1,15 @@
 // 게시판 UI 컴포넌트
-export { BoardList } from './ui/BoardList';
-export { BoardDetail } from './ui/BoardDetail';
-export { BoardForm } from './ui/BoardForm';
-export { BoardSearch } from './ui/BoardSearch';
+export { default as BoardDetail } from './ui/Detail';
+export { default as ExampleForm } from './ui/Form';
+export { default as ExampleSearch } from './ui/Search';
+export { default as ExampleList } from './ui/List';
 
 // API 서비스
-export { sampleApi } from './script/sampleApi';
-export { EnhancedErrorHandler, showApiErrorModal, mapValidationErrors } from './script/errorHandler';
+export { api as sampleApi } from './script/api';
+
+// Entity 클래스
+export { Board, BoardList, Pagination } from './script/entity';
 
 // 상수 및 유틸리티
 export { BOARD_CONSTANTS } from './script/constants';
-export { formatDate, createDefaultSearchParams } from './script/utils';
+export { formatDate } from './script/utils';

@@ -1,0 +1,314 @@
+// ============================================================================
+// Approval Status Component (Approver Selection)
+// ============================================================================
+
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+
+// ============================================================================
+// Unified Structure Styles
+// ============================================================================
+
+.approvalStatus {
+  @include basicBox;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 144px; // 96px + 48px
+  position: relative;
+  cursor: pointer;
+  transition: all $transition-base;
+  background-color: $foundation-light-base-shade-100;
+
+  &:hover:not(.disabled):not(.readOnly) {
+    border-color: $primary-color;
+    background-color: rgba($primary-color, 0.02);
+
+    .approverName {
+      color: $primary-color;
+      font-weight: 600;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &.readOnly {
+    cursor: default;
+    background-color: $foundation-light-base-shade-100;
+    border-color: $foundation-light-line-shade-100;
+  }
+
+  &.error {
+    border-color: $error-color;
+  }
+}
+
+// --- 1. 상단 영역 ---
+.contentArea {
+  height: 96px;
+  position: relative;
+  flex-direction: column;
+  @include centerCenter;
+}
+
+// --- 2. 하단 영역 ---
+.approverArea {
+  min-height: 48px;
+  border-top: 1px solid $foundation-light-line-shade-100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-2;
+  padding: 16px;
+}
+
+// ============================================================================
+// Element Visibility Control
+// ============================================================================
+
+// 기본적으로 모든 wrapper는 숨김
+.statusWrapper,
+.dateWrapper,
+.teamNameWrapper,
+.addWrapper,
+.searchIconWrapper,
+.deleteButton {
+  display: none;
+}
+
+// --- 상태별 요소 노출 제어 ---
+
+// 1. readOnly 상태
+.approvalStatus.readOnly {
+  .statusWrapper,
+  .dateWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // gap: 6px;
+  }
+  .approverName {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .approverArea {
+    justify-content: center;
+  }
+}
+
+// 2. 편집 가능 상태
+.approvalStatus:not(.readOnly) {
+  // 2-1. 값이 없을 때
+  &.noValue {
+    border: none; // Remove border from main container
+    background-color: #fafafa;
+
+    &:hover {
+      .contentArea,
+      .approverArea {
+        border-style: solid;
+      }
+    }
+
+    .contentArea {
+      height: 96px;
+      position: relative;
+      @include centerCenter;
+      border: 1px solid $foundation-light-line-shade-100;
+      border-radius: $wrap-radious $wrap-radious 0 0;
+      border-bottom: 0;
+    }
+
+    .addWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $space-2;
+    }
+    .approverArea {
+      color: $text-secondary;
+      border-top: none;
+      border-width: 1px;
+      border-style: dashed;
+      border-color: $foundation-light-line-shade-100;
+      border-radius: 0 0 10px 10px;
+      // margin-top: -1px; // To connect the borders
+    }
+  }
+
+  // 2-2. 값이 있을 때
+  &:not(.noValue) {
+    .teamNameWrapper,
+    .searchIconWrapper,
+    .deleteButton {
+      display: block;
+    }
+  }
+}
+
+// ============================================================================
+// Individual Element Styles
+// ============================================================================
+
+// --- ReadOnly 전용 ---
+.dateWrapper {
+  span {
+    color: $foundation-grayscale-shade-66;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 120%;
+  }
+}
+
+// --- 편집 모드: 값 없음 ---
+.addButton {
+  font-size: 28px;
+  color: $text-secondary;
+  line-height: 1;
+  font-weight: 300;
+}
+.addText {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+}
+
+// --- 편집 모드: 값 있음 ---
+.deleteButton {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $text-muted;
+  font-size: 20px;
+  padding: 4px;
+  line-height: 1;
+  z-index: 1;
+
+  &:hover {
+    color: $error-color;
+  }
+}
+
+.teamNameWrapper {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  text-align: center;
+  line-height: 1.4;
+  @include txt_ellipsis_line(2);
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  color: $text-secondary;
+  transition: color $transition-base;
+}
+
+// --- 공통 ---
+.approverName {
+  font-size: $font-size-md;
+  font-weight: 400;
+  color: $text-primary;
+  transition: color $transition-base;
+  @include txt_ellipsis;
+}
+
+// ============================================================================
+// Drawer Content Styles (기존과 동일)
+// ============================================================================
+
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-4;
+  height: 100%;
+}
+
+.approverList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 200px;
+}
+
+.approverItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  padding: $space-3;
+  background-color: $bg-primary;
+  border: 1px solid $foundation-light-line-shade-100;
+  border-radius: $radius-base;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &.selected {
+    background-color: $menu-active;
+    border-color: $primary-color;
+
+    .approverItemName {
+      color: $primary-color;
+      font-weight: $font-weight-medium;
+    }
+  }
+}
+
+.approverItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  flex: 1;
+  min-width: 0;
+}
+
+.approverItemName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $text-primary;
+  @include txt_ellipsis;
+}
+
+.approverItemTeam {
+  font-size: $font-size-xs;
+  color: $text-secondary;
+  @include txt_ellipsis;
+}
+
+.approverItemPosition {
+  flex-shrink: 0;
+  font-size: $font-size-xs;
+  color: $text-muted;
+  white-space: nowrap;
+}
+
+.noResults {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: $text-secondary;
+  font-size: $font-size-sm;
+}
+
+.drawerActions {
+  display: flex;
+  gap: $space-3;
+  justify-content: flex-end;
+  padding-top: $space-4;
+  border-top: 1px solid $foundation-light-line-shade-100;
+  margin-top: auto;
+
+  button {
+    min-width: 120px;
+  }
+}

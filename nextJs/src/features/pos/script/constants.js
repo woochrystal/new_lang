@@ -1,0 +1,4 @@
+export const POSITION_CONSTANTS = {
+  MAX_POS_NM_LENGTH: 50,
+  MAX_POS_ORD_LENGTH: 6
+};

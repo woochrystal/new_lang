@@ -1,0 +1,266 @@
+// Tree 컴포넌트 스타일
+// rc-tree 기본 스타일을 프로젝트 테마에 맞게 오버라이드
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+.tree {
+  // rc-tree 기본 스타일 재정의
+  padding: 20px;
+  :global {
+    .rc-tree {
+      margin: 0;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+
+      // 트리 노드
+      .rc-tree-treenode {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        line-height: 100%;
+        height: auto;
+      }
+
+      // 노드 내용 영역
+      .rc-tree-node-content-wrapper {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        padding: 4px 0;
+        border-radius: $input-radious;
+        cursor: pointer;
+        color: var(--color-text-primary, #333);
+        transition: $transition-base;
+        height: auto !important;
+
+        // 일반 노드 스타일
+        &.rc-tree-node-content-wrapper-normal {
+          border-radius: $input-radious;
+        }
+
+        // 선택된 노드 스타일
+        &.rc-tree-node-selected {
+          box-shadow: none;
+          background-color: transparent;
+          opacity: 1;
+        }
+      }
+
+      // 노드 타이틀
+      .rc-tree-title {
+        display: block;
+        user-select: none;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%; /* 14px */
+        letter-spacing: -0.28px;
+        height: auto;
+      }
+
+      .rc-tree-treenode-leaf {
+        // 체크상태
+        &.rc-tree-treenode-checkbox-checked {
+          .rc-tree-node-content-wrapper-normal span {
+            font-weight: 500;
+            color: $foundation-primary-bg;
+          }
+        }
+      }
+
+      // 확장/축소 스위처 완전 숨김
+      span.rc-tree-switcher {
+        background-image: url('/treeDropIcon.png');
+        margin: 0;
+
+        //폴더 아이콘
+        // &.rc-tree-switcher-noop {
+        //   display: none;
+        // }
+
+        // 열림/닫힘 아이콘 회전 효과
+        &.rc-tree-switcher_close {
+          background-position: center;
+          transform: rotate(-90deg);
+        }
+
+        // 열림 상태
+        &.rc-tree-switcher_open {
+          background-position: center;
+        }
+      }
+
+      // 설정 할 체크박스 크기 (체크박스 크기 유동적으로 움직이기 위해 변수로 설정)
+      $checkbox-padding: 4px;
+      $checkbox-size: 16px;
+
+      // 체크박스
+      span.rc-tree-checkbox {
+        width: $checkbox-size;
+        height: $checkbox-size;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $input-radious;
+        transition: $transition-base;
+        margin: $checkbox-padding;
+        padding: 0;
+        background-image: url('/groupCheckOff.png');
+        background-position: center center;
+        cursor: pointer;
+
+        // 체크된 상태의 체크박스
+        &.rc-tree-checkbox-checked {
+          background-color: $foundation-primary-bg;
+          background-image: url('/groupCheckOn.png');
+          background-position: center center;
+        }
+
+        // 일부 체크된 상태 (부모 노드)
+        &.rc-tree-checkbox-indeterminate {
+          // background-color: var(--color-primary, #6200ea);
+          // border-color: var(--color-primary, #6200ea);
+          background-image: url('/groupCheckChildActive.png');
+
+          .rc-tree-checkbox-inner {
+            &::after {
+              content: '';
+              display: block;
+              width: 8px;
+              height: 2px;
+              background-color: #fff;
+              margin-top: 0;
+            }
+          }
+        }
+
+        // 비활성화 상태 (폴더 노드) - 완전히 숨김
+        &.rc-tree-checkbox-disabled {
+          display: none !important;
+        }
+      }
+
+      // 들여쓰기
+      .rc-tree-indent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: baseline;
+        min-height: auto;
+      }
+      .rc-tree-treenode.rc-tree-treenode-leaf {
+        .rc-tree-indent-unit {
+          width: 35px;
+        }
+      }
+
+      // tree 구조 표시01 - 기본 가지 이미지
+      .rc-tree-indent-unit {
+        display: inline-block;
+        width: 35px;
+        height: 100%;
+
+        //앞부분 Branch 이미지 있을 때
+        // margin-right: 6px;
+        // width: 16px;
+        // background-image: url('/treeBranch.svg'); //가지
+        // background-repeat: no-repeat;
+        // background-color: $foundation-light-bg;
+        // background-position: center;
+      }
+
+      // tree 구조 표시02 - 다음 폴더까지 이어주는 직선 이미지
+      // .rc-tree-treenode-leaf {
+      //   .rc-tree-indent-unit-start {
+      //     background: url('/treeStraight.svg') repeat-y; //직선
+
+      //     // tree 구조 표시03 - 마지막 폴더 마무리 곡선 이미지
+      //     &:last-of-type {
+      //       background-image: url('/treeLast.svg'); //마지막
+      //       background-position-y: bottom;
+      //     }
+      //   }
+
+      //   &.rc-tree-treenode-leaf-last {
+      //     &:last-of-type .rc-tree-indent-unit:last-of-type,
+      //     & .rc-tree-indent-unit-end {
+      //       background-image: url('/treeLast.svg'); //마지막
+      //       background-position-y: bottom;
+      //     }
+      //   }
+      // }
+
+      // 드래그 앤 드롭 (필요시)
+      .rc-tree-node-content-wrapper-draggable {
+        cursor: move;
+      }
+
+      .rc-tree-treenode-draggable {
+        &.drag-over {
+          background-color: var(--color-primary-light, #e6e6fa);
+        }
+
+        &.drag-over-gap-top {
+          border-top: 2px solid var(--color-primary, #6200ea);
+        }
+
+        &.drag-over-gap-bottom {
+          border-bottom: 2px solid var(--color-primary, #6200ea);
+        }
+      }
+    }
+
+    // 폴더 단계별로 다른 스타일
+    //첫번째 상위 폴더(최상단)
+    .depth0Tree {
+      font-size: 16px;
+      display: block;
+      padding: 6px 0;
+      font-weight: 500;
+      color: $foundation-primary-bg;
+    }
+
+    //두번째 상위 폴더
+    .depth1Tree {
+      display: block;
+      font-size: 16px;
+      font-weight: 300;
+      padding: 5px 0;
+    }
+
+    .depth2Tree {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+
+  // 단일 선택 모드 전용 스타일
+  &.singleMode {
+    :global {
+      .rc-tree {
+        // 선택된 노드 스타일 커스터마이징
+        .rc-tree-node-content-wrapper {
+          &.rc-tree-node-selected {
+            .rc-tree-title span {
+              font-weight: 700;
+              color: $foundation-primary-bg;
+            }
+          }
+        }
+
+        // 확장/축소 스위처 아이콘 숨김
+        .rc-tree-switcher-noop {
+          visibility: hidden;
+          width: 18px; // 아이콘 크기 들여쓰기 유지
+        }
+
+        // .rc-tree-indent-unit{
+
+        // }
+      }
+    }
+  }
+}

@@ -1,0 +1,466 @@
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+// ============================================
+// 공통 애니메이션
+// ============================================
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// ============================================
+// ALERT 스타일
+// ============================================
+
+// Alert 오버레이
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+
+  .modalFooter {
+    padding-top: 30px;
+  }
+}
+
+// Alert/Modal 컨테이너
+.modalContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding: 40px;
+  position: relative;
+  animation: modalSlideIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+
+  // 기본값
+  max-width: 500px;
+  max-height: 95%;
+
+  // 크기별 스타일
+  &.small {
+    max-width: 320px;
+  }
+
+  &.medium {
+    max-width: 500px;
+  }
+
+  &.large {
+    max-width: 720px;
+  }
+}
+
+// 공통 헤더
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 0 24px 0;
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.modalTitleGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modalTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.modalSubtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.closeButton {
+  overflow: hidden;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+// 공통 바디
+.modalBody {
+  flex: 1;
+  overflow-y: scroll;
+  padding: 0;
+  min-height: 0;
+
+  & > div {
+    padding-left: $space-3;
+
+    & > div {
+      border-color: $foundation-light-line-shade-100 !important;
+    }
+  }
+
+  /* 스크롤바 스타일 */
+  scrollbar-width: thin;
+  scrollbar-color: $foundation-light-grid transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foundation-light-grid;
+    border-radius: 4px;
+
+    &:hover {
+      background: $foundation-grayscale-shade-66;
+    }
+  }
+}
+
+.modalMessage {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  margin: 0 0 24px 0;
+  word-break: keep-all;
+  white-space: pre-line;
+}
+
+// Alert 푸터 (버튼 영역)
+.modalFooter {
+  flex-shrink: 0;
+  padding: 0;
+}
+
+// 버튼 그룹 (테두리 및 스타일링)
+.buttonGroup {
+  display: flex;
+  border: 1px solid $foundation-light-line-shade-100;
+  background-color: $foundation-light-line-shade-100;
+  gap: 1px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.confirmButton {
+  flex: 1;
+  background-color: #5036ba;
+  color: white;
+  border: none;
+  border-radius: 0;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #4529a3;
+  }
+
+  &:active {
+    background-color: #3d2490;
+  }
+
+  // danger variant (파괴적 작업용)
+  &.danger {
+    background-color: #f5f5f5;
+    color: #dc3545;
+
+    &:hover {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    &:active {
+      background-color: #bb2d3b;
+      color: white;
+    }
+  }
+}
+
+.cancelButton {
+  flex: 1;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 0;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #e8e8e8;
+  }
+
+  &:active {
+    background-color: #ddd;
+  }
+
+  // primary variant (위험한 작업의 취소 강조)
+  &.primary {
+    background-color: $foundation-primary-alpha-20percent;
+    color: $primary-color;
+
+    &:hover {
+      background-color: #4529a3;
+      color: white;
+    }
+
+    &:active {
+      background-color: #3d2490;
+      color: white;
+    }
+  }
+}
+
+// ============================================
+// MODAL 스타일 (Alert와 스타일 공유)
+// ============================================
+// Modal은 .modalContainer의 size variants와 공통 header/body/footer를 활용
+
+// ============================================
+// DRAWER 스타일
+// ============================================
+
+// Drawer 오버레이 (공통 .modalOverlay와 동일하지만 z-index 다름)
+.drawerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  // background-color: $bg-overlay;
+  z-index: $z-drawer;
+  animation: fadeIn $transition-slow ease-out;
+}
+
+// Drawer 컨테이너
+.drawerContainer {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  background: $text-white;
+  box-shadow: $shadow-popup;
+  border: $popup-border;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: $z-drawer;
+  padding: $space-4;
+
+  // Drawer 기본 설정 (오른쪽)
+  &.right {
+    right: 0;
+    width: 40%;
+    border-radius: $popup-radious 0 0 $popup-radious;
+    padding: $popup-radious;
+    padding-left: calc($popup-radious - 10px);
+    animation: slideInRight $transition-slow ease-out;
+
+    @media (max-width: $breakpoint-md) {
+      width: 85%;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      width: 100%;
+    }
+
+    .modalHeader {
+      padding: 0;
+      padding-left: $space-3;
+      padding-bottom: 44px;
+    }
+  }
+
+  // 왼쪽에서 나오는 설정
+  &.left {
+    left: 0;
+    width: 40%;
+    border-radius: 0 $popup-radious $popup-radious 0;
+    animation: slideInLeft $transition-slow ease-out;
+
+    @media (max-width: $breakpoint-md) {
+      width: 85%;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      width: 100%;
+    }
+  }
+}
+
+// Drawer 스크롤바 커스터마이징
+.drawerContainer .modalBody {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+// Drawer 헤더 (공통 .modalHeader 상속)
+.drawerContainer .modalHeader {
+  padding: $space-6;
+  margin-bottom: 0;
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: $text-white;
+  z-index: 1;
+}
+
+//  데이터 있는 모달(equip))
+.modalContent {
+  display: grid;
+  gap: 36px;
+
+  .modalInfoBlock {
+    h4,
+    .infoTitBasic {
+      @include infoTitBasic;
+    }
+    .modalData {
+      @include inputBasic;
+      background: $foundation-grayscale-base-shade-4;
+      font-size: 16px;
+      cursor: default;
+    }
+
+    .itemColAll {
+      width: 100%;
+      flex-grow: 0;
+    }
+  }
+  .modalInfoUl {
+    @include hasItem;
+    li {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .modalInfoLi {
+      @include inputBasic;
+      background: $foundation-grayscale-base-shade-4;
+      cursor: default;
+    }
+  }
+  table {
+    thead tr th,
+    tr td,
+    td span {
+      font-size: 14px;
+    }
+  }
+}
+// 모달 상단 버튼
+.modalTopBtnArea {
+  @include topRight;
+  gap: 8px;
+  display: flex;
+}
+
+// 데스크탑 크기 제한
+@media (min-width: $breakpoint-xl) {
+  .drawerContainer.right,
+  .drawerContainer.left {
+    max-width: 600px;
+  }
+}
+
+// 초대형 화면에서도 적절한 크기 유지
+@media (min-width: 1600px) {
+  .drawerContainer.right,
+  .drawerContainer.left {
+    width: 35%;
+    max-width: 700px;
+  }
+}

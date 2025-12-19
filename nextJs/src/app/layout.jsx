@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import 'modern-css-reset/dist/reset.min.css';
 import './globals.css';
 import '@/shared/styles/main.scss';
+import { GlobalErrorAlert } from '@/shared/component/popup/GlobalErrorAlert';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -25,8 +26,11 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+    <html lang="ko" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <GlobalErrorAlert />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,0 +1,930 @@
+/**
+ * Layout 스타일 모듈
+ * ContentLayout + Wrapper 레이아웃 통합
+ */
+@use 'sass:color';
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  min-width: 960px;
+  padding: $inner-pTop $without-scroll 0 $inner-side-p; //스크롤크기 제외
+}
+
+//페이지명+페이지설명 txtBtnWrap
+.header {
+  @include btmLeft;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-bottom: $pageTit-pBtm;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+
+  h2 {
+    line-height: 100%;
+    font-size: $pageTit-h2;
+    font-weight: 600;
+    letter-spacing: -0.96px;
+  }
+
+  p {
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.32px;
+  }
+}
+
+.headerChildren {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+
+  button {
+    @include btnHeightLarge;
+  }
+}
+
+.topWrap {
+  @include centerLeft;
+  gap: 0 4px;
+  padding-bottom: $topWrap-pBtm;
+
+  p {
+    letter-spacing: -0.32px;
+    line-height: 150%;
+  }
+  .title {
+    font-weight: 500;
+    font-size: $companyTit-fz;
+    line-height: $normal-lh;
+    padding: $companyTit-p 8px $companyTit-p 0;
+  }
+  .date {
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: $big-lh;
+    color: $foundation-grayscale-shade-75;
+  }
+}
+
+.content {
+  overflow-y: scroll;
+  display: block;
+  height: 100%;
+  padding-bottom: 20px;
+}
+
+/* ============================= */
+/* Wrapper Layout Styles         */
+/* ============================= */
+
+.pageScroll {
+  height: calc(100% - ($pageTit-pBtm + $pageTit-h2));
+  overflow-y: scroll;
+  display: flex;
+  justify-content: space-between;
+  gap: 0 $pageScrollGap;
+  flex: 1;
+}
+
+// $PageLeftWidth: 480px;
+.pageLeftWrap {
+  max-width: 480px;
+  width: calc(50% - 20px);
+  margin-right: 20px;
+  @include topLeft;
+  gap: 40px 0;
+  margin-right: 20px;
+}
+
+.pageRightWrap {
+  flex: 1;
+  max-width: 912px;
+  width: calc(100% - 500px);
+  min-width: 50%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.txtBtnWrap {
+  @include btmLeft;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-bottom: $pageTit-pBtm;
+
+  // 큰버튼 설정
+  @at-root :global(.pageWrap) {
+    & > .txtBtnWrap button {
+      @include btnHeightLarge;
+    }
+  }
+}
+
+// 라운딩 사각형
+.roundedLgWrap {
+  @include roundedLgWrap;
+  & {
+    padding-bottom: 20px;
+  }
+}
+// 라운딩 사각형 배경 회색
+.roundedLgWrapGray {
+  @include roundedLgWrap;
+  & {
+    background: $foundation-light-bg;
+    padding-bottom: 20px;
+  }
+}
+// 라운딩 사각형 작은버전
+.roundedSmWrap {
+  @include boxStyle;
+}
+
+// +아이콘 업로드
+.upBoxWrap {
+  @include basicBox;
+  .plusWrap {
+    height: 96px;
+    @include centerCenter;
+  }
+  .uploadBoxName {
+    @include centerCenter;
+    border-top: 1px solid $foundation-light-line-shade-100;
+    min-height: 48px;
+
+    span {
+      @include txt_ellipsis;
+      font-weight: 400;
+      line-height: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+  }
+
+  // 파일
+  &.fileBox {
+    @include input_file;
+    .fileBoxName {
+      padding: 0 10px;
+      span {
+        color: $foundation-grayscale-shade-88;
+        text-align: center;
+        font-size: 14px;
+      }
+    }
+
+    .fileDelete {
+      @include file_name;
+      @include centerCenter;
+      @include txt_ellipsis;
+      max-width: 100%;
+      gap: 0 4px;
+      span {
+        width: calc(100% - 20px);
+      }
+    }
+  }
+
+  // 결재
+  &.statusBox {
+    .inputSearch {
+      border: 0;
+    }
+  }
+
+  // 추가전 레이아웃
+  &.emptyBox {
+    background: none;
+    border-style: dashed;
+    cursor: pointer;
+    transition: $transition-base;
+    &:hover {
+      background: #f7f6fd;
+      border-style: solid;
+      .uploadBoxName {
+        border-style: solid;
+      }
+    }
+
+    .uploadBoxName {
+      border-style: dashed;
+      span {
+        color: $foundation-grayscale-shade-75;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.inputDataWrap {
+  //인풋 결과값
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0;
+}
+
+//wrapper 내부 공통 레이아웃
+.roundInnerLg {
+  @include topLeft;
+  align-items: stretch;
+  flex-direction: column;
+  width: 100%;
+
+  &.hasGap64 {
+    padding: 64px 28px;
+  }
+}
+
+.innerBox {
+  @include boxStyle;
+}
+
+.innerGray {
+  border: 1px solid $foundation-primary-alpha-20percent;
+  border-left: 0;
+  border-right: 0;
+  background: $foundation-light-bg;
+}
+
+.hasGap64 {
+  @include topLeft;
+  flex-direction: column;
+  padding: 64px 0;
+  gap: 64px 0;
+}
+
+.conTitWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  padding: 28px !important;
+  padding-left: 40px !important;
+  gap: 12px;
+}
+
+$main-left: 640px;
+$main-gap: 16px;
+
+@mixin mainCon {
+  display: flex;
+  gap: $main-gap;
+  flex-direction: column;
+}
+
+/* =============================  */
+/* Content.Split Grid - pageScroll*/
+/* =============================  */
+
+.contentSplit {
+  overflow-y: hidden;
+  min-height: $basic-totalHeight;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0 6vw;
+  padding-right: 0;
+  flex: 1;
+}
+
+/* ============================= */
+/* Content Main Components        */
+/* ============================= */
+
+.contentWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.contentFull {
+  width: 100%;
+}
+
+/* Content.LeftHeader / Content.RightHeader */
+.contentHeader {
+  padding: 0;
+  position: relative;
+}
+
+/* Content.LeftFooter / Content.RightFooter */
+.contentFooter {
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+/*/* Content placeholder for header height sync */
+.contentPlaceholder {
+  flex-shrink: 0;
+}
+
+/* ============================= */
+/* Content Component Styles      */
+/* ============================= */
+
+/* Content.Left - 좌측 컨테이너 (스크롤) */
+.contentLeft {
+  max-width: 480px;
+  width: calc(50% - 20px);
+  margin-right: 20px;
+  display: inline-block;
+  padding-top: 32px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+    padding-bottom: 20px;
+
+    &:last-child {
+      padding-bottom: 40px;
+    }
+
+    &:global(.hasItem03) {
+      gap: 20px 12px;
+      flex-direction: unset;
+    }
+  }
+
+  & > .titleSection {
+    padding: 0 0 48px 4px !important;
+  }
+}
+
+/* Content.Right - 우측 컨테이너 */
+.contentRight {
+  max-width: 912px;
+  width: calc(100% - 500px);
+  min-width: 50%;
+  display: block;
+  position: relative;
+}
+
+// 라운딩 사각형
+.roundedLgWrap {
+  @include roundedLgWrap;
+  & {
+    padding-bottom: 20px;
+  }
+}
+// 라운딩 사각형 배경 회색
+.roundedLgWrapGray {
+  @include roundedLgWrap;
+  & {
+    background: $foundation-light-bg;
+    padding-bottom: 20px;
+  }
+}
+// 라운딩 사각형 배경색 = body bgc
+.roundedLgWrapNobg {
+  .roundedLgWrap {
+    background: none;
+  }
+}
+// 라운딩 사각형 작은버전
+.roundedSmWrap {
+  @include boxStyle;
+}
+
+.titleWithButtonSection {
+  @include topLeft;
+  justify-content: space-between;
+  position: relative;
+}
+
+// ============================================================================
+// Section Title
+// ============================================================================
+
+.sectionTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 12px 8px;
+  min-height: 32px;
+
+  & > * {
+    line-height: 100%;
+    letter-spacing: -0.32px;
+    font-size: 24px;
+    font-weight: 500;
+    color: $foundation-grayscale-shade-33;
+    padding-left: 0;
+  }
+
+  h3 {
+    font-size: 18px;
+    padding-left: 0;
+  }
+
+  p {
+    font-size: 16px;
+    color: $foundation-grayscale-shade-66;
+    position: relative;
+  }
+}
+
+// ============================================================================
+// Action Buttons
+// ============================================================================
+
+.actionButtonContainer,
+.tbBtnArea {
+  @include topRight;
+  gap: 8px;
+  display: flex;
+
+  &.full {
+    width: 100%;
+  }
+
+  &.titleOnly {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+}
+
+/* titleSection - 우측 컨테이너 상단 버튼 */
+
+.titleSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  padding: 28px !important;
+  padding-left: 40px !important;
+  gap: 12px;
+
+  & > label {
+    padding-left: 4px;
+  }
+}
+
+.depthSection {
+  display: grid;
+  gap: 20px 12px;
+  padding: 20px 28px;
+  background-color: $foundation-light-bg;
+  border: 1px solid $foundation-primary-alpha-20percent;
+  border-left: 0;
+  border-right: 0;
+
+  // 공통 내부 div
+  & > div {
+    display: flex;
+    width: 100%;
+  }
+
+  // 2개 배열 (hasItem02)
+  &:global(.hasItem02) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // 3개 배열 (hasItem03)
+  &:global(.hasItem03) {
+    grid-template-columns: repeat(3, 1fr);
+
+    & > div {
+      // 기본은 1칸(span 1)
+      grid-column: span 1;
+
+      &.itemColAll {
+        grid-column: 1 / -1; // 전체
+      }
+
+      &.itemCol1 {
+        grid-column: span 1; // 1칸
+      }
+
+      &.itemCol2 {
+        grid-column: span 2; // 2칸(= 1:2 구조 중 큰 칸)
+      }
+
+      &.itemCol3 {
+        grid-column: span 3; // 3칸 전체
+      }
+
+      // 글로벌 gridFull 대응
+      &.gridFull,
+      :global(.gridFull) {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+    }
+  }
+
+  // 4개 배열 (hasItem04)
+  &:global(.hasItem04) {
+    grid-template-columns: repeat(4, 1fr);
+
+    & > div {
+      grid-column: span 1; // 기본
+
+      &.itemCol1 {
+        grid-column: span 1;
+      }
+
+      &.itemCol2 {
+        grid-column: span 2; // 2칸(= 1:3 구조)
+      }
+
+      &.itemCol3 {
+        grid-column: span 3; // 3칸(= 1:3 구조)
+      }
+    }
+  }
+
+  // 공통: 한 줄 전체 (gridFull)
+  & > .gridFull,
+  & > :global(.gridFull) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  // 배경 제거
+  &.noBg {
+    background: none;
+  }
+  &.noBd {
+    border: 0;
+  }
+  // 배경 + border 제거
+  &.noBgBd {
+    background: none;
+    border: 0;
+  }
+}
+
+.largeGapSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px 12px;
+  padding: 64px 28px;
+
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// 데이터 제목 스타일  =  라벨
+.infoTitBasic {
+  @include infoTitBasic;
+}
+
+//게시판 디테일
+//출처 : pentaware-saas-fe\src\features\example\ui\Example.module.scss
+
+$color-error: $error-color;
+$color-error-dark: color.adjust($error-color, $lightness: -10%);
+$color-success: $success-color;
+$color-warning: $warning-color;
+
+.boardDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .navigation {
+    @include centerLeft;
+  }
+
+  .backButton {
+    @include centerLeft;
+    gap: $space-1;
+    font-size: $font-size-base;
+    color: $text-secondary;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  .actions {
+    @include centerRight;
+    gap: $space-3;
+  }
+
+  .titleSection {
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    gap: $space-4;
+    flex-shrink: 0;
+    padding: 0 5px !important;
+  }
+
+  .title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $text-color;
+    line-height: $line-height-tight;
+    margin: 0;
+    // word-break: keep-all;
+    // word-wrap: break-word;
+  }
+
+  .meta {
+    @include centerLeft;
+    gap: $space-5;
+    flex-wrap: wrap;
+  }
+
+  .metaItem {
+    @include centerLeft;
+    gap: $space-1;
+    font-size: $font-size-base;
+    line-height: $font-size-xl; //.title에 맞춤
+  }
+
+  .label {
+    color: $text-secondary;
+    font-weight: $font-weight-medium;
+  }
+
+  .value {
+    color: $text-color;
+    font-weight: $font-weight-normal;
+  }
+
+  .tags {
+    @include centerLeft;
+    gap: $space-2;
+    flex-wrap: wrap;
+  }
+
+  .tag,
+  .statusBadge,
+  .mockBadge {
+    display: inline-block;
+    border-radius: $radius-lg;
+    border: 1px solid;
+    font-weight: $font-weight-medium;
+  }
+
+  .tag {
+    padding: $space-1 $space-2;
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+    font-size: $font-size-sm;
+    border-color: rgba($primary-color, 0.2);
+  }
+
+  .status {
+    @include centerLeft;
+    gap: $space-3;
+  }
+
+  .statusBadge {
+    padding: $space-1 $space-3;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    border-radius: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &.status-published {
+      background-color: rgba($color-success, 0.1);
+      color: $color-success;
+      border-color: rgba($color-success, 0.2);
+    }
+
+    &.status-draft {
+      background-color: rgba($color-warning, 0.1);
+      color: $color-warning;
+      border-color: rgba($color-warning, 0.2);
+    }
+
+    &.status-deleted {
+      background-color: rgba($color-error, 0.1);
+      color: $color-error;
+      border-color: rgba($color-error, 0.2);
+    }
+  }
+
+  .mockBadge {
+    padding: $space-1 $space-2;
+    background-color: rgba($text-secondary, 0.1);
+    color: $text-secondary;
+    font-size: $font-size-xs;
+    border-radius: 10px;
+    border-color: rgba($text-secondary, 0.2);
+  }
+
+  .separator {
+    width: 100%;
+    height: 1px;
+    background-color: $secondary-border;
+    margin: $space-2 0;
+  }
+  .content {
+    @include basicBox;
+    & {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 15px;
+      border-color: $foundation-light-grid;
+    }
+  }
+  .contentBody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+  }
+
+  .paragraph {
+    font-size: $font-size-md;
+    line-height: $line-height-relaxed;
+    color: $text-color;
+    margin: 0;
+    word-break: keep-all;
+    word-wrap: break-word;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .bottomActions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border-top: 1px solid $secondary-border;
+    flex-shrink: 0;
+    margin-top: auto;
+    gap: 8px;
+
+    button {
+      &.buttonLarge {
+        flex: 1;
+      }
+    }
+  }
+}
+
+// 게시판 그리드 레이아웃
+.boardWrap {
+  display: flex;
+  flex-direction: column;
+
+  .hasItem02 {
+    @include hasItem;
+    & > div,
+    & > li {
+      flex-grow: 1;
+      width: calc(100% / 2 - 12px);
+    }
+  }
+  .hasItem03 {
+    @include hasItem;
+    & > div,
+    & > li {
+      flex-grow: 1;
+      width: calc(100% / 3 - 8px);
+
+      &.itemColAll {
+        // 1:2 상황에서 3의 넓이
+        width: 100%;
+        flex-grow: 0;
+      }
+      &.itemCol1 {
+        // 1:2 상황에서 1의 넓이
+        flex-grow: 0;
+      }
+      &.itemCol2 {
+        // 1:2 상황에서 2의 넓이
+        flex-grow: 0;
+        width: calc(100% / 3 * 2 - 8px);
+      }
+      & :global(.gridFull),
+      &.gridFull {
+        //가로 한줄 전체
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+    }
+  }
+  .hasItem04 {
+    @include hasItem;
+    & > div,
+    & > li {
+      flex-grow: 1;
+      width: calc(100% / 4 - 9px);
+
+      &.itemCol1 {
+        // 1:3 상황에서 1의 넓이
+        flex-grow: 0;
+      }
+      &.itemCol3 {
+        // 1:3 상황에서 3의 넓이
+        flex-grow: 0;
+        width: calc(100% / 4 * 3 - 9px);
+      }
+      & :global(.gridFull),
+      &.gridFull {
+        //가로 한줄 전체
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+    }
+  }
+
+  & :global(.gridFull),
+  &.gridFull {
+    //가로 한줄 전체
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  // 테이블
+  .tableContainer {
+    width: 100%;
+    padding: $table-top-gap 0 24px;
+
+    // th checkbox
+
+    // ============================================================================
+    // 체크박스 중앙정렬 (테이블 셀용)
+    // ============================================================================
+
+    .checkboxCell {
+      label {
+        justify-content: center;
+        padding: 0;
+        i {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  // 테이블 상단 버튼 있는 레이아웃
+  .hasTbBtn {
+    display: flex;
+    flex-wrap: wrap;
+    padding: $table-top-gap 0 24px;
+    gap: 8px;
+
+    .tableContainer {
+      padding: 0;
+    }
+    .tbBtnAreaFull {
+      width: 100%;
+
+      button {
+        @include btnBasic;
+      }
+    }
+  }
+}
+
+//게시글 작성 레이아웃
+:global(.writeStyle) {
+  .writeArea {
+    @include basicBox;
+    & {
+      border-radius: $name-radious;
+      overflow: hidden;
+      gap: 0;
+    }
+    .editorBtnWrap {
+      justify-content: flex-end;
+      padding: 20px;
+      padding-top: 0;
+    }
+  }
+}

@@ -2,6 +2,7 @@
 @use '@/shared/styles/abstracts/_figma-token' as *;
 @use '@/shared/styles/base/mixins.scss' as *;
 
+// Radio 스타일 - Mixin
 @mixin spanStyle {
   color: $input-color;
   font-size: 16px;
@@ -12,65 +13,129 @@
   gap: 0 3px;
 }
 
+// Radio Group
 .radioBox {
   @include topLeft;
   gap: 8px;
-  .radioCustom {
-    cursor: pointer;
-    display: block;
-    line-height: 100%;
-    span {
+}
+
+.radioCustom {
+  cursor: pointer;
+  display: block;
+  line-height: 100%;
+  position: relative;
+
+  input {
+    &[type='radio'] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .radioIndicator {
       @include spanStyle;
+      gap: 2px;
+      transition: all 0.2s ease;
     }
-    .circle {
+
+    .radioLabel {
+      user-select: none;
+      line-height: 1.2;
+    }
+  }
+
+  span {
+    @include spanStyle;
+  }
+
+  .circle {
+    fill: none;
+
+    rect {
       fill: none;
-      rect {
-        stroke: $round-border;
-        stroke-opacity: 0.4;
-        transition: $transition-base;
-      }
-      .circleOn {
-        stroke: none;
-        fill: none;
-        transition: $transition-base;
-      }
+      stroke: $round-border;
+      stroke-width: 1.5;
+      stroke-opacity: $opacity-04;
+      transition: all 0.2s ease;
     }
-
-    input {
-      &[type='radio'] {
-        // appearance: none;
-        display: none;
-      }
-      &[type='radio']:checked {
-        //체크된거
-
-        & + span {
-          //체크된 글자
-          color: $text-color;
-          rect {
-            stroke-opacity: 1;
-          }
-          .circleOn {
-            stroke: $round-border;
-            fill: $round-border;
-          }
-        }
-      }
+    .circleOn {
+      fill: transparent;
+      stroke: none;
+      transition: all 0.2s ease;
+      transform-origin: center;
+      // transform: scale(0);
     }
+  }
 
-    &:hover {
-      rect {
+  //체크된거 + 체크된 글자
+  &.checked,
+  [type='radio']:checked + .radioIndicator {
+    .circle {
+      .circleOuter {
         stroke-opacity: 1;
+        stroke: $round-border;
       }
-      span {
-        @include spanStyle;
+
+      .circleOn {
+        fill: $round-border;
+        transform: scale(1);
+      }
+      .radioLabel {
         color: $text-color;
+        font-weight: 500;
       }
     }
   }
 
-  .radioButton {
-    //버튼형식
+  // 호버 상태
+  &:hover:not(.disabled) {
+    .circle .circleOuter {
+      stroke-opacity: 1;
+    }
+
+    .radioLabel {
+      color: $text-color;
+    }
+
+    .radioIndicator {
+      color: $text-color;
+    }
+  }
+
+  // 포커스 상태
+  input[type='radio']:focus + .radioIndicator .circle .circleOuter {
+    outline: 1px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  // 비활성화 상태
+  &.disabled {
+    cursor: not-allowed;
+    opacity: $opacity-05;
+
+    .circle .circleOuter {
+      stroke-opacity: $opacity-03;
+    }
+
+    .radioLabel {
+      color: $foundation-grayscale-shade-88;
+    }
+  }
+}
+.radioButton {
+  //버튼형식
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  .radioIndicator {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+
     span {
       @include centerCenter;
       font-size: 12px;
@@ -83,25 +148,36 @@
       border: 1px solid $foundation-light-line-shade-100;
       border-radius: $basic-radious;
       transition: $transition-base;
+      cursor: pointer;
+      min-width: 50px;
     }
-    input {
-      &[type='radio']:checked {
-        //체크된거
-        & + span {
-          //체크된 글자
-          font-size: 12px;
-          background: $foundation-primary-bg;
-          border: 1px solid $foundation-primary-bg;
-          color: $foundation-light-base-shade-100;
-        }
-      }
+  }
+  input {
+    &[type='radio'] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
     }
 
-    &:hover {
-      span {
-        font-size: 12px;
-        background: $foundation-light-line-shade-100;
-      }
+    &[type='radio']:checked + .radioIndicator span {
+      //체크된거 + 체크된 글자
+      font-size: 12px;
+      background: $foundation-primary-bg;
+      border: 1px solid $foundation-primary-bg;
+      color: $foundation-light-base-shade-100;
     }
+  }
+
+  &:hover:not(.disabled) .radioIndicator span {
+    font-size: 12px;
+    background: $foundation-light-line-shade-100;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: $opacity-05;
   }
 }

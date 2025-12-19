@@ -2,27 +2,31 @@
 @use '@/shared/styles/abstracts/figma-token' as *;
 
 @mixin hasItem {
-  @include topLeft;
   width: 100%;
   gap: 20px 12px;
+  @include topLeft;
 }
 // flex 정렬 //부모요소에 적용
 //중앙 - 왼쪽
 @mixin centerLeft {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
 }
 //중앙 - 중앙
 @mixin centerCenter {
-  @include centerLeft;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
 }
 
 //중앙 - 오른쪽
 @mixin centerRight {
-  @include centerLeft;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: flex-end;
 }
 
@@ -30,17 +34,21 @@
 @mixin topLeft {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
   align-items: flex-start;
+  justify-content: flex-start;
 }
 //상단 - 중앙
 @mixin topCenter {
-  @include topLeft;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: center;
 }
 //상단 - 오른쪽
 @mixin topRight {
-  @include topLeft;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: flex-end;
 }
 
@@ -48,17 +56,21 @@
 @mixin btmLeft {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
   align-items: flex-end;
+  justify-content: flex-start;
 }
 //하단 - 중앙
 @mixin btmCenter {
-  @include btmLeft;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
   justify-content: center;
 }
 //하단 - 오른쪽
 @mixin btmRight {
-  @include btmLeft;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
   justify-content: flex-end;
 }
 
@@ -99,24 +111,40 @@
 // 버튼 공통
 @mixin btnBasic {
   @include centerCenter;
-  padding: 8px 12px;
-  min-width: 45px;
-  gap: 4px;
-  border-radius: $basic-radious;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-  letter-spacing: -0.24px;
-  cursor: pointer;
-  transition: $transition-slow;
+  & {
+    padding: 8px 12px;
+    min-width: 60px;
+    gap: 4px;
+    border-radius: $basic-radious;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: -0.24px;
+    cursor: pointer;
+    transition: $transition-slow;
+    white-space: nowrap;
+  }
 }
-// 버튼 색상
 
+//높이값 40px 버튼
+// 타이틀부분 페이지 전체 버튼, 테이블 상단
+@mixin btnHeightLarge {
+  padding: 8px 15px;
+  min-height: $txtBtn-height;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  min-width: 70px;
+}
+
+// 버튼 색상
 @mixin btnPrimeColor {
   //주요버튼
-  border: 1px solid $foundation-primary-font;
-  background-color: $foundation-primary-bg;
-  color: $foundation-light-base-shade-100;
+  & {
+    border: 1px solid $foundation-primary-font;
+    background-color: $foundation-primary-bg;
+    color: $foundation-light-base-shade-100;
+  }
   &:hover {
     border: 1px solid $foundation-primary-alpha-8percent;
     background-color: $foundation-primary-alpha-80percent;
@@ -125,9 +153,11 @@
 
 @mixin btnSeconColor {
   //보조버튼
-  border: 1px solid $foundation-primary-alpha-8percent;
-  background-color: $foundation-primary-alpha-20percent;
-  color: $foundation-primary-bg;
+  & {
+    border: 1px solid $foundation-primary-alpha-8percent;
+    background-color: $foundation-primary-alpha-20percent;
+    color: $foundation-primary-bg;
+  }
   &:hover {
     background-color: $foundation-primary-alpha-40percent;
   }
@@ -135,9 +165,11 @@
 
 @mixin btnBasicColor {
   //일반흰색
-  background-color: $foundation-light-base-shade-100;
-  border: 1px solid $foundation-grayscale-base-shade-8;
-  color: $foundation-grayscale-shade-33;
+  & {
+    background-color: $foundation-light-base-shade-100;
+    border: 1px solid $foundation-grayscale-base-shade-8;
+    color: $foundation-grayscale-shade-33;
+  }
   &:hover {
     background-color: $foundation-light-bg;
     border: 1px solid $foundation-primary-alpha-8percent;
@@ -154,14 +186,15 @@
 
 @mixin boxStyle {
   @include basic_box;
-  padding: $basic-padding;
-  cursor: auto;
-  overflow: inherit;
-  position: relative;
-  border-radius: $wrap-radious;
-  border: 1px solid $foundation-light-line-shade-100;
-  background: $foundation-light-base-shade-100;
-  padding: 13px 28px;
+  & {
+    padding: $basic-padding;
+    cursor: auto;
+    overflow: inherit;
+    position: relative;
+    border-radius: $wrap-radious;
+    border: 1px solid $foundation-light-line-shade-100;
+    background: $foundation-light-base-shade-100;
+  }
 }
 
 // 인풋 리셋
@@ -184,37 +217,57 @@
 // 인풋 기본 박스 스타일
 @mixin basic_box {
   @include centerCenter;
-  justify-content: space-between;
-  // align-self: stretch;
-  border-radius: $wrap-radious;
-  border: 1px solid $secondary-border;
-  background-color: $foundation-light-base-shade-100;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  width: 100%;
-  overflow: hidden;
-  cursor: pointer;
-  gap: 13px 0;
-  input {
+  & {
+    justify-content: space-between;
+    border-radius: $wrap-radious;
+    border: 1px solid $secondary-border;
+    background-color: $foundation-light-base-shade-100;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
     width: 100%;
-    padding: 11px 16px;
+    overflow: hidden;
+    gap: 13px 0;
+  }
+  input {
+    & {
+      width: 100%;
+      padding: 11px 16px;
+      cursor: pointer;
+    }
     &::placeholder {
       @include basic_placeholder;
     }
     &:disabled {
-      background: $input-onGray;
-      cursor: default;
+      & {
+        background: $input-onGray;
+        cursor: default;
+      }
       @at-root .inputTxt {
         border-color: $input-onGray;
       }
     }
   }
 }
+@mixin inputBasic {
+  width: 100%;
+  cursor: text;
+  color: $text-color;
+  min-height: 46px;
+  border: none;
+  background: transparent;
+  padding: $input-padding;
+  border-radius: 10px;
+}
 
 // 파일인풋
 @mixin input_file {
+  @include centerLeft;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 20px;
   input[type='file'] {
     //reset
     @include input_reset;
@@ -225,7 +278,7 @@
 @mixin fileTxtBasic {
   font-size: 14px;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 100%;
   letter-spacing: -0.28px;
 }
 
@@ -233,15 +286,15 @@
 @mixin file_name {
   cursor: pointer;
   span {
-    @include fileTxtBasic;
     padding-right: 4px;
     color: $file-color;
     text-decoration: underline;
+    @include fileTxtBasic;
   }
   i {
-    @include centerCenter;
     width: 16px;
     height: 16px;
+    @include centerCenter;
   }
 }
 
@@ -250,6 +303,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+// 여러 줄 텍스트 말줄임
+@mixin txt_ellipsis_line($line-clamp: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line-clamp;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 
 @mixin searchXClear {
@@ -285,17 +348,47 @@
 
 // 인풋 search
 @mixin searchInput {
-  color: $primary-color;
-  font-weight: 500;
-  position: relative;
-  z-index: 1;
+  & {
+    color: $foundation-grayscale-shade-33;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
   @include searchXClear;
 
-  &:focus,
-  &:target,
-  &:active {
+  &:hover:not(:disabled) {
     background-color: $foundation-primary-alpha-4percent;
   }
+  &:focus-within,
+  &:focus:not(:disabled),
+  &:target:not(:disabled),
+  &:active:not(:disabled) {
+    color: $primary-color;
+    background-color: $foundation-primary-alpha-4percent;
+  }
+  &:disabled:active {
+    background-color: $input-onGray;
+  }
+}
+
+@mixin labelBasic {
+  @include btmLeft;
+  min-height: 32px;
+  padding-left: $space-2;
+  padding-right: $space-2;
+}
+
+//일반 분류명?소제목? <Label> 동일 스타일
+@mixin infoTitBasic {
+  @include labelBasic;
+  @include txt_ellipsis;
+  color: $input-color;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.26px;
+  cursor: default;
 }
 
 // 테이블
@@ -305,19 +398,21 @@
 
 // 테이블thtd
 @mixin basic_thtd {
-  border-right: 1px solid;
-  color: $text-color;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 100%;
-  text-align: center;
-  padding: 13px 0;
-
-  &:last-child {
+  & {
+    border-right: 1px solid $foundation-light-line-shade-20;
+    color: $text-color;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+    text-align: center;
+    padding: 13px 0;
+  }
+  &:last-of-type {
     border-right: 0;
   }
 }
 
+// 글자 사이 | 기호
 @mixin afterBar {
   content: '';
   width: 1px;
@@ -328,4 +423,79 @@
   top: 50%;
   transform: translateY(-50%);
   background-color: $foundation-grayscale-base-shade-20;
+}
+
+// 흰색배경 스크롤
+@mixin bgfffScroll {
+  &::-webkit-scrollbar-thumb {
+    border: $barMargin solid $foundation-light-base-shade-100; //여백
+  }
+}
+// 메인 전자결재 스크롤
+@mixin fafScroll {
+  &::-webkit-scrollbar-thumb {
+    border: $barMargin solid #faf9fd; //여백
+  }
+}
+
+// 라운딩 사각형 흰배경 - wrapper
+@mixin roundedLgWrap {
+  // overflow-y: auto;
+  // min-height: calc(100% - 32px);
+  @include topLeft;
+  border-radius: $name-radious $name-radious 0 0;
+  border: 1px solid $foundation-light-line-shade-100;
+  border-bottom: 0;
+  margin-top: 32px;
+  flex-grow: 1;
+  flex-direction: column;
+  background-color: $foundation-light-base-shade-100;
+  height: calc(100% - 32px);
+  &::-webkit-scrollbar-thumb {
+    background: $foundation-light-grid;
+    border: $barMargin solid $foundation-light-base-shade-100; //여백
+  }
+}
+
+// 라운딩 사각형 배경 회색
+@mixin roundedLgWrapGray {
+  @include roundedLgWrap;
+  & {
+    background: $foundation-light-bg;
+  }
+}
+
+//Tag 텍스트 기본 공통 스타일
+@mixin tagTxt {
+  text-align: center;
+  font-style: normal;
+  border: 0;
+  background: none;
+}
+
+//Tag 텍스트 기본 스타일
+@mixin tagTxtBasic {
+  @include tagTxt;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 600;
+}
+
+//테이블 내부 Tag 텍스트 스타일
+@mixin tagTxtTable {
+  @include tagTxt;
+  padding: 0;
+  background-color: transparent;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-size: 16px;
+}
+
+//Tag 버튼모양
+@mixin tabBoxBasic {
+  @include centerCenter;
+  padding: 7px;
+  gap: 10px;
+  border-radius: $square-radious;
+  border: 0.5px solid;
 }

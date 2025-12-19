@@ -62,9 +62,18 @@
       }
       ul {
         padding: 16px;
-        max-height: 250px;
-        overflow-y: auto;
+        max-height: 210px;
+        overflow-y: scroll;
         margin-top: 10px;
+
+        // 스크롤 숨기기
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+
+        &::-webkit-scrollbar {
+          width: 0; // Chrome, Safari
+          height: 0;
+        }
       }
     }
     &:active,

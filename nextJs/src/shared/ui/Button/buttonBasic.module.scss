@@ -25,13 +25,19 @@
 
 .btnWrapsStyle {
   @include topRight;
+  padding-left: 0;
   gap: 8px;
 
   &.btnGroup {
     width: 100%;
   }
   &.btnTitOnly {
-    width: 100%;
-    padding-bottom: 20px;
+    @include btmRight;
+    flex-direction: row;
+    padding-bottom: $pageTit-pBtm;
+
+    button {
+      @include btnHeightLarge;
+    }
   }
 }

@@ -1,0 +1,135 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+
+// ============================================================================
+// Layout Section Wrapper
+// ============================================================================
+
+.titleWithButtonSection {
+  @include topLeft;
+  justify-content: space-between;
+  position: relative;
+  //padding: 28px;
+  //gap: 12px;
+}
+
+// ============================================================================
+// Section Title
+// ============================================================================
+
+.sectionTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 12px 8px;
+
+  & > * {
+    line-height: 100%;
+    letter-spacing: -0.32px;
+    font-size: 24px;
+    font-weight: 500;
+    color: $foundation-grayscale-shade-33;
+    padding-left: 0;
+  }
+
+  h3 {
+    font-size: 18px;
+    padding-left: 0;
+  }
+
+  p {
+    font-size: 16px;
+    color: $foundation-grayscale-shade-66;
+    position: relative;
+  }
+}
+
+// ============================================================================
+// Action Buttons
+// ============================================================================
+
+.actionButtonContainer {
+  @include topRight;
+  gap: 8px;
+  display: flex;
+
+  &.full {
+    width: 100%;
+  }
+
+  &.titleOnly {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+}
+
+// ============================================================================
+// Content Sections (Tailwind → SCSS)
+// ============================================================================
+
+.mainContentSection {
+  padding-bottom: 33px;
+}
+
+.titleSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  padding: 28px !important;
+  padding-left: 40px !important;
+  gap: 12px;
+
+  & > label {
+    padding-left: 4px;
+  }
+}
+
+.depthSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 12px;
+  background-color: $foundation-light-grid;
+  padding: 20px 28px;
+
+  border: 1px solid $foundation-primary-alpha-20percent;
+  border-left: 0;
+  border-right: 0;
+  background: $foundation-light-bg;
+
+  &.noBg {
+    //배경색없음
+    background: none;
+    border: 0;
+  }
+
+  & > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  & > :global(.gridFull),
+  & > .gridFull {
+    //가로 한줄 전체
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+.largeGapSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px 12px;
+  padding: 64px 28px;
+
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

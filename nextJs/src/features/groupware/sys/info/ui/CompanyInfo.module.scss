@@ -1,0 +1,23 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+.formArea {
+  flex: 1;
+  @include topLeft;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.allFieldsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.addressInput {
+  input[type='search'] {
+    color: $text-color;
+  }
+}

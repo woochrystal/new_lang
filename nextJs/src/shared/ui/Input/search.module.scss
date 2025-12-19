@@ -7,13 +7,14 @@ $clear-width: 16px; //삭제아이콘
 
 .inputSearch {
   @include basic_box;
-  border: 0;
-  cursor: text;
-  position: relative;
+  & {
+    border: 0;
+    cursor: text;
+    position: relative;
+  }
   input {
     padding-right: calc($search-width + 2 * 16px);
     @include searchInput;
-
     &:disabled ~ button {
       cursor: default;
     }
@@ -26,6 +27,7 @@ $clear-width: 16px; //삭제아이콘
     position: absolute;
     z-index: 0;
     right: calc($clear-width + 2 * 16px);
+    top: 0;
 
     &.hasDelete {
       @include centerCenter;
@@ -34,13 +36,15 @@ $clear-width: 16px; //삭제아이콘
 
   button {
     @include centerCenter;
-    min-width: $search-width;
-    min-height: $search-width;
-    position: absolute;
-    padding: 16px;
-    right: 0;
-    z-index: 1;
-    cursor: pointer;
+    & {
+      min-width: $search-width;
+      min-height: $search-width;
+      position: absolute;
+      padding: 16px;
+      right: 0;
+      z-index: 1;
+      cursor: pointer;
+    }
   }
 }
 .searchCustom .inputSearch {

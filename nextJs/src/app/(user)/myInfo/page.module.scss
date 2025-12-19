@@ -1,0 +1,86 @@
+// ============================================================================
+// 페이지 전체 레이아웃
+// ============================================================================
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+  color: #999;
+  font-size: 16px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+.sectionLayout {
+  display: flex;
+  gap: 0 6vw;
+  width: 100%;
+
+  //왼쪽
+  & > div:first-child {
+    max-width: 480px;
+    width: calc(50% - 20px);
+    margin-right: 20px;
+    padding-top: 32px;
+  }
+
+  //오른쪽
+  & > div:last-child {
+    max-width: 912px;
+    width: calc(100% - 500px);
+    min-width: 50%;
+  }
+}
+
+.bottomSection {
+  align-items: flex-end;
+}
+
+// .profileSection {
+//   flex: 0 0 480px;
+// }
+
+.fileSection {
+  // flex: 0 0 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px 16px;
+}
+
+.formTopSection {
+  flex: 1;
+}
+
+.formBottomSection {
+  flex: 1;
+}
+
+// ============================================================================
+// 반응형
+// ============================================================================
+
+// @media (max-width: 1400px) {
+//   .sectionLayout{
+//     gap: 20px;
+//     flex-direction: column;
+
+//     //왼쪽
+//     & > div:first-child{
+//       margin-right: 0;
+//       flex: auto;
+//     }
+
+//     //오른쪽
+//     & > div:last-child{
+//     }
+//   }
+//   .bottomSection {
+//     align-items: flex-start;
+//   }
+// }

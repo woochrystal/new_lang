@@ -9,4 +9,3 @@ export { validateField, validateLoginForm, loginSchema } from './script/loginSch
 // UI Component
 export { LoginForm } from './ui/LoginForm/LoginForm';
 export { BrandingSection } from './ui/BrandingSection/BrandingSection';
-export { LoginInput } from './ui/LoginInput/LoginInput';

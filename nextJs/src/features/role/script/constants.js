@@ -1,0 +1,4 @@
+export const ROLE_CONSTANTS = {
+  MAX_AUTH_NM_LENGTH: 50,
+  MAX_AUTH_DESC_LENGTH: 40
+};

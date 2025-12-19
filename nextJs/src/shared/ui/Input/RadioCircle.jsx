@@ -17,15 +17,6 @@ export default function RadioCircle() {
   //기본값 -> 클릭값 가져오기
   const [radioClick, setRadioClick] = useState(valueSetting);
 
-  // 값 확인용-없어도됨
-  // const [choice, setChoice] = useState('');
-  // const onChange = (val) => {
-  //   setChoice(val);
-  // };
-  // useEffect(() => {
-  //   onChange(radioClick);
-  // }, [radioClick]);
-
   // 라디오 선택 시 값 변경
   const radioValChange = (value) => {
     setRadioClick(value);
@@ -42,12 +33,12 @@ export default function RadioCircle() {
           checked={radioClick == '1값'}
           onChange={() => radioValChange('1값')}
         />
-        <span>
+        <span className={styles.radioIndicator}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" className={styles.circle}>
-            <rect x="1.5" y="1.5" width="17" height="17" rx="8.5" />
+            <rect x="1.5" y="1.5" width="17" height="17" rx="8.5" className={styles.circleOuter} />
             <rect x="5" y="5" width="10" height="10" rx="5" className={styles.circleOn} />
           </svg>
-          {'라디오1'}
+          <span className={styles.radioLabel}>{'라디오1'}</span>
         </span>
       </label>
 
@@ -59,12 +50,12 @@ export default function RadioCircle() {
           checked={radioClick == '2값'}
           onChange={() => radioValChange('2값')}
         />
-        <span>
+        <span className={styles.radioIndicator}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" className={styles.circle}>
-            <rect x="1.5" y="1.5" width="17" height="17" rx="8.5" />
+            <rect x="1.5" y="1.5" width="17" height="17" rx="8.5" className={styles.circleOuter} />
             <rect x="5" y="5" width="10" height="10" rx="5" className={styles.circleOn} />
           </svg>
-          {'라디오2'}
+          <span className={styles.radioLabel}>{'라디오2'}</span>
         </span>
       </label>
 
@@ -76,12 +67,12 @@ export default function RadioCircle() {
           checked={radioClick == '3값'}
           onChange={() => radioValChange('3값')}
         />
-        <span>
+        <span className={styles.radioIndicator}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" className={styles.circle}>
-            <rect x="1.5" y="1.5" width="17" height="17" rx="8.5" />
+            <rect x="1.5" y="1.5" width="17" height="17" rx="8.5" className={styles.circleOuter} />
             <rect x="5" y="5" width="10" height="10" rx="5" className={styles.circleOn} />
           </svg>
-          {'라디오3'}
+          <span className={styles.radioLabel}>{'라디오3'}</span>
         </span>
       </label>
     </div>

@@ -1,0 +1,544 @@
+@use '@/shared/styles/abstracts/variables' as *;
+
+// ===== AccessDenied Styles =====
+.accessDeniedContainer {
+  min-height: 24rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.accessDeniedContent {
+  max-width: 28rem;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-bottom: calc(80px + 1.5rem); //시각적 중간 맞추기(아이콘 크기 + 간격)
+}
+
+.accessDeniedIconSection {
+  margin-bottom: 1.5rem;
+}
+
+.accessDeniedIconContainer {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+  background-color: #fee2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accessDeniedIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #dc2626;
+}
+
+.accessDeniedTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.accessDeniedMessage {
+  color: #4b5563;
+  margin-bottom: 2rem;
+  line-height: 1.625;
+}
+
+.accessDeniedButtonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+}
+
+.accessDeniedBackButton {
+  padding: 0.5rem 1.5rem;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: #e5e7eb;
+  }
+}
+
+.accessDeniedHomeButton {
+  padding: 0.5rem 1.5rem;
+  background-color: #2563eb;
+  color: white !important;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+
+.accessDeniedHelpSection {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.accessDeniedHelpText {
+  font-size: 0.875rem;
+  color: #6b7280;
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.accessDeniedMinimal {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.accessDeniedMinimalIcon {
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 0.75rem;
+  }
+}
+
+.accessDeniedMinimalTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.accessDeniedMinimalMessage {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+// ===== Error Styles =====
+.errorContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.errorContent {
+  text-align: center;
+}
+
+.errorTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.errorMessage {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.errorButton {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: $btn-radious;
+  border: none;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+
+// ===== GlobalError Styles =====
+.globalErrorContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.globalErrorContent {
+  text-align: center;
+}
+
+.globalErrorTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.globalErrorMessage {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.globalErrorButton {
+  background-color: #ef4444;
+  color: white;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: $btn-radious;
+  border: none;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: #dc2626;
+  }
+}
+
+// ===== NotFound Styles =====
+.notFoundContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.notFoundContent {
+  text-align: center;
+}
+
+.notFoundMainTitle {
+  font-size: 6rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.notFoundSubTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.notFoundMessage {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.notFoundButton {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: $btn-radious;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+
+// ===== ErrorState Styles =====
+.errorStateContent {
+  max-width: 28rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.errorStateIconSection {
+  margin-bottom: 1.5rem;
+}
+
+.errorStateIconContainer {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+  background-color: #fee2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorStateIconContainer svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #dc2626;
+}
+
+.errorStateTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.errorStateMessage {
+  color: #4b5563;
+  margin-bottom: 2rem;
+  line-height: 1.625;
+}
+
+.errorStateButton {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+
+.errorStateMinimal {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.errorStateMinimalIcon {
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 0.75rem;
+  }
+}
+
+.errorStateMinimalTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.errorStateMinimalMessage {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.errorStateMinimalButton {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 0.375rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+
+// ===== EmptyState Styles =====
+.emptyStateContent {
+  max-width: 28rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.emptyStateIconSection {
+  margin-bottom: 1.5rem;
+}
+
+.emptyStateIconContainer {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+  background-color: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyStateIconContainer svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #3b82f6;
+}
+
+.emptyStateTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.emptyStateMessage {
+  color: #4b5563;
+  margin-bottom: 2rem;
+  line-height: 1.625;
+}
+
+.emptyStateButton {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+
+.emptyStateMinimal {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.emptyStateMinimalIcon {
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 0.75rem;
+  }
+}
+
+.emptyStateMinimalTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.emptyStateMinimalMessage {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.emptyStateMinimalButton {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 0.375rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+
+// ===== BlockingError Styles =====
+.blockingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.blockingContent {
+  max-width: 28rem;
+  text-align: center;
+}
+
+.blockingIconSection {
+  margin-bottom: 2rem;
+}
+
+.blockingIconContainer {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blockingIconContainer svg {
+  width: 3rem;
+  height: 3rem;
+  color: #fbbf24;
+}
+
+.blockingTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.blockingMessage {
+  color: #d1d5db;
+  margin-bottom: 2.5rem;
+  line-height: 1.625;
+  font-size: 1.0625rem;
+}
+
+.blockingButton {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+  min-width: 10rem;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+
+  &:focus {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
+  }
+}

@@ -1,0 +1,7 @@
+.datepickerInModal {
+  /*
+    공통 Modal 컴포넌트의 z-index가 1000으로 설정되어 있으므로,
+    그보다 높은 값을 지정하여 달력이 모달 위에 표시되도록 합니다.
+  */
+  z-index: 99999 !important; /* 다른 z-index를 강제로 덮어쓰기 위해 !important 추가 */
+}

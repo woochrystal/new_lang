@@ -1,6 +1,17 @@
+@use '@/shared/styles/abstracts/_figma-token' as *;
+
+:global(.loginBg) {
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
 .footer {
   width: 100%;
-  padding: 24px 0;
+  // padding: 24px 0;
+  padding-bottom: 36px;
   margin-top: auto;
 }
 
@@ -8,7 +19,8 @@
   margin: 0 auto;
   padding: 0 60px;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -21,16 +33,17 @@
 .footerLogo {
   font-size: 20px;
   font-weight: 700;
-  color: #5036ba;
+  color: $foundation-primary-font;
 }
 
-.footerInfo {
-  font-size: 13px;
-  color: #6c757d;
-  line-height: 1.4;
-}
-
+.footerInfo,
 .footerCopyright {
-  font-size: 13px;
-  color: #6c757d;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: 0px;
+  text-align: right;
+  text-transform: capitalize;
+
+  color: $foundation-grayscale-base-shade-40;
 }

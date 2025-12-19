@@ -1,57 +1,46 @@
 // http://localhost:3000/groupware/compoments/layout02 - 메인 레이아웃
+
+/*
+ * path           : app/groupware/{member}/compoments/layout02/page.jsx
+ * fileName       : page.jsx
+ * author         : Woo Sujeong
+ * date           : 25. 10. 01.
+ * description    : 메인보드 레이아웃/컴포넌트 퍼블리싱 확인용 파일
+ * ===========================================================
+ * DATE              AUTHOR        NOTE
+ * -----------------------------------------------------------
+ * 25. 10. 01.        Woo Sujeong       최초 생성
+ */
+
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // component
-import PageTit from '@/shared/ui/Title/PageTit';
 import MainTit from '@/shared/ui/Title/MainTit';
 import DateCount from '@/shared/ui/Title/DateCount';
 
 // layout component
 import Wrapper from '@/shared/ui/Wrapper/Wrapper';
 import InnerWrap from '@/shared/ui/Wrapper/InnerWrap';
-import NumTag from '@/shared/ui/Tag/NumTag';
+import NumTag from '@/shared/ui/List/NumTagList';
 import ConTit from '@/shared/ui/Title/ConTit';
-import List from '@/shared/ui/List/List';
 import AssetsList from '@/shared/ui/List/AssetsList';
 import BoardDocList from '@/shared/ui/List/BoardDocList';
 import BoardList from '@/shared/ui/List/BoardList';
 import ContLabel from '@/shared/ui/Title/ContLabel';
 import QuickMenu from '@/shared/ui/List/QuickMenu';
 import BtnWrap from '@/shared/ui/Button/BtnWrap';
+
+// 251016 컴포넌트 구조 변경 후 사용 안함
 import SecondBtn from '@/shared/ui/Button/SecondBtn';
+import List from '@/shared/ui/List/List';
 
-//////////////// 더미데이터////////////////
-const pageTitCon = {
-  pageTitle: '지출 품의서 참고',
-  pageInfo: '레이아웃 확인용 페이지'
-};
-
-const asset = {
-  name: '모니터',
-  num: 'NT-001',
-  code: 'NT960QFG-K71AR'
-};
-const docList = {
-  categori: '기안서',
-  docNo: 'MU-202409-031',
-  member: '박지현 사원',
-  submit: '2025.09.08 10:10',
-  content: '업무 효율 향상을 제고하기 위한 교육 신청서'
-};
-
-const board = {
-  title: '공지사항 제목입니다. 공지사항 제목입니다. 공지사항 제목입니다.',
-  submit: '2025.09.17 10:10',
-  member: '박지현 사원'
-};
-
-// 메인 레이아웃 확인 게시판
+// 메인 레이아웃 확인용
 export default function LayoutExample02() {
   const router = useRouter();
   return (
-    <Wrapper className={'pageWrap'}>
+    <Wrapper className={'mainPageWrap pageWrap'}>
       <Wrapper className={'txtBtnWrap'}>
         <MainTit>
           <DateCount />
@@ -64,52 +53,41 @@ export default function LayoutExample02() {
             <ConTit>
               <h3>전자결재</h3>
             </ConTit>
-            <List>
-              <NumTag></NumTag>
-            </List>
+            <NumTag />
           </InnerWrap>
 
-          <InnerWrap className={'mainInner'}>
+          <InnerWrap className={'mainAssetsList'}>
             <ConTit>
               <h3>보유장비현황</h3>
-              <BtnWrap className={'BtnWrap'}>
-                <SecondBtn btnName={'보유장비확인'} />
-              </BtnWrap>
+              <BtnWrap className={'BtnWrap'} />
             </ConTit>
-            <List>
-              <AssetsList name={asset.name} num={asset.num} code={asset.code} />
-            </List>
+            <AssetsList />
           </InnerWrap>
 
-          <InnerWrap className={'mainInner'}>
+          <InnerWrap className={'mainQuickMenu'}>
             <ConTit>
               <h3>퀵메뉴</h3>
             </ConTit>
-            <List>
-              <QuickMenu />
-            </List>
+            <QuickMenu />
           </InnerWrap>
         </Wrapper>
 
         <Wrapper className={'mainRight'}>
-          <InnerWrap className={'mainInner'}>
+          <InnerWrap>
             <ConTit>
               <h3>결재문서</h3>
             </ConTit>
-            <List>
-              <BoardDocList {...docList} />
-            </List>
+            <BoardDocList />
           </InnerWrap>
 
-          <InnerWrap className={'mainInner'}>
+          {/* 게시물 + 탭 */}
+          <InnerWrap>
             <ConTit>
               <h3>
-                <ContLabel title={['공지사항', '사내게시판']} />
+                <ContLabel />
               </h3>
             </ConTit>
-            <List>
-              <BoardList {...board} />
-            </List>
+            <BoardList />
           </InnerWrap>
         </Wrapper>
       </Wrapper>

@@ -3,15 +3,11 @@ import styles from './title.module.scss';
 
 // 각 영역 좌상단 라벨부분(명칭 ex-메인화면의 전자결재, 보유장비현황)
 
-const ContLabel = ({ className = '', title = [], ...rest }, ref) => {
-  // console.log(title.length);
-  // const [titnum, setTitnum] = useState(title.le);
-  // contLabel: 기본className
-  const containerClasses = [styles.contLabel, className].filter(Boolean).join(' ');
-
+const ContLabel = () => {
   return (
-    <div ref={ref} className={containerClasses} {...rest}>
-      {Array.isArray(title) ? title.map((txt, i) => <span key={i}>{txt}</span>) : <span>{title}</span>}
+    <div className={styles.contLabel}>
+      <label>지출 품의서</label>
+      <label>지출 품의서22</label>
     </div>
   );
 };

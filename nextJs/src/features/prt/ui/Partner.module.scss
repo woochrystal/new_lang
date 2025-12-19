@@ -1,0 +1,94 @@
+@use 'sass:color';
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// ============================================
+// 로컬 색상 변수 (글로벌 변수 참조)
+// ============================================
+
+$color-error: $error-color;
+$color-error-dark: color.adjust($error-color, $lightness: -10%);
+$color-success: $success-color;
+$color-warning: $warning-color;
+
+// ============================================
+// 공통 스타일
+// ============================================
+
+.loadingContainer,
+.errorContainer {
+  @include centerCenter;
+  min-height: 400px;
+}
+
+// ============================================
+// 협력사 목록 (검색, 테이블, 페이지네이션)
+// ============================================
+
+// 테이블
+.tableContainer {
+  width: 100%;
+}
+
+// 페이지네이션
+.pagination {
+  @include centerCenter;
+  gap: $space-2;
+  padding: $space-5 0;
+}
+
+// ============================================
+// 협력사 상세보기 (PartnerDetail)
+// ============================================
+.detailModal {
+  .actionButtons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  .formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .formValue {
+      padding: 10px 12px;
+      background: #f5f5f5;
+      border-radius: 4px;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+// ============================================
+// 협력사 작성/수정 폼 (PartnerCreate)
+// ============================================
+
+.fieldError {
+  font-size: $font-size-sm;
+  color: $color-error;
+  font-weight: $font-weight-medium;
+  @include centerLeft;
+  gap: $space-1;
+
+  &::before {
+    content: '⚠';
+    font-size: $font-size-sm;
+  }
+}

@@ -15,12 +15,14 @@ $input-color: $foundation-grayscale-shade-66; //666666
 $fff: $foundation-light-base-shade-100;
 $file-color: #0068e8;
 $input-onGray: #f1f0f2; //시안에서 투명도 있는 인풋이 보라배경  위에 있을 시 보여지는 투명도 없는 색
+$sat-color: #066abb; //datepicker 토요일
 
 //border-color
 $primary-border: $foundation-grayscale-base-shade-4; //fafafa
 $secondary-border: $foundation-light-line-shade-100; //d2dfff
 $hover-border: $foundation-primary-alpha-40percent; //b5a3e8
 $round-border: $foundation-primary-alpha-80percent; //7a61d4
+$popup-border: 1px solid rgba(235, 235, 235, 0.6);
 
 // Breakpoints
 $breakpoint-sm: 576px;
@@ -29,11 +31,13 @@ $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 
 // border-radious
-$basic-radious: 8px;
-$input-radious: 4px;
 $btn-radious: 0.375rem;
+$input-radious: 4px;
+$basic-radious: 8px;
 $wrap-radious: 10px;
 $square-radious: 12px;
+$name-radious: 28px;
+$popup-radious: 40px;
 
 // === 변수값 추가 ===
 
@@ -103,6 +107,7 @@ $shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
 $shadow-base: 0 2px 8px rgba(0, 0, 0, 0.1);
 $shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
 $shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+$shadow-popup: -28px 40px 48px -2px rgba(51, 58, 78, 0.04);
 
 // Transition
 $transition-fast: 0.15s ease;
@@ -112,25 +117,107 @@ $transition-slow: 0.3s ease;
 // Z-index Scale
 $z-dropdown: 100;
 $z-modal: 1000;
+$z-drawer: 1050;
 $z-popover: 1100;
 $z-tooltip: 1200;
 
 //padding
+$input-padding: 11px 16px;
 $basic-padding: 13px 16px;
 
 //shadow
 $list-shadow: rgba(42, 42, 64, 0.04);
 $main-shadow: 8px 20px 40px 0 rgba(6, 1, 17, 0.04);
+$name-shadow: rgba(102, 77, 204, 0.04);
+$login-shadow: 16px 20px 20px 0px #2a2a400a;
 
 //레이아웃 높이값을 위한 패딩 설정
-$toptit-fz: 24px;
-$topRight-pBtm: 40px;
-$innerLayout-pTop: 28px;
-$pageWrap-margin: $toptit-fz + $topRight-pBtm + $innerLayout-pTop;
+$inner-pTop: 28px; // 최상단 wrapper 패딩 top
+$inner-side-p: 48px; // 최상단 wrapper 패딩 left, right
 
-$pageTit-pBtm: 28px;
-$pageTit-h2: 24px;
+$companyTit-fz: 16px; //회사명 font-size
+$companyTit-p: 12px; //회사명 위아래 padding
+$topWrap-pBtm: 20px; //회사명, 소개글 패딩 bottom
+
+$txtBtn-height: 40px; //페이지 전체 버튼 height
+$pageTit-h2: 24px; //페이지명 font-size
+$pageTit-pBtm: 28px; //페이지명 패딩 bottom
+
+$scroll-pLeft: 22px; //스크롤 영역
+
+//스크롤 제외 top padding 계산값
+$without-scroll: calc($inner-side-p - $scroll-pLeft);
+
+// 회사명 높이값
+$companyTit-h: $companyTit-fz + ($companyTit-p * 2) + $topWrap-pBtm;
+
+// 페이지명 높이값
+$pageTit-h: $txtBtn-height + $pageTit-pBtm;
+
+//공통 페이지 상단 여백값
+$pageWrap-margin: $inner-pTop + $companyTit-h + $pageTit-h;
+
+//공통 페이지 총 높이값
+$basic-totalHeight: calc(100vh - $pageWrap-margin);
+
+//메인보드 내부 컨텐츠 상하 여백값
+$mainPageWrap-margin: $pageWrap-margin + $inner-pTop;
+
+//메인보드 내부 컨텐츠 여백 제외 총 높이값
+$main-totalHeight: calc(100vh - $mainPageWrap-margin);
+
+// 좌우영역 gap
+$pageScrollGap: 6vw;
 
 // 스크롤바 설정
 $barWidth: 6px;
 $barMargin: 8px;
+
+// 결재 상태
+$success-color: #05cb98; // 승인
+$warning-color: $foundation-warning-shade-100; // 반려 ff000a
+$pending-color: $foundation-grayscale-shade-66; // 미결
+$waiting-color: $foundation-primary-font; // 대기 5036BA
+
+// tag color
+$success-bgc: #e5faf5; //#05CD991A
+$warning-bgc: #ffebec; //#FF000A14
+$pending-bgc: $foundation-light-line-shade-20; //하늘
+$waiting-bgc: $foundation-primary-alpha-8percent; //연보라
+
+$success-bd: #ebfbf7; //#05CD9914
+$warning-bd: #fff5f5; //#FF000A0A
+$pending-bd: $foundation-primary-alpha-4percent; //하늘
+$waiting-bd: $foundation-primary-alpha-8percent; //연보라
+
+// 투명도
+$opacity-03: 0.3;
+$opacity-04: 0.4;
+$opacity-05: 0.5;
+$opacity-06: 0.6;
+$opacity-07: 0.7;
+$opacity-08: 0.8;
+
+// line-height
+$normal-lh: 100%;
+$big-lh: 150%;
+
+// table width
+$td-w-xxs: 60px;
+$td-w-xs: 80px;
+$td-w-sm: 100px;
+$td-w-md: 120px;
+$td-w-lg: 150px;
+$td-w-xl: 200px;
+$td-w-xxl: 250px;
+
+// 테이블 위 간격
+$table-top-gap: 38px;
+
+// clearBtn
+$search-icon: 15px;
+$search-icon-p: 16px;
+$clear-icon: 8px;
+$clear-icon-p: 4px;
+
+$search-pos: calc($search-icon-p * 2 + $search-icon - $clear-icon);

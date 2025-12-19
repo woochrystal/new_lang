@@ -1,0 +1,33 @@
+@use 'sass:color';
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+.selectedOrgName {
+  display: flex;
+  gap: 8px;
+  background-color: $foundation-light-bg;
+  padding: 8px 10px;
+  border-radius: $basic-radious;
+  border: 1px solid $foundation-light-line-shade-100;
+
+  svg {
+    width: 20px;
+    fill: $foundation-primary-alpha-80percent;
+  }
+  p {
+    color: $foundation-grayscale-shade-66;
+  }
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #111827;
+  letter-spacing: -0.32px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: $foundation-grayscale-shade-66;
+}

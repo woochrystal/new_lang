@@ -1,0 +1,59 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+
+// 기본 버튼 스타일
+.button {
+  @include btnBasic;
+  @include btnBasicColor;
+
+  &.primary {
+    @include btnPrimeColor;
+  }
+
+  &.secondary {
+    @include btnSeconColor;
+  }
+
+  &.logout {
+    @include btnBasicColor;
+  }
+
+  &.danger {
+    background-color: transparent;
+    color: $error-color;
+    border: 1px solid $error-color;
+
+    &:hover:not(:disabled) {
+      background-color: $error-color;
+      color: $text-white;
+    }
+  }
+
+  &:disabled {
+    opacity: $opacity-05;
+    cursor: not-allowed;
+  }
+}
+
+// 버튼 그룹 컨테이너
+.buttonGroup {
+  @include topRight;
+  padding-left: 12px;
+  gap: 8px;
+  display: flex;
+
+  &.full {
+    width: 100%;
+  }
+
+  &.titleOnly {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+}
+
+// 로딩 상태
+.loading {
+  opacity: $opacity-07;
+}

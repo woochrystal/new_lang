@@ -1,0 +1,55 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+// ============================================================================
+// Title (PageTit) 스타일
+// ============================================================================
+
+.pageTit {
+  // display: flex;
+  // color: $text-color;
+  // gap: 12px;
+  // align-items: center;
+  @include btmLeft;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-bottom: $pageTit-pBtm;
+
+  h1 {
+    line-height: 100%;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+  }
+
+  h2 {
+    line-height: 100%;
+    font-size: $pageTit-h2;
+    font-weight: 600;
+    letter-spacing: -0.96px;
+  }
+
+  h3 {
+    line-height: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+  }
+
+  p {
+    line-height: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.32px;
+  }
+}
+
+.pageMainTit {
+  margin: 0;
+}
+
+.pageDesc {
+  margin: 0;
+  color: $foundation-grayscale-shade-66;
+}

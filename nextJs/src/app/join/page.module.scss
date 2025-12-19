@@ -1,0 +1,48 @@
+.joinContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.domainGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.domainInputArea {
+  flex-grow: 1;
+}
+
+.addressInput :global(input[type='search']) {
+  color: #111111;
+  font-weight: 400;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+.domainResultMessage {
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.resultSuccess {
+  color: green;
+}
+
+.resultError {
+  color: red;
+}
+
+/* 버튼 컨테이너 스타일 */
+.buttonContainer {
+  margin-top: 32px;
+  text-align: right;
+}

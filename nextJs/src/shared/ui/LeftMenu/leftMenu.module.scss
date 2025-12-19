@@ -24,8 +24,8 @@
   }
 }
 
-// 마우스 올렸을 때 연보라 + 보라글씨
-@mixin hoverMainMenu {
+// 활성화 메뉴
+@mixin activeMainMenu {
   background: $primary-color;
   color: $foundation-light-base-shade-100;
 
@@ -38,8 +38,8 @@
   }
 }
 
-// 활성화 시 진한보라배경 + 흰글씨
-@mixin activeMainMenu {
+// 아코디언 메뉴
+@mixin hoverMainMenu {
   background: $menu-active;
   color: $foundation-primary-font;
   font-weight: 500;
@@ -51,16 +51,18 @@
 
 .leftMenu {
   min-width: 300px;
+  height: 100vh;
   border-radius: 0 40px 40px 0;
   background: $foundation-light-base-shade-100;
   mix-blend-mode: multiply;
   box-shadow: $main-shadow;
-  padding: 30px 28px 0 36px;
+  padding: 30px 28px 48px 36px;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
   flex-direction: column;
   gap: 40px 0;
+  overflow-y: scroll;
 
   > div {
     @include centerCenter;
@@ -101,7 +103,7 @@
         max-height: 500px;
         opacity: 1;
         li a {
-          @include activeMainMenu;
+          @include hoverMainMenu;
         }
       }
 
@@ -111,6 +113,7 @@
         opacity: 0;
         overflow: hidden;
         transition: $transition-base;
+        border-top: 1px solid $foundation-primary-alpha-4percent;
         li {
           margin-bottom: 0;
 
@@ -131,44 +134,53 @@
           }
 
           &:hover a {
-            @include activeMainMenu;
+            @include hoverMainMenu;
             border: 1px solid $foundation-primary-alpha-40percent;
           }
 
           // 현재 위치 메뉴 표시
           &.on a,
           &.on a:hover {
-            @include hoverMainMenu;
+            @include activeMainMenu;
             font-weight: 500;
           }
         }
       }
+      // 현재 위치 메뉴 표시
       &.on a,
       &.on a:hover {
-        @include hoverMainMenu;
+        @include activeMainMenu;
         font-weight: 500;
       }
     }
 
     // 메인메뉴 hover
-    > li > a:hover {
-      @include activeMainMenu;
+    & > li > a:hover {
+      @include hoverMainMenu;
       border: 1px solid $foundation-primary-alpha-40percent;
     }
 
     // 열린 드롭다운 서브메뉴 hover
-    > li.active > a {
-      @include activeMainMenu;
-      border: 1px solid $foundation-primary-alpha-4percent;
-      border-radius: $basic-radious $basic-radious 0 0;
+    & > li.active {
+      background: $menu-active;
+      border-radius: $basic-radious;
+      & > a {
+        @include hoverMainMenu;
+        // border: 1px solid $foundation-primary-alpha-4percent;
+        // border-radius: $basic-radious $basic-radious 0 0;
 
-      span {
-        color: $primary-color;
-      }
+        span {
+          color: $primary-color;
+        }
 
-      svg {
-        transform: rotate(180deg);
+        svg {
+          transform: rotate(180deg);
+        }
       }
     }
+  }
+  //스크롤바 배경
+  &::-webkit-scrollbar-thumb {
+    border: $barMargin solid $foundation-light-base-shade-100; //여백
   }
 }

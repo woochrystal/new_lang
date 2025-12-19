@@ -19,10 +19,10 @@ export default function InputFile() {
     setDisableHover(true);
     setHover(false);
 
-    // 1초 후 다시 활성화
+    // 0.05초 후 다시 활성화
     setTimeout(() => {
       setDisableHover(false);
-    }, 500);
+    }, 50);
   };
 
   const removeFile = (index) => {

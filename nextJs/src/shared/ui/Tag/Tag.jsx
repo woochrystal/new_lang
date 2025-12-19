@@ -8,7 +8,7 @@ export default function Tag({ variant = 'text', status = 'pending', children, ..
   const statusGroup = {
     approve: '승인',
     reject: '반려',
-    pending: '미결',
+    pending: '결재대기',
     waiting: '대기'
   };
 

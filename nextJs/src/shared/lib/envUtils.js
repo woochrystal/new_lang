@@ -1,9 +1,14 @@
-/**
- * @fileoverview 환경 감지 및 검사 유틸리티
- *
- * 환경 감지: isBrowser, isServer, isProduction, isDevelopment, isLocal, isTest, isSSR, isCSR, isNextDev, isDebugMode, isMobile
- * 환경변수: getEnvVar, getPublicEnvVar, getNodeVersion, getEnvironment, getPlatformInfo
- * 환경별 실행: runInBrowser, runInServer, runInDevelopment, runInProduction
+/*
+ * path           : src/shared/lib/envUtils.js
+ * fileName       : envUtils
+ * author         : changhyeon
+ * date           : 25. 10. 22.
+ * description    : 브라우저/서버 런타임 환경 감지 및 환경변수 접근 유틸리티
+ * ===========================================================
+ * DATE              AUTHOR        NOTE
+ * -----------------------------------------------------------
+ * 25. 10. 22.       changhyeon       최초 생성
+ * 25. 11. 11.       changhyeon       파일 헤더 추가
  */
 
 /**
@@ -15,9 +20,9 @@
  *   document.title = 'My App';
  * }
  */
-export function isBrowser() {
+export const isBrowser = function () {
   return typeof window !== 'undefined';
-}
+};
 
 /**
  * 서버 환경(Node.js)인지 확인합니다.
@@ -28,9 +33,9 @@ export function isBrowser() {
  *   console.log('서버에서 실행 중:', process.env.NODE_ENV);
  * }
  */
-export function isServer() {
+export const isServer = function () {
   return typeof window === 'undefined';
-}
+};
 
 /**
  * 프로덕션 환경인지 확인합니다.
@@ -41,9 +46,9 @@ export function isServer() {
  *   // 에러 추적, 성능 모니터링 등
  * }
  */
-export function isProduction() {
+export const isProduction = function () {
   return process.env.NODE_ENV === 'production';
-}
+};
 
 /**
  * 개발 환경인지 확인합니다. (프로덕션이 아닌 모든 환경)
@@ -54,59 +59,59 @@ export function isProduction() {
  *   // 개발 도구, 상세 로깅 등
  * }
  */
-export function isDevelopment() {
+export const isDevelopment = function () {
   return process.env.NODE_ENV !== 'production';
-}
+};
 
 /**
  * 로컬 개발 환경인지 확인합니다.
  * @returns {boolean} 로컬 환경 여부
  */
-export function isLocal() {
+export const isLocal = function () {
   return process.env.NODE_ENV === 'local';
-}
+};
 
 /**
  * 테스트 환경인지 확인합니다.
  * @returns {boolean} 테스트 환경 여부
  */
-export function isTest() {
+export const isTest = function () {
   return process.env.NODE_ENV === 'test';
-}
+};
 
 /**
  * SSR(Server-Side Rendering) 중인지 확인합니다.
  * Next.js에서 서버 사이드 렌더링 중일 때 true를 반환합니다.
  * @returns {boolean} SSR 여부
  */
-export function isSSR() {
+export const isSSR = function () {
   return isServer() && typeof global !== 'undefined';
-}
+};
 
 /**
  * CSR(Client-Side Rendering) 중인지 확인합니다.
  * 브라우저에서 하이드레이션 완료 후 true를 반환합니다.
  * @returns {boolean} CSR 여부
  */
-export function isCSR() {
+export const isCSR = function () {
   return isBrowser() && typeof document !== 'undefined';
-}
+};
 
 /**
  * Next.js 개발 서버에서 실행 중인지 확인합니다.
  * @returns {boolean} Next.js 개발 서버 여부
  */
-export function isNextDev() {
+export const isNextDev = function () {
   return isDevelopment() && typeof global !== 'undefined' && global.__NEXT_DATA__;
-}
+};
 
 /**
  * 현재 환경을 문자열로 반환합니다.
  * @returns {string} 환경 이름 (production, development, local, test 등)
  */
-export function getEnvironment() {
+export const getEnvironment = function () {
   return process.env.NODE_ENV || 'development';
-}
+};
 
 /**
  * 디버그 모드가 활성화되어 있는지 확인합니다.
@@ -117,15 +122,15 @@ export function getEnvironment() {
  *   // 상세 로깅, 개발자 도구 표시 등
  * }
  */
-export function isDebugMode() {
+export const isDebugMode = function () {
   return isDevelopment() || process.env.NEXT_PUBLIC_ENABLE_DEBUG === 'true';
-}
+};
 
 /**
  * 플랫폼 정보를 반환합니다.
  * @returns {Object} 플랫폼 정보
  */
-export function getPlatformInfo() {
+export const getPlatformInfo = function () {
   const info = {
     isBrowser: isBrowser(),
     isServer: isServer(),
@@ -145,7 +150,7 @@ export function getPlatformInfo() {
   }
 
   return info;
-}
+};
 
 /**
  * 브라우저 전용 코드를 실행합니다.
@@ -153,9 +158,9 @@ export function getPlatformInfo() {
  * @param {Function} fallback - 서버에서 실행할 대체 함수 (선택)
  * @returns {any} 함수 실행 결과
  */
-export function runInBrowser(fn, fallback = () => undefined) {
+export const runInBrowser = function (fn, fallback = () => undefined) {
   return isBrowser() ? fn() : fallback();
-}
+};
 
 /**
  * 서버 전용 코드를 실행합니다.
@@ -163,9 +168,9 @@ export function runInBrowser(fn, fallback = () => undefined) {
  * @param {Function} fallback - 브라우저에서 실행할 대체 함수 (선택)
  * @returns {any} 함수 실행 결과
  */
-export function runInServer(fn, fallback = () => undefined) {
+export const runInServer = function (fn, fallback = () => undefined) {
   return isServer() ? fn() : fallback();
-}
+};
 
 /**
  * 개발 환경에서 코드를 실행합니다.
@@ -177,9 +182,9 @@ export function runInServer(fn, fallback = () => undefined) {
  *   window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.__REACT_DEVTOOLS_GLOBAL_HOOK__ || {};
  * });
  */
-export function runInDevelopment(fn) {
+export const runInDevelopment = function (fn) {
   return isDevelopment() ? fn() : undefined;
-}
+};
 
 /**
  * 프로덕션 환경에서 코드를 실행합니다.
@@ -192,9 +197,9 @@ export function runInDevelopment(fn) {
  *   // 성능 모니터링 활성화
  * });
  */
-export function runInProduction(fn) {
+export const runInProduction = function (fn) {
   return isProduction() ? fn() : undefined;
-}
+};
 
 /**
  * 환경변수 값을 가져옵니다 (클라이언트 사이드에서는 NEXT_PUBLIC_ 접두사 필요).
@@ -208,9 +213,9 @@ export function runInProduction(fn) {
  * // 브라우저에서도 접근 가능 (NEXT_PUBLIC_ 접두사 필요)
  * const apiUrl = getEnvVar('NEXT_PUBLIC_API_URL', 'http://localhost:3000');
  */
-export function getEnvVar(key, defaultValue) {
+export const getEnvVar = function (key, defaultValue) {
   return process.env[key] || defaultValue;
-}
+};
 
 /**
  * 클라이언트에서 접근 가능한 환경변수를 가져옵니다.
@@ -222,18 +227,18 @@ export function getEnvVar(key, defaultValue) {
  * const apiUrl = getPublicEnvVar('API_URL', 'http://localhost:3000');
  * const sameUrl = getPublicEnvVar('NEXT_PUBLIC_API_URL', 'http://localhost:3000');
  */
-export function getPublicEnvVar(key, defaultValue) {
-  const fullKey = key.startsWith('NEXT_PUBLIC_') ? key : `NEXT_PUBLIC_${key}`;
+export const getPublicEnvVar = function (key, defaultValue) {
+  const fullKey = key.startsWith('NEXT_PUBLIC_') ? key : `NEXT_PUBLIC_${key};`;
   return process.env[fullKey] || defaultValue;
-}
+};
 
 /**
  * 현재 실행 중인 Node.js 버전을 확인합니다.
  * @returns {string|null} Node.js 버전 (브라우저에서는 null)
  */
-export function getNodeVersion() {
+export const getNodeVersion = function () {
   return isServer() ? process.version : null;
-}
+};
 
 /**
  * 모바일 브라우저인지 확인합니다.
@@ -247,13 +252,13 @@ export function getNodeVersion() {
  *   document.body.classList.add('desktop-layout');
  * }
  */
-export function isMobile() {
+export const isMobile = function () {
   return runInBrowser(() => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }, false);
-}
+};
 
-export default {
+const envUtils = {
   isBrowser,
   isServer,
   isProduction,
@@ -275,3 +280,5 @@ export default {
   getNodeVersion,
   isMobile
 };
+
+export default envUtils;

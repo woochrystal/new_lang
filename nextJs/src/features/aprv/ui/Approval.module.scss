@@ -1,0 +1,387 @@
+@use 'sass:color';
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+
+// ============================================
+// 로컬 색상 변수 (글로벌 변수 참조)
+// ============================================
+
+$color-error: $error-color;
+$color-error-dark: color.adjust($error-color, $lightness: -10%);
+$color-success: $success-color;
+$color-warning: $warning-color;
+
+// ============================================
+// 공통 스타일
+// ============================================
+
+.loadingContainer,
+.errorContainer {
+  @include centerCenter;
+  min-height: 400px;
+}
+
+.errorContainer {
+  text-align: center;
+  gap: $space-4;
+
+  h2 {
+    color: $text-color;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin: 0;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: $font-size-md;
+    margin: 0;
+    line-height: $line-height-normal;
+  }
+}
+
+.spinner {
+  font-size: $font-size-base;
+  color: $text-secondary;
+}
+
+.errorMessage {
+  padding: $space-3 $space-4;
+  background-color: rgba($color-error, 0.1);
+  border: 1px solid rgba($color-error, 0.2);
+  border-radius: $radius-md;
+  color: $color-error;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+}
+
+// 버튼 사이즈
+.buttonSmall {
+  font-size: $font-size-sm;
+  padding: $space-1 $space-2;
+  min-height: 28px;
+}
+
+.buttonMedium {
+  font-size: $font-size-base;
+  padding: $space-2 $space-4;
+}
+
+.buttonLarge {
+  font-size: $font-size-base;
+  padding: $space-2 $space-5;
+}
+
+.buttonDanger {
+  background-color: $color-error;
+  color: $fff;
+
+  &:hover {
+    background-color: $color-error-dark;
+  }
+}
+
+// ============================================
+// 결재 목록 (검색, 테이블, 페이지네이션)
+// ============================================
+
+// 테이블
+.tableContainer {
+  width: 100%;
+  padding-top: 56px;
+}
+
+// 액션 버튼
+.actionButtons {
+  @include centerCenter;
+  gap: $space-1;
+}
+
+// 페이지네이션
+.pagination {
+  @include centerCenter;
+  gap: $space-2;
+  padding: $space-5 0;
+}
+
+// ============================================
+// 결재 문서 상세보기 (ApprovalDetail)
+// ============================================
+
+.approvalDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-4 0;
+  border-bottom: 1px solid $secondary-border;
+  flex-shrink: 0;
+}
+
+.navigation {
+  @include centerLeft;
+}
+
+.backButton {
+  @include centerLeft;
+  gap: $space-1;
+  font-size: $font-size-base;
+  color: $text-secondary;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.actions {
+  @include centerRight;
+  gap: $space-3;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+  line-height: $line-height-tight;
+  margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+.meta {
+  @include centerLeft;
+  gap: $space-6;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  @include centerLeft;
+  gap: $space-1;
+  font-size: $font-size-base;
+}
+
+.label {
+  color: $text-secondary;
+  font-weight: $font-weight-medium;
+}
+
+.value {
+  color: $text-color;
+  font-weight: $font-weight-normal;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: $space-1 $space-3;
+  border-radius: 16px;
+  border: 1px solid;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &[data-status='DRAFT'] {
+    background-color: rgba($text-secondary, 0.1);
+    color: $text-secondary;
+    border-color: rgba($text-secondary, 0.2);
+  }
+
+  &[data-status='PENDING'] {
+    background-color: rgba($color-warning, 0.1);
+    color: $color-warning;
+    border-color: rgba($color-warning, 0.2);
+  }
+
+  &[data-status='APPROVED'] {
+    background-color: rgba($color-success, 0.1);
+    color: $color-success;
+    border-color: rgba($color-success, 0.2);
+  }
+
+  &[data-status='REJECTED'] {
+    background-color: rgba($color-error, 0.1);
+    color: $color-error;
+    border-color: rgba($color-error, 0.2);
+  }
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: $secondary-border;
+  margin: $space-2 0;
+}
+
+// 결재선 정보
+.approvalLineSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $text-color;
+  margin: 0;
+}
+
+.approvalLine {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.approver {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-3 $space-4;
+  border: 1px solid $secondary-border;
+  border-radius: $radius-md;
+  background-color: $primary-border;
+
+  &[data-status='APPROVED'] {
+    border-color: rgba($color-success, 0.3);
+    background-color: rgba($color-success, 0.05);
+  }
+
+  &[data-status='REJECTED'] {
+    border-color: rgba($color-error, 0.3);
+    background-color: rgba($color-error, 0.05);
+  }
+
+  &[data-status='PENDING'] {
+    border-color: rgba($color-warning, 0.3);
+    background-color: rgba($color-warning, 0.05);
+  }
+}
+
+.approverOrder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: $primary-color;
+  color: $fff;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-sm;
+  flex-shrink: 0;
+}
+
+.approverInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.approverName {
+  font-weight: $font-weight-semibold;
+  color: $text-color;
+  font-size: $font-size-base;
+}
+
+.approverDept {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+}
+
+.approverStatus {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  padding: $space-1 $space-2;
+  border-radius: $radius-sm;
+  border: 1px solid;
+
+  &[data-status='APPROVED'] {
+    color: $color-success;
+    border-color: rgba($color-success, 0.3);
+    background-color: rgba($color-success, 0.1);
+  }
+
+  &[data-status='REJECTED'] {
+    color: $color-error;
+    border-color: rgba($color-error, 0.3);
+    background-color: rgba($color-error, 0.1);
+  }
+
+  &[data-status='PENDING'] {
+    color: $color-warning;
+    border-color: rgba($color-warning, 0.3);
+    background-color: rgba($color-warning, 0.1);
+  }
+}
+
+.approverDate {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+}
+
+.approverComment {
+  margin-top: $space-2;
+  padding: $space-2 $space-3;
+  background-color: $fff;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  color: $text-color;
+  border: 1px solid $secondary-border;
+}
+
+// 문서 내용
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  gap: $space-4;
+}
+
+.contentBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.paragraph {
+  font-size: $font-size-md;
+  line-height: $line-height-relaxed;
+  color: $text-color;
+  margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.bottomActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $space-5 0;
+  border-top: 1px solid $secondary-border;
+  flex-shrink: 0;
+  margin-top: auto;
+}

@@ -2,53 +2,124 @@
 @use '@/shared/styles/abstracts/figma-token' as *;
 @use '@/shared/styles/base/mixins.scss' as *;
 
-.pageWrap {
-  height: calc(100vh - ($pageWrap-margin));
+//레이아웃 예시에 사용(퍼블리싱용)
+
+@mixin container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  min-width: 960px;
+  padding: 28px 48px 0 48px;
+}
+
+.container {
+  @include container;
+  &.pageWrap {
+    @include container;
+  }
+
+  // 큰버튼 설정
+  & > .txtBtnWrap button {
+    @include btnHeightLarge;
+  }
+}
+
+// 메인 별도
+.main {
+  .mainLayout {
+    overflow-y: scroll;
+    padding: $inner-pTop 48px;
+  }
+  .mainWrap {
+    min-height: $main-totalHeight;
+  }
+}
+
+.content {
+  overflow-y: scroll;
+  display: block;
 }
 
 $pageScrollGap: 6vw;
+.contentSplit,
 .pageScroll {
-  height: calc(100% - ($pageTit-pBtm + $pageTit-h2));
-  overflow: auto;
+  // overflow-y: scroll;s
   display: flex;
   justify-content: space-between;
-  // gap: 0 $pageScrollGap;
+  align-items: stretch;
+  gap: 0 $pageScrollGap;
+  flex: 1;
+}
+.pageContent {
+  overflow-y: scroll;
+  display: block;
+  padding-bottom: 25px;
+}
+.pageBasic {
+  width: 100%;
 }
 
 // $PageLeftWidth: 480px;
+.contentLeft,
 .pageLeftWrap {
-  min-width: 480px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px 0;
-  overflow-y: auto;
+  max-width: 480px;
+  width: calc(50% - 20px);
+  margin-right: 20px;
+  display: inline-block;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+    padding-bottom: 20px;
+
+    &:last-child {
+      padding-bottom: 40px;
+    }
+
+    &:global(.hasItem03) {
+      gap: 20px 12px;
+      flex-direction: unset;
+    }
+  }
 }
 
 .pageRightWrap {
-  width: 912px;
-  display: flex;
-  flex-direction: column;
+  max-width: 912px;
+  width: calc(100% - 500px);
+  min-width: 50%;
+  display: block;
+  position: relative;
 }
 
 .txtBtnWrap {
-  @include topLeft;
+  @include btmLeft;
   justify-content: space-between;
+  flex-direction: row;
+  padding-bottom: $pageTit-pBtm;
+
+  // 큰버튼 설정
+  @at-root :global(.pageWrap) {
+    & > .txtBtnWrap button {
+      @include btnHeightLarge;
+    }
+  }
 }
 
 // 라운딩 사각형
 .roundedLgWrap {
-  @include topLeft;
-  border-radius: 28px 28px 0 0;
-  border: 1px solid $foundation-light-line-shade-100;
-  border-bottom: 0;
-  overflow-y: auto;
-  flex-grow: 1;
-  flex-direction: column;
-  background-color: $foundation-light-base-shade-100;
-  &::-webkit-scrollbar-thumb {
-    background: $foundation-light-grid;
-    border: $barMargin solid $foundation-light-base-shade-100; //여백
+  @include roundedLgWrap;
+}
+// 라운딩 사각형 배경 회색
+.roundedLgWrapGray {
+  @include roundedLgWrapGray;
+}
+// 라운딩 사각형 배경색 = body bgc
+.roundedLgWrapNobg {
+  @include roundedLgWrap;
+  & {
+    background: none;
   }
 }
 
@@ -131,8 +202,8 @@ $pageScrollGap: 6vw;
   }
 }
 
+//인풋 결과값
 .inputDataWrap {
-  //인풋 결과값
   display: flex;
   flex-direction: column;
   gap: 20px 0;
@@ -144,39 +215,136 @@ $pageScrollGap: 6vw;
   align-items: stretch;
   flex-direction: column;
   width: 100%;
-  // gap: 40px 0;
-  & > div {
-    padding: 13px 28px 33px;
-    &.hasGap64 {
-      padding: 64px 28px;
-    }
+
+  &.hasGap64 {
+    padding: 64px 28px;
   }
 }
-// .roundInnerSm {
-//   @include topLeft;
-//   padding:15px 12px ;
-//   gap: 64px 0;
-// }
+
 .innerBox {
   @include boxStyle;
 }
+
 .innerGray {
-  border: 1px solid $foundation-primary-alpha-20percent;
-  border-left: 0;
-  border-right: 0;
+  // border: 1px solid $foundation-primary-alpha-20percent;
+  // border-left: 0;
+  // border-right: 0;
   background: $foundation-light-bg;
 }
+
 .hasGap64 {
   @include topLeft;
   flex-direction: column;
   padding: 64px 0;
   gap: 64px 0;
 }
+
+.depthSection {
+  display: grid;
+  gap: 20px 12px;
+  padding: 20px 28px;
+  background-color: $foundation-light-bg;
+  border: 1px solid $foundation-primary-alpha-20percent;
+  border-left: 0;
+  border-right: 0;
+
+  // 공통 내부 div
+  & > div {
+    display: flex;
+    width: 100%;
+  }
+
+  // 2개 배열 (hasItem02)
+  &:global(.hasItem02) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // 3개 배열 (hasItem03)
+  &:global(.hasItem03) {
+    grid-template-columns: repeat(3, 1fr);
+
+    & > div {
+      // 기본은 1칸(span 1)
+      grid-column: span 1;
+
+      &.itemColAll {
+        grid-column: 1 / -1; // 전체
+      }
+
+      &.itemCol1 {
+        grid-column: span 1; // 1칸
+      }
+
+      &.itemCol2 {
+        grid-column: span 2; // 2칸(= 1:2 구조 중 큰 칸)
+      }
+
+      &.itemCol3 {
+        grid-column: span 3; // 3칸 전체
+      }
+
+      // 글로벌 gridFull 대응
+      &.gridFull,
+      :global(.gridFull) {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+    }
+  }
+
+  // 4개 배열 (hasItem04)
+  &:global(.hasItem04) {
+    grid-template-columns: repeat(4, 1fr);
+
+    & > div {
+      grid-column: span 1; // 기본
+
+      &.itemCol1 {
+        grid-column: span 1;
+      }
+
+      &.itemCol3 {
+        grid-column: span 3; // 3칸(= 1:3 구조)
+      }
+    }
+  }
+
+  // 공통: 한 줄 전체 (gridFull)
+  & > .gridFull,
+  & > :global(.gridFull) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  // 배경 제거
+  &.noBg {
+    background: none;
+    border: 0;
+  }
+}
+
+.largeGapSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px 12px;
+  padding: 64px 28px;
+
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .conTitWrap {
-  @include topLeft;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
   position: relative;
   padding: 28px !important;
+  padding-left: 40px !important;
+  gap: 12px;
 }
 
 $main-left: 640px;
@@ -184,7 +352,6 @@ $main-gap: 16px;
 
 @mixin mainCon {
   display: flex;
-  // flex-grow: 1;
   gap: $main-gap;
   flex-direction: column;
 }
@@ -193,31 +360,51 @@ $main-gap: 16px;
   display: flex;
   gap: $main-gap;
   flex-wrap: wrap;
-  height: calc(100% - 100px);
+  height: calc(100% - (100px));
+
   .mainLeft {
+    //메인 왼쪽
     max-width: $main-left;
     width: 50%;
-    height: 100%;
+    flex: 1;
     @include mainCon;
+
+    :global(.innerWrap) {
+      max-height: 200px;
+
+      &.mainNumTag {
+        background: url('/mainPaymentBg.png') left center no-repeat #faf9fd;
+        background-size: auto 100%;
+        @include fafScroll;
+      }
+
+      &.mainAssetsList {
+        max-height: none;
+      }
+
+      &.mainQuickMenu {
+        overflow-y: hidden;
+      }
+    }
   }
+
   .mainRight {
     width: calc(100% - ($main-left + $main-gap));
     min-width: calc(50% - $main-gap);
-    height: 100%;
+    flex: 1;
     @include mainCon;
-    :global(.innerWrap) {
-      flex: 1;
-    }
   }
   :global(.innerWrap) {
     @include basicBox;
+    position: relative;
     flex-grow: 1;
     box-shadow: $main-shadow;
     overflow: hidden auto;
     padding: 13px 20px;
     flex: 1;
+    min-height: 155px;
 
-    .conTit {
+    .contit {
       h3 {
         color: $foundation-grayscale-shade-33;
       }
@@ -225,10 +412,6 @@ $main-gap: 16px;
       h3 span {
         font-weight: 600;
       }
-    }
-
-    .mainNumTag {
-      background: url(/public/mainPaymentBg.png) lightgray 50% / cover no-repeat;
     }
   }
 }

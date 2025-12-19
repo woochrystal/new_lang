@@ -1,0 +1,46 @@
+@use 'sass:color';
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// ============================================
+// 로컬 색상 변수 (글로벌 변수 참조)
+// ============================================
+
+$color-error: $error-color;
+
+// ============================================
+// 직급 작성 폼 (PositionCreate)
+// ============================================
+.positionDetailModal {
+  .actionButtons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.fieldError {
+  font-size: $font-size-sm;
+  color: $color-error;
+  font-weight: $font-weight-medium;
+  @include centerLeft;
+  gap: $space-1;
+
+  &::before {
+    content: '⚠';
+    font-size: $font-size-sm;
+  }
+}

@@ -1,19 +1,16 @@
-/**
- * @fileoverview Pino 기반 Context 지원 로깅 시스템
- * @author Park ChangHyeon
- *
- * @example
- * import { LoggerFactory, LoggingContext } from '@/shared/lib/logger';
- *
- * // 1. 요청 처리의 시작점에서 컨텍스트 설정
- * LoggingContext.run({ requestId: 'uuid-1234' }, () => {
- *
- *   // 2. 로거 가져오기
- *   const logger = LoggerFactory.getLogger('UserService');
- *
- *   // 3. 로그 남기기 (requestId가 자동으로 포함됨)
- *   logger.info('사용자 정보를 조회합니다. userId={}', userId);
- * });
+/*
+ * path           : src/shared/lib/logger.js
+ * fileName       : logger
+ * author         : changhyeon
+ * date           : 24. 10. 15.
+ * description    : Context 기반 비동기 추적 로깅 시스템 (Pino SSR/CSR 지원)
+ * ===========================================================
+ * DATE              AUTHOR        NOTE
+ * -----------------------------------------------------------
+ * 24. 10. 15.       changhyeon       최초 생성
+ * 25. 10. 22.       changhyeon       브라우저 환경 로거 개선
+ * 25. 10. 24.       changhyeon       async_hooks 예외 처리 추가
+ * 25. 11. 11.       changhyeon       파일 헤더 추가
  */
 
 import pino from 'pino';
@@ -75,6 +72,7 @@ const getLogLevel = () => {
 };
 
 // 브라우저용 간단한 로거
+/* eslint-disable no-console */
 const createBrowserLogger = () => ({
   trace: (msg) => console.debug(`[TRACE] ${msg}`),
   debug: (msg) => console.debug(`[DEBUG] ${msg}`),
@@ -85,6 +83,7 @@ const createBrowserLogger = () => ({
   child: () => createBrowserLogger(),
   isLevelEnabled: () => true
 });
+/* eslint-enable no-console */
 
 // 서버용 pino 로거
 const createServerLogger = () =>

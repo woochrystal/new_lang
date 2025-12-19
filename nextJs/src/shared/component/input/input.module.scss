@@ -1,0 +1,976 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+@use '@/shared/ui/Input/inputBasic.scss' as basic;
+
+// ============================================================================
+// Input Label (InputTit 통합)
+// ============================================================================
+
+.label {
+  @include labelBasic;
+
+  span {
+    @include txt_ellipsis;
+    color: $input-color;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.26px;
+
+    &.disabled {
+      color: $foundation-grayscale-shade-88;
+    }
+
+    &.required {
+      padding-right: 14px;
+      position: relative;
+
+      &::before {
+        content: '*';
+        color: $primary-color;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 16px;
+        font-size: 16px;
+      }
+
+      &.disabled::before {
+        color: $foundation-primary-alpha-20percent;
+      }
+    }
+  }
+}
+
+:global(.innerWrap) .label {
+  padding-left: 4px;
+}
+
+// ============================================================================
+// Input 전체 래퍼
+// ============================================================================
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  // 테두리와 배경이 있는 스타일 (RadioGroup 등)
+  &.bordered {
+    background: $foundation-light-base-shade-100;
+    border: 1px solid $foundation-light-line-shade-100;
+    border-radius: $wrap-radious;
+    padding: 13px 16px;
+    gap: 12px;
+  }
+}
+
+// ============================================================================
+// 입력 컨테이너 (입력 + 버튼들)
+// ============================================================================
+
+.inputContainer {
+  position: relative;
+
+  & {
+    @include basic_box;
+  }
+}
+
+// disabled 상태
+.inputDisabledWrap {
+  opacity: 0.5;
+  & input:disabled {
+    opacity: 1;
+  }
+}
+
+// ============================================================================
+// 기본 입력 필드 스타일
+// ============================================================================
+
+.input {
+  @include inputBasic;
+
+  &::placeholder {
+    color: $placeholder-color;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+  }
+
+  &:focus {
+    outline: 1px solid $primary-color;
+    outline-offset: -1px;
+  }
+
+  &:disabled {
+    opacity: $opacity-05;
+    cursor: not-allowed;
+    background-color: $foundation-grayscale-shade-88;
+  }
+
+  &:read-only {
+    background-color: $foundation-grayscale-shade-88;
+    cursor: default;
+  }
+
+  // type별 스타일
+  &[type='text'] {
+    color: $text-color;
+  }
+
+  &[type='search'] {
+    color: $primary-color;
+  }
+
+  &[type='password'] {
+    color: $text-color;
+    letter-spacing: 0.1em;
+
+    &::placeholder {
+      letter-spacing: normal;
+    }
+  }
+
+  &[type='email'] {
+    color: $text-color;
+  }
+
+  &[type='number'] {
+    color: $text-color;
+  }
+
+  &[type='tel'] {
+    color: $text-color;
+  }
+
+  &[type='url'] {
+    color: $primary-color;
+  }
+}
+
+// ============================================================================
+// 비밀번호 입력 스타일
+// ============================================================================
+
+.passwordInput {
+  padding-right: 48px; // 눈 아이콘 공간 확보
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    opacity: $opacity-07;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: $opacity-05;
+  }
+}
+
+// ============================================================================
+// 검색 입력 스타일
+// ============================================================================
+
+.searchInput {
+  padding-right: calc(20px + 2 * 16px); // 검색 버튼 공간 확보
+  @include searchInput;
+
+  // 값이 있을 때 삭제 버튼 공간 추가
+  &:not(:placeholder-shown) {
+    padding-right: calc(2 * ($search-icon-p + $clear-icon-p) + $search-icon + $clear-icon);
+  }
+}
+
+.searchWrapper {
+  .inputContainer {
+    border: 1px solid $secondary-border;
+    border-radius: $wrap-radious;
+    background: $foundation-light-base-shade-100;
+  }
+
+  .input {
+    border: none;
+    background: transparent;
+  }
+}
+
+// 검색 관련 버튼
+.clearButton {
+  @include centerCenter;
+  position: absolute;
+  right: $search-pos;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: $clear-icon-p;
+
+  img {
+    width: $clear-icon;
+    height: $clear-icon;
+    object-fit: contain;
+  }
+
+  &:hover {
+    opacity: $opacity-07;
+  }
+}
+
+.searchButton {
+  @include centerCenter;
+  min-width: 20px;
+  min-height: 20px;
+  position: absolute;
+  padding: $search-icon-p;
+  padding-left: 8px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+
+  img {
+    width: $search-icon;
+    height: $search-icon;
+    object-fit: contain;
+  }
+
+  &:hover {
+    opacity: $opacity-07;
+  }
+
+  &:disabled {
+    opacity: $opacity-05;
+    cursor: not-allowed;
+  }
+}
+
+// ============================================================================
+// 파일 업로드 스타일
+// ============================================================================
+
+.inputFileWrap {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  @include centerLeft;
+  > div {
+    @include centerLeft;
+    width: calc(100% - 20px);
+    gap: 8px;
+  }
+}
+
+// 파일 입력 label
+.inputFile {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-self: stretch;
+  flex: 1;
+  width: 100%;
+  @include input_file;
+  span {
+    @include fileTxtBasic;
+    color: $foundation-grayscale-shade-88;
+    width: calc(100% - 28px);
+    @include txt_ellipsis;
+  }
+  i {
+    width: 20px;
+    height: 20px;
+    @include centerCenter;
+  }
+  .clearButton {
+    right: 28px;
+  }
+}
+.fileNameBtn {
+  @include file_name;
+}
+.inputData {
+  padding: $basic-padding;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+// ============================================================================
+// 상태별 스타일
+// ============================================================================
+
+.disabled {
+  opacity: $opacity-05;
+  cursor: not-allowed;
+  //background-color: $foundation-grayscale-shade-88;
+}
+
+.readOnly {
+  background-color: $foundation-grayscale-shade-88;
+  cursor: default;
+}
+
+// ============================================================================
+// Textarea 스타일 (기본 입력과 함께)
+// ============================================================================
+
+.textarea {
+  @include topLeft;
+  @include basicBox;
+  min-height: 156px;
+  justify-content: space-between;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  padding: 16px;
+  outline: none;
+  resize: none;
+
+  &::placeholder {
+    @include basic_placeholder;
+  }
+
+  &:focus {
+    outline: 1px solid $primary-color;
+    outline-offset: -1px;
+  }
+
+  &:disabled {
+    opacity: $opacity-05;
+    cursor: not-allowed;
+    background-color: $foundation-grayscale-shade-88;
+  }
+}
+
+// ============================================================================
+// Select 스타일
+// ============================================================================
+
+.selectCustom {
+  .selectOption {
+    position: relative;
+    z-index: 10;
+
+    // 열렸을 때 z-index 높이기 (드롭다운용, 모달보다는 낮게)
+    &:global(.active) {
+      z-index: 50;
+    }
+
+    div {
+      p {
+        @include basic_box;
+        & {
+          color: $placeholder-color;
+          padding: $basic-padding;
+          width: 100%;
+        }
+      }
+      i {
+        @include centerCenter;
+        transition: $transition-base;
+        stroke: $text-color;
+      }
+    }
+    ul {
+      display: flex;
+      align-items: flex-start;
+      max-height: 0;
+      flex-direction: column;
+      border-radius: $wrap-radious;
+      background: $foundation-light-base-shade-100;
+      box-shadow: 16px 20px 20px 0 $list-shadow;
+      transition: 0.5s ease;
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      z-index: 51;
+      padding: 0 8px;
+
+      li {
+        display: flex;
+        color: $text-color;
+        font-feature-settings:
+          'liga' off,
+          'clig' off;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: -0.28px;
+        width: 100%;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: $input-radious;
+
+        &:hover {
+          color: $primary-color;
+          font-weight: 400;
+        }
+
+        &.searchInputWrapper {
+          padding: 8px 0;
+          cursor: default;
+
+          &:hover {
+            color: $text-color;
+            font-weight: 400;
+          }
+
+          .searchInput {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid $secondary-border;
+            border-radius: $input-radious;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 100%;
+            letter-spacing: -0.28px;
+            background-color: $foundation-light-base-shade-100;
+            color: $text-color;
+
+            &::placeholder {
+              color: $placeholder-color;
+            }
+
+            &:focus {
+              outline: none;
+              border-color: $primary-color;
+              box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+            }
+          }
+        }
+
+        &.noOptions {
+          padding: 12px 0;
+          cursor: default;
+          color: $placeholder-color;
+          text-align: center;
+          font-size: 13px;
+
+          &:hover {
+            color: $placeholder-color;
+            font-weight: 400;
+          }
+        }
+
+        &.highlighted {
+          background-color: rgba($primary-color, 0.08);
+          color: $primary-color;
+        }
+      }
+    }
+    &.openUp {
+      ul {
+        top: auto;
+        bottom: 100%;
+        margin-top: 0;
+        margin-bottom: 10px;
+        box-shadow: 16px -20px 20px 0 $list-shadow;
+      }
+    }
+
+    &:global(.active) {
+      //클릭하고
+      i {
+        transform: rotate(180deg);
+      }
+      ul {
+        max-height: 250px;
+        overflow-y: scroll;
+        margin-top: 10px;
+        padding: 8px;
+
+        // 스크롤 숨기기
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+
+        &::-webkit-scrollbar {
+          width: 0; // Chrome, Safari
+          height: 0;
+        }
+      }
+    }
+    &:active,
+    &:global(.active),
+    &:hover {
+      p {
+        background: $hover-color;
+      }
+    }
+    &:global(.has_value),
+    &:active {
+      p {
+        color: $text-color;
+      }
+    }
+  }
+
+  &.searchable {
+    .selectOption {
+      ul {
+        max-height: 300px;
+      }
+
+      &:global(.active) ul {
+        max-height: 350px;
+        padding: 8px;
+      }
+    }
+  }
+
+  &.selectGray {
+    div {
+      p {
+        border: 1px solid $foundation-grayscale-base-shade-4;
+        background: $foundation-light-grid;
+        color: $foundation-grayscale-shade-33;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 14px;
+        letter-spacing: -0.28px;
+        padding: 8px 10px 8px 16px;
+        height: 40px;
+        i,
+        svg {
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+  }
+}
+//테이블 내부 select 스타일
+table {
+  .selectCustom .selectOption {
+    div p {
+      padding: 8px 10px;
+      border-radius: $basic-radious;
+    }
+  }
+  .inputContainer {
+    border-radius: $basic-radious;
+    .input {
+      padding: 8px 10px;
+      min-height: 38px;
+    }
+  }
+}
+
+// ============================================================================
+// Radio 스타일 - Mixin
+// ============================================================================
+
+@mixin spanStyle {
+  color: $input-color;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0 3px;
+}
+
+// ============================================================================
+// Radio Group
+// ============================================================================
+
+.radioBox {
+  @include topLeft;
+  gap: 8px;
+}
+
+// ============================================================================
+// RadioGroup Bordered Box
+// ============================================================================
+
+.borderedBox {
+  background: $foundation-light-base-shade-100;
+  border: 1px solid $foundation-light-line-shade-100;
+  border-radius: $basic-radious;
+  padding: 13px 16px;
+}
+
+// ============================================================================
+// Radio Circle (기본)
+// ============================================================================
+
+.radioCustom {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  // 기본 input 숨김
+  input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .radioIndicator {
+    @include spanStyle;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    transition: all 0.2s ease;
+  }
+
+  .radioLabel {
+    user-select: none;
+    line-height: 1.2;
+  }
+
+  // 기본 원형 스타일
+  .circle {
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+
+    .circleOuter {
+      fill: none;
+      stroke: $round-border;
+      stroke-width: 1.5;
+      stroke-opacity: $opacity-04;
+      transition: all 0.2s ease;
+    }
+
+    .circleOn {
+      fill: transparent;
+      stroke: none;
+      transition: all 0.2s ease;
+      transform-origin: center;
+      transform: scale(0);
+    }
+  }
+
+  // 체크된 상태
+  &.checked,
+  input[type='radio']:checked + .radioIndicator {
+    .circle {
+      .circleOuter {
+        stroke-opacity: 1;
+        stroke: $round-border;
+      }
+
+      .circleOn {
+        fill: $round-border;
+        transform: scale(1);
+      }
+    }
+
+    .radioLabel {
+      color: $text-color;
+      font-weight: 500;
+    }
+  }
+
+  // 호버 상태
+  &:hover:not(.disabled) {
+    .circle .circleOuter {
+      stroke-opacity: 1;
+    }
+
+    .radioLabel {
+      color: $text-color;
+      font-weight: 500;
+    }
+
+    .radioIndicator {
+      color: $text-color;
+    }
+  }
+
+  // 포커스 상태
+  input[type='radio']:focus + .radioIndicator .circle .circleOuter {
+    outline: 1px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  // 비활성화 상태
+  &.disabled {
+    cursor: not-allowed;
+    opacity: $opacity-05;
+
+    .circle .circleOuter {
+      stroke-opacity: $opacity-03;
+    }
+
+    .radioLabel {
+      color: $foundation-grayscale-shade-88;
+    }
+  }
+}
+
+// ============================================================================
+// Radio Button (버튼 형식)
+// ============================================================================
+
+.radioButton {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .radioIndicator {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+
+    span {
+      @include centerCenter;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 100%;
+      color: $foundation-grayscale-shade-33;
+      min-height: 30px;
+      padding: 9px 12px;
+      background: $foundation-light-line-shade-20;
+      border: 1px solid $foundation-light-line-shade-100;
+      border-radius: $basic-radious;
+      transition: $transition-base;
+      cursor: pointer;
+    }
+  }
+
+  input[type='radio']:checked + .radioIndicator span {
+    font-size: 12px;
+    background: $foundation-primary-bg;
+    border: 1px solid $foundation-primary-bg;
+    color: $foundation-light-base-shade-100;
+  }
+
+  &:hover:not(.disabled) .radioIndicator span {
+    font-size: 12px;
+    background: $foundation-light-line-shade-100;
+    color: $foundation-grayscale-shade-33;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: $opacity-05;
+  }
+}
+
+// ============================================================================
+// 원형 SVG 스타일 (기본 RadioCircle)
+// ============================================================================
+
+.circle {
+  fill: none;
+
+  rect {
+    stroke: $round-border;
+    stroke-opacity: $opacity-04;
+    transition: $transition-base;
+  }
+
+  .circleOn {
+    stroke: none;
+    fill: none;
+    transition: $transition-base;
+  }
+}
+
+// ============================================================================
+// 크기 변형
+// ============================================================================
+
+.radioCustom {
+  &.size-small {
+    .radioIndicator {
+      font-size: 14px;
+      gap: 6px;
+    }
+  }
+
+  &.size-medium {
+    .radioIndicator {
+      font-size: 16px;
+      gap: 8px;
+    }
+  }
+
+  &.size-large {
+    .radioIndicator {
+      font-size: 18px;
+      gap: 10px;
+    }
+  }
+}
+
+// ============================================================================
+// 스타일 변형
+// ============================================================================
+
+.radioCustom {
+  &.variant-primary {
+    &.checked .circle {
+      .circleOuter {
+        stroke: $primary-color;
+      }
+      .circleOn {
+        fill: $primary-color;
+      }
+    }
+
+    &:hover:not(.disabled) .circle .circleOuter {
+      stroke: $primary-color;
+    }
+  }
+
+  &.variant-secondary {
+    &.checked .circle {
+      .circleOuter {
+        stroke: $foundation-grayscale-shade-66;
+      }
+      .circleOn {
+        fill: $foundation-grayscale-shade-66;
+      }
+    }
+
+    &:hover:not(.disabled) .circle .circleOuter {
+      stroke: $foundation-grayscale-shade-66;
+    }
+  }
+}
+
+// ============================================================================
+// Checkbox 스타일
+// ============================================================================
+
+.checkboxRoot {
+  &.checkWrap {
+    width: 100%;
+    input[type='checkbox'] {
+      border: 0;
+      width: 0;
+      height: 0;
+      // display: none;
+    }
+    label {
+      @include centerLeft;
+      cursor: pointer;
+      padding: 4px 0;
+      gap: 0;
+
+      i {
+        border-radius: $input-radious;
+        border: 1px solid $secondary-border;
+        @include centerCenter;
+        flex-direction: column;
+        width: 16px;
+        height: 16px;
+        gap: 5px;
+        background-color: $foundation-light-base-shade-100;
+        margin-right: 4px;
+
+        img {
+          display: none;
+        }
+      }
+
+      span {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: -0.28px;
+      }
+    }
+  }
+
+  // hasFFF 상태
+  &.checkWrap.hasFFF {
+    label i {
+      border-color: rgba(255, 255, 255, 0.4);
+      background-color: $round-border;
+    }
+
+    label span {
+      font-weight: 500;
+      color: $foundation-light-base-shade-100;
+    }
+  }
+
+  // checked 상태
+  &.checkWrap.checked {
+    label i img {
+      display: block;
+    }
+  }
+
+  // disabled 상태
+  &.checkWrap.disabled {
+    opacity: $opacity-05;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+// ============================================================================
+// CheckboxGroup
+// ============================================================================
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  &.disabled {
+    opacity: $opacity-05;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+// error txt
+.error {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.24px;
+  vertical-align: middle;
+  color: $foundation-warning-shade-100;
+  padding-left: 16px;
+}

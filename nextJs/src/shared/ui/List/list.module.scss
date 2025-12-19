@@ -5,36 +5,93 @@
 @mixin sm-gray {
   overflow: hidden;
   color: $foundation-grayscale-shade-75;
-  text-overflow: ellipsis;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
 }
 @mixin sm-black {
-  overflow: hidden;
-  color: $foundation-grayscale-shade-33;
-  text-overflow: ellipsis;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 100%;
+  @include txt_ellipsis;
+  & {
+    color: $foundation-grayscale-shade-33;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+  }
 }
 
+// 기본 정렬
 .listBasic {
-  @include centerLeft;
   width: 100%;
+  @include centerLeft;
 } //ul end
 
 .listBasicLi {
+  &:hover {
+    a {
+      background: $foundation-light-bg;
+    }
+  }
   a {
     display: block;
-    padding: 18px 16px;
+    padding: 18px 20px;
+  }
+  &:last-child {
+    border-bottom: 0;
   }
 } //li end
 
+// 메인 전자결재
+.numTagList {
+  @include centerRight;
+  & {
+    gap: 36px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 28px;
+  }
+
+  .numTag {
+    @include centerCenter;
+    & {
+      text-align: center;
+      min-width: clamp(50px, 5vw, 104px);
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    span {
+      color: $foundation-grayscale-shade-75;
+    }
+    .numWrap {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 72px;
+      letter-spacing: -1.44px;
+
+      &.numPending span {
+        //5036BA
+        color: $foundation-grayscale-base-shade-100;
+      }
+      &.numReject span {
+        //FF000A
+        color: $warning-color;
+      }
+      &.numWaiting span {
+        // FF000A
+        color: $waiting-color;
+      }
+    }
+  }
+}
+
+// 메인 보유장비현황
 .assetLi {
+  width: 50%;
   ol {
     display: flex;
     gap: 5px 0;
@@ -42,20 +99,60 @@
     padding: 13px 20px;
     li {
       @include centerLeft;
-      gap: 8px;
+      & {
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
     }
   }
   .assetsLiName {
     @include sm-gray;
-    letter-spacing: 0.28px;
-    min-width: 58px;
-    display: inline-block;
+    & {
+      letter-spacing: 0.28px;
+      min-width: 58px;
+      display: inline-block;
+    }
   }
   .assetsLiData {
     @include sm-black;
   }
 }
 
+// 메인 퀵메뉴
+.quickMenuList {
+  @include topCenter;
+  & {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    // gap: clamp(0px, 1vw, 16px);
+    padding: 0 clamp(0px, 1vw, 12px);
+    overflow-x: scroll;
+  }
+  @include bgfffScroll;
+  img {
+    transition: $transition-base;
+  }
+  li {
+    text-align: center;
+    min-width: 70px;
+    &:hover {
+      img {
+        transform: translateY(-5px);
+      }
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+  span {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 100%; /* 13px */
+    letter-spacing: -0.26px;
+  }
+}
+
+// 메인 결재문서
 .boardDoc {
   width: 100%;
   border-bottom: 1px solid $foundation-light-line-shade-20;
@@ -64,33 +161,46 @@
   }
   a {
     @include topLeft;
-    flex-wrap: nowrap;
-    width: 100%;
-    gap: 16px;
+    & {
+      flex-wrap: nowrap;
+      width: 100%;
+      gap: 16px;
+    }
   }
   .bdDocWrap {
     flex-grow: 1;
+    overflow: hidden;
   }
   .bdDocInfo {
     @include centerLeft;
-    justify-content: space-between;
-    padding-bottom: 6px;
-    gap: 6px 16px;
+    & {
+      justify-content: space-between;
+      padding-bottom: 6px;
+      gap: 6px 16px;
+    }
+    .docInfoLeft {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 0;
+    }
   }
   .bdDocTit {
     @include sm-black;
-    font-weight: 600;
-    font-size: 16px;
-    padding-right: 16px;
+    & {
+      font-weight: 600;
+      font-size: 16px;
+      padding-right: 16px;
+      overflow: visible;
+    }
   }
   .bdDocNum {
-    color: $foundation-grayscale-shade-75;
     @include sm-gray;
+    @include txt_ellipsis;
   }
 
   .docInfoRight {
-    @include centerLeft;
     gap: 0 16px;
+    @include centerLeft;
     span {
       @include sm-gray;
     }
@@ -107,26 +217,48 @@
   }
 }
 
-.bdList {
+// 메인 게시물
+.mainBdList {
   width: 100%;
+  &.starTitle i {
+    background: url('/mainBdStar.png') top center no-repeat;
+  }
   a {
     width: 100%;
+    @include topLeft;
+    flex-wrap: nowrap;
+    gap: 2px;
+  }
+  i {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: none;
+  }
+  .linkWrap {
+    width: calc(100% - 20px);
   }
   .bdLiTit {
     @include sm-black;
-    font-weight: 600;
-    font-size: 16px;
-    padding-bottom: 8px;
+    & {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      padding-bottom: 8px;
+    }
   }
   .bdLiInfo {
     display: flex;
     justify-content: space-between;
-    span {
-      @include sm-gray;
-      font-weight: 500;
-    }
     .bdLiDate {
       color: $foundation-grayscale-shade-33;
+    }
+    span {
+      @include sm-gray;
+      @include txt_ellipsis;
+      & {
+        font-weight: 500;
+      }
     }
   }
 }

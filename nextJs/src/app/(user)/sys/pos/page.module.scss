@@ -1,0 +1,27 @@
+.contLabel {
+  @include btmLeft;
+  align-self: stretch;
+  padding: 8px 16px;
+  // gap: 0 8px;
+
+  @at-root h3 > .contLabel {
+    padding: 0;
+  }
+
+  label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%; /* 16px */
+    letter-spacing: -0.32px;
+    color: $foundation-grayscale-shade-88;
+    @include centerLeft;
+    gap: 0 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    padding: 0 8px;
+    &:hover {
+      color: $foundation-grayscale-shade-66;
+    }
+  }
+}

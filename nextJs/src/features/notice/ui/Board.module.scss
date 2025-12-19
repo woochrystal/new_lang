@@ -1,0 +1,192 @@
+@use 'sass:color';
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// ============================================
+// 로컬 색상 변수 (글로벌 변수 참조)
+// ============================================
+
+$color-error: $error-color;
+$color-error-dark: color.adjust($error-color, $lightness: -10%);
+$color-success: $success-color;
+$color-warning: $warning-color;
+
+// ============================================
+// 공통 스타일
+// ============================================
+
+.loadingContainer,
+.errorContainer {
+  @include centerCenter;
+  min-height: 400px;
+}
+
+.errorContainer {
+  text-align: center;
+  gap: $space-4;
+
+  h2 {
+    color: $text-color;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin: 0;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: $font-size-md;
+    margin: 0;
+    line-height: $line-height-normal;
+  }
+}
+
+.buttonDanger {
+  background-color: $color-error;
+  color: $fff;
+
+  &:hover {
+    background-color: $color-error-dark;
+  }
+}
+
+// ============================================
+// 게시판 목록 (검색, 테이블, 페이지네이션)
+// ============================================
+
+// 테이블
+.tableContainer {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background-color: $primary-border;
+
+    th {
+      padding: $space-3 $space-4;
+      text-align: left;
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-base;
+      color: $text-color;
+      border-bottom: 2px solid $secondary-border;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $secondary-border;
+    }
+
+    td {
+      padding: $space-3 $space-4;
+      font-size: $font-size-base;
+      color: $text-color;
+    }
+  }
+}
+
+// 액션 버튼
+.actionButtons {
+  @include centerCenter;
+  gap: $space-1;
+}
+
+// 페이지네이션
+.pagination {
+  @include centerCenter;
+  gap: $space-2;
+  padding: $space-5 0;
+}
+
+// 조건부 스타일링을 위한 클래스
+.sysNotice {
+  color: $foundation-primary-bg; // 파란색
+  font-weight: $font-weight-bold;
+}
+
+.priorityNotice {
+  color: $foundation-warning-shade-100; // 빨간색
+  font-weight: $font-weight-bold;
+}
+
+// ============================================
+// 게시글 상세보기 (NoticeDetail)
+// ============================================
+.noticeDetailModal {
+  .actionButtons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  .formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .formValue {
+      padding: 10px 12px;
+      background: #f5f5f5;
+      border-radius: 4px;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+// ============================================
+// 게시글 작성/수정 폼 (BoardForm)
+// ============================================
+
+.required {
+  color: $primary-color;
+  font-weight: $font-weight-bold;
+}
+
+.inputError {
+  border-color: $color-error;
+
+  &:focus {
+    border-color: $color-error;
+    box-shadow: 0 0 0 3px rgba($color-error, 0.1);
+  }
+}
+
+.fieldError {
+  font-size: $font-size-sm;
+  color: $color-error;
+  font-weight: $font-weight-medium;
+  @include centerLeft;
+  gap: $space-1;
+
+  &::before {
+    content: '⚠';
+    font-size: $font-size-sm;
+  }
+}
+
+// 날짜 검색 버튼
+.dateSearch {
+  @include centerLeft;
+  gap: $space-2;
+  .datePicker {
+    width: 150px;
+  }
+}

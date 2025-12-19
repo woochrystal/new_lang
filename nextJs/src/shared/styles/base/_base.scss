@@ -4,6 +4,7 @@
 
 @use '../abstracts/variables' as *;
 @use '../abstracts/figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
 
 * {
   color: $text-color;
@@ -18,11 +19,13 @@
   &::-webkit-scrollbar {
     width: calc($barWidth + 2 * $barMargin);
     height: calc($barWidth + 2 * $barMargin);
+    box-sizing: content-box;
   }
 
   //스크롤바 배경
   &::-webkit-scrollbar-track {
     background: transparent;
+    box-sizing: content-box;
   }
 
   //스크롤바
@@ -36,26 +39,83 @@
 body {
   background: $background-color;
   overflow-y: hidden;
+  min-width: 1440px;
+  max-width: 1920px;
+  margin: 0 auto;
+
   //스크롤바 배경
   &::-webkit-scrollbar-thumb {
     border: $barMargin solid $background-color; //여백
   }
 }
+
+.scroll-locked {
+  overflow: hidden !important;
+}
 .innerWrap {
-  &::-webkit-scrollbar-thumb {
-    background: $foundation-light-grid;
-    border: $barMargin solid $foundation-light-base-shade-100; //여백
-  }
+  @include bgfffScroll;
 }
 
 a,
-button,
-label {
+button {
   cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 input:focus-visible {
   outline: none;
 }
 i {
   font-style: normal;
+}
+
+// Heading styles (H1-H6)
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 120%;
+  color: $text-color;
+  letter-spacing: -0.64px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 120%;
+  color: $text-color;
+  letter-spacing: -0.48px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+  color: $text-color;
+  letter-spacing: -0.36px;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 120%;
+  color: $text-color;
+  letter-spacing: -0.32px;
+}
+
+h5 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 120%;
+  color: $text-color;
+  letter-spacing: -0.28px;
+}
+
+h6 {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 120%;
+  color: $text-color;
+  letter-spacing: -0.24px;
 }

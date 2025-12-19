@@ -1,0 +1,215 @@
+@use 'sass:color';
+@use '@/shared/styles/abstracts/_variables.scss' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// ============================================
+// 공통 스타일
+// ============================================
+
+.loadingContainer,
+.errorContainer {
+  @include centerCenter;
+  min-height: 400px;
+}
+
+.errorContainer {
+  text-align: center;
+  gap: $space-4;
+
+  h2 {
+    color: $text-color;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin: 0;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: $font-size-md;
+    margin: 0;
+    line-height: $line-height-normal;
+  }
+}
+
+.spinner {
+  font-size: $font-size-base;
+  color: $text-secondary;
+}
+
+// ============================================
+// 상태값 컬러
+// ============================================
+.answeredStatus {
+  color: #dc2626;
+  font-weight: $font-weight-medium;
+}
+.pendingStatus {
+  color: $warning-color;
+  font-weight: $font-weight-medium;
+}
+.inProgressStatus {
+  color: $primary-color;
+  font-weight: $font-weight-medium;
+}
+.completedStatus {
+  color: $success-color;
+  font-weight: $font-weight-medium;
+}
+
+// ============================================
+// 문의 상세 레이아웃 (InquiryDetail)
+// ============================================
+
+.inquiryDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding: 0;
+
+  // 전체 스크롤 허용
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-4 0;
+  border-bottom: 1px solid $secondary-border;
+  flex-shrink: 0;
+}
+
+.backButton {
+  @include centerLeft;
+  gap: $space-1;
+  font-size: $font-size-base;
+  color: $text-secondary;
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+  line-height: $line-height-tight;
+  margin: 0;
+  word-break: break-all; // 제목 줄바꿈
+}
+
+.meta {
+  @include centerLeft;
+  gap: $space-6;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  @include centerLeft;
+  gap: $space-1;
+  font-size: $font-size-base;
+}
+
+.label {
+  color: $text-secondary;
+  font-weight: $font-weight-medium;
+}
+.value {
+  color: $text-color;
+  font-weight: $font-weight-normal;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: $secondary-border;
+  margin: $space-2 0;
+  flex-shrink: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  flex: 1 0 auto;
+
+  min-height: 200px;
+}
+
+.contentBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.paragraph {
+  font-size: $font-size-md;
+  line-height: $line-height-relaxed;
+  color: $text-color;
+  margin: 0;
+
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+
+  &:empty {
+    display: none;
+  }
+  p {
+    margin: 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.answerSection {
+  border-top: 1px solid $secondary-border;
+  padding-top: $space-6;
+  margin-top: $space-6;
+  padding-bottom: $space-6;
+  flex-shrink: 0;
+}
+
+.answerTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $text-color;
+  margin-bottom: $space-4;
+}
+
+.completed {
+  color: $success-color;
+}
+.pending {
+  color: $warning-color;
+}
+.inProgress {
+  color: $primary-color;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-bottom: $space-2;
+}
+
+.statusSelect {
+  width: 160px;
+  min-width: 160px;
+}

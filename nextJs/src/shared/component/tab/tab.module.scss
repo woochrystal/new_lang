@@ -1,0 +1,75 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+// ============================================================================
+// Tab Container
+// ============================================================================
+
+.tabContainer {
+  // display: flex;
+  // flex-direction: column;
+  // gap: 0;
+  @include btmLeft;
+  align-self: stretch;
+  padding: 8px 16px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+// ============================================================================
+// Tab Buttons (탭 라벨 영역)
+// ============================================================================
+
+.tabButtons {
+  @include btmLeft;
+  align-self: stretch;
+  padding: 8px 16px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+
+  @at-root h3 > .tabButtons {
+    padding: 0;
+  }
+}
+
+// ============================================================================
+// Tab Button (개별 탭 버튼)
+// ============================================================================
+
+.tabButton {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 100%; /* 16px */
+  letter-spacing: -0.32px;
+  color: $foundation-grayscale-shade-88;
+  gap: 0 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  padding: 0 8px;
+  @include centerLeft;
+
+  &:hover {
+    color: $foundation-grayscale-shade-33;
+  }
+
+  &:first-child {
+    padding-left: 0;
+  }
+  &:not(:first-child) {
+    &::after {
+      right: auto;
+      left: 0;
+      @include afterBar;
+    }
+  }
+
+  &.active {
+    color: $foundation-grayscale-shade-33;
+  }
+}

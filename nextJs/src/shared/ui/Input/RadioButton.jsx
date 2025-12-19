@@ -37,8 +37,11 @@ export default function RadioCircle() {
           checked={radioClick == '1값'}
           onChange={() => radioValChange('1값')}
         />
-        <span>{'radio1'}</span>
+        <span className={styles.radioIndicator}>
+          <span>{'radio1'}</span>
+        </span>
       </label>
+
       <label className={`${styles.radioCustom} ${styles.radioButton}`}>
         <input
           type="radio"
@@ -47,8 +50,11 @@ export default function RadioCircle() {
           checked={radioClick == '2값'}
           onChange={() => radioValChange('2값')}
         />
-        <span>{'radio2'}</span>
+        <span className={styles.radioIndicator}>
+          <span>{'radio2'}</span>
+        </span>
       </label>
+
       <label className={`${styles.radioCustom} ${styles.radioButton}`}>
         <input
           type="radio"
@@ -57,7 +63,9 @@ export default function RadioCircle() {
           checked={radioClick == '3값'}
           onChange={() => radioValChange('3값')}
         />
-        <span>{'radio3'}</span>
+        <span className={styles.radioIndicator}>
+          <span>{'radio3'}</span>
+        </span>
       </label>
       {/* <p>값 확인용 - 없어도됨: {choice}</p> */}
     </div>

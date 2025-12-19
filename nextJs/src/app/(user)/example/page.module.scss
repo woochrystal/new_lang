@@ -1,0 +1,9 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// 게시판 목록 컨테이너
+.boardList {
+  width: 100%;
+  @include topLeft;
+  gap: 20px;
+}

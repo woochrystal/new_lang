@@ -1,0 +1,55 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+
+// InputTit 스타일 그대로 복사
+.label {
+  @include btmLeft;
+  min-height: 32px;
+  padding-left: 16px;
+  padding-bottom: 8px;
+  cursor: default;
+
+  span {
+    @include txt_ellipsis;
+    color: $input-color;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.26px;
+
+    &.required {
+      padding-left: 14px;
+      position: relative;
+
+      &::before {
+        content: '*';
+        color: $primary-color;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 16px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// InputDataWrap 스타일 그대로 복사
+.valueWrap {
+  padding: $basic-padding;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.value {
+  margin: 0;
+
+  &.placeholder {
+    color: $placeholder-color;
+  }
+}

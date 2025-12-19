@@ -1,2 +1,2 @@
 'use client';
-export { default } from '@/shared/ui/ErrorPage/NotFound';
+export { default } from '@/shared/component/errorpage/NotFound';

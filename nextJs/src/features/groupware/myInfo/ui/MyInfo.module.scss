@@ -1,0 +1,253 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+// ============================================================================
+// 프로필 카드 (왼쪽)
+// ============================================================================
+
+.profileCard {
+  width: 100%;
+  height: fit-content;
+
+  .loading {
+    @include centerCenter;
+    padding: 40px 0;
+    color: $foundation-grayscale-shade-66;
+    font-size: 14px;
+  }
+
+  // 정보 카드
+  .infoCard {
+    @include basicBox;
+    padding: 32px;
+    width: 480px;
+    min-height: 200px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: $foundation-light-base-shade-100; // White background
+    border: 1px solid $foundation-primary-font; // Primary button border color
+    border-radius: 28px;
+  }
+
+  .infoCardLeft {
+    flex: 1;
+    @include topLeft;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .deptPosition {
+    color: $text-color;
+    font-size: 14px; // Adjusted
+    font-weight: 600;
+    line-height: 120%;
+    margin-bottom: 16px; // Adjusted
+  }
+
+  .contact {
+    color: $foundation-grayscale-shade-66;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 120%;
+    margin-bottom: 6px; // Adjusted
+  }
+
+  .mainName {
+    color: $primary-color;
+    font-size: 22px; // Adjusted
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 4px; // Adjusted
+  }
+
+  .infoCardRight {
+    flex-shrink: 0;
+  }
+
+  .mainProfileImage {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid $foundation-light-line-shade-100;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // 이미지 업로드 버튼
+    .imageUploadBtn {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: $primary-color;
+      border: 2px solid $foundation-light-base-shade-100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: $transition-base;
+      padding: 0;
+
+      svg {
+        width: 12px;
+        height: 12px;
+        stroke: $foundation-light-base-shade-100;
+      }
+
+      &:hover:not(:disabled) {
+        background: darken($primary-color, 10%);
+        transform: scale(1.1);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    .badge {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: $primary-color;
+      border: 2px solid $foundation-light-base-shade-100;
+    }
+  }
+}
+
+// ============================================================================
+// 폼 영역 (오른쪽)
+// ============================================================================
+
+.formArea {
+  flex: 1;
+  @include topLeft;
+  flex-direction: column;
+}
+
+// 모든 필드를 하나의 그리드에 배치
+.allFieldsGrid {
+  display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 12px;
+  width: 100%;
+  &:first-of-type {
+    padding-bottom: 80px;
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+
+  .col2 {
+    grid-column: span 2;
+  }
+
+  .colFull {
+    grid-column: 1 / -1;
+  }
+}
+
+// 주소 입력 필드 텍스트 색상 덮어쓰기
+.addressInput {
+  input[type='search'] {
+    color: $text-color;
+  }
+}
+
+// ============================================================================
+// 파일 업로드
+// ============================================================================
+
+.fileSection {
+  @include topLeft;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.fileLabel {
+  padding-left: 4px;
+}
+
+.fileUpload {
+  @include basic_box;
+  padding: 0;
+  min-height: 46px;
+  cursor: pointer;
+  transition: $transition-base;
+
+  &:hover:not(.disabled) {
+    background: $hover-color;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: $foundation-grayscale-shade-88;
+  }
+
+  .fileName {
+    @include centerLeft;
+    gap: 8px;
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 16px;
+
+    span {
+      color: $text-color;
+      font-size: 14px;
+      font-weight: 400;
+      @include txt_ellipsis;
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .fileName.hasFile {
+    padding-right: calc(20px + 16px + 16px + 2 * 16px); // 검색 + 삭제 아이콘 공간 확보
+  }
+}
+
+// ============================================================================
+// 반응형
+// ============================================================================
+
+// @media (max-width: 1024px) {
+//   .profileCard {
+//     max-width: 100%;
+//     width: 100%;
+//   }
+
+//   .allFieldsGrid {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .allFieldsGrid {
+//     grid-template-columns: 1fr;
+
+//     .col2,
+//     .colFull {
+//       grid-column: 1;
+//     }
+//   }
+
+//   .profileCard {
+//     min-width: 100%;
+//   }
+// }

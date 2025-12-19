@@ -1,0 +1,395 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+//프론트 변환(실사용)
+
+// ============================================================================
+// Table Layout (Wrapper)
+// ============================================================================
+
+.tableLayout {
+  padding-top: 20px;
+  table {
+    @include basic_table;
+    border-radius: $wrap-radious;
+  }
+}
+.tableScroll {
+  max-height: 180px;
+  overflow-y: scroll;
+}
+
+// ============================================================================
+// Table Base Style
+// ============================================================================
+
+.table {
+  @include basic_table;
+  border: 1px solid $foundation-light-line-shade-20;
+  border-radius: $wrap-radious;
+
+  thead {
+    tr {
+      text-align: center;
+      background: $hover-color;
+      overflow: hidden;
+      th {
+        @include basic_thtd;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      background: $foundation-light-base-shade-100;
+      cursor: pointer;
+
+      &:hover {
+        td {
+          @include activeStyle;
+          font-weight: 400;
+
+          &.tdEmpty {
+            color: $foundation-grayscale-shade-33;
+            background: $foundation-light-base-shade-100;
+          }
+        }
+      }
+      td {
+        @include basic_thtd;
+        & {
+          transition: $transition-base;
+        }
+
+        //tdEmpty 데이터 없을 때
+        &.tdEmpty {
+          height: 100px;
+          padding: 0;
+        }
+      }
+      &.numberTd {
+        width: 80px;
+      }
+    }
+    overflow-y: scroll;
+  }
+
+  tr {
+    &:first-child {
+      th:first-child {
+        border-top-left-radius: $wrap-radious;
+      }
+      th:last-child {
+        border-top-right-radius: $wrap-radious;
+      }
+      td:first-child {
+        border-bottom-left-radius: 0;
+      }
+      td:last-child {
+        border-bottom-right-radius: 0;
+      }
+    }
+    &:last-child {
+      td:first-child {
+        border-bottom-left-radius: $wrap-radious;
+      }
+      td:last-child {
+        border-bottom-right-radius: $wrap-radious;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Table Header (Thead) Style
+// ============================================================================
+
+.thead {
+  tr {
+    background-color: $hover-color;
+    text-align: center;
+
+    th {
+      @include basic_thtd;
+    }
+  }
+}
+
+// ============================================================================
+// Table Body (Tbody) Style
+// ============================================================================
+
+.tbody {
+  tr {
+    background-color: $foundation-light-base-shade-100;
+
+    &:hover {
+      td {
+        @include activeStyle;
+        font-weight: 400;
+      }
+    }
+
+    td {
+      @include basic_thtd;
+      & {
+        transition: $transition-base;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Table Footer (Tfoot) Style
+// ============================================================================
+
+.tfoot {
+  tr {
+    background-color: $hover-color;
+
+    th,
+    td {
+      @include basic_thtd;
+      & {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Table Row (Tr) Style
+// ============================================================================
+
+// .tr {
+//   border-bottom: 1px solid $primary-border;
+
+//   // &:last-child {
+//   //   border-bottom: 0;
+//   // }
+// }
+
+// ============================================================================
+// Table Header Cell (Th) Style
+// ============================================================================
+
+// ============================================================================
+// Table Data Cell (Td) Style
+// ============================================================================
+
+.td {
+  //td 정렬
+  &.tdTextLeft {
+    text-align: left;
+    padding: 13px;
+  }
+
+  //td에 버튼/체크박스 있을 때
+  &.tdHasBtn {
+    padding: 0;
+  }
+
+  //td에 버튼/체크박스 있을 때
+  &.tdHasSelect {
+    padding: 0 3px;
+  }
+
+  //td에 말줄임표시(...) 필요 할 때
+  &.tdEllipsis {
+    @include txt_ellipsis;
+  }
+
+  //td width 값 설정
+  /*
+   $td-w-xxs: 60px;
+   $td-w-xs: 80px;
+   $td-w-sm: 100px;
+   $td-w-md: 120px;
+   $td-w-lg: 150px;
+   $td-w-xl: 200px;
+   $td-w-xxl: 250px;
+  */
+  &.tdXxs {
+    width: $td-w-xxs;
+    &Max {
+      max-width: $td-w-xxs;
+    }
+  }
+  &.tdXs {
+    width: $td-w-xs;
+    &Max {
+      max-width: $td-w-xs;
+    }
+  }
+  &.tdSm {
+    width: $td-w-sm;
+    &Max {
+      max-width: $td-w-sm;
+    }
+  }
+  &.tdMd {
+    width: $td-w-md;
+    &Max {
+      max-width: $td-w-md;
+    }
+  }
+  &.tdLg {
+    width: $td-w-lg;
+    &Max {
+      max-width: $td-w-lg;
+    }
+  }
+  &.tdXl {
+    width: $td-w-xl;
+    &Max {
+      max-width: $td-w-xl;
+    }
+  }
+  &.tdXxl {
+    width: $td-w-xxl;
+    &Max {
+      max-width: $td-w-xxl;
+    }
+  }
+
+  // key값 별 클래스 지정
+  //checkbox 체크박스
+  &.tdCheckbox {
+    width: $td-w-xxs;
+    label {
+      justify-content: center;
+      padding: 0;
+      i {
+        margin: 0;
+      }
+    }
+  }
+  //year 연도
+  &.tdYear {
+    width: 15%;
+    min-width: $td-w-sm;
+  }
+
+  //.usedVacationDays, totalVacationDays 휴가일수
+  &.tdVacationDays {
+    width: 20%;
+  }
+}
+
+// ============================================================================
+// Table Caption Style
+// ============================================================================
+
+.caption {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-color;
+  text-align: left;
+  padding: 8px 0;
+  margin-bottom: 8px;
+  caption-side: top;
+}
+
+// ============================================================================
+// Special: PostInfoBox Style
+// ============================================================================
+
+@mixin name {
+  width: 120px;
+  background-color: $foundation-light-grid;
+  color: $foundation-grayscale-shade-66;
+}
+
+.postInfoBox {
+  .table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    tbody {
+      tr {
+        cursor: default;
+        th,
+        td {
+          box-sizing: border-box;
+          font-size: 14px;
+          text-align: left;
+          padding: 0;
+          font-weight: normal;
+          position: relative;
+          input {
+            width: 100%;
+          }
+        }
+        th {
+          @include name;
+          padding: $basic-padding;
+          cursor: default;
+        }
+        td {
+          input[type='text'],
+          label {
+            width: 100%;
+            min-height: 47px;
+            padding: 0 16px;
+          }
+        }
+        &:first-child {
+          th:first-child,
+          td:first-child {
+            border-top-left-radius: $wrap-radious;
+          }
+          th:last-child,
+          td:last-child {
+            border-top-right-radius: $wrap-radious;
+          }
+        }
+        &:last-child {
+          th:first-child,
+          td:first-child {
+            border-bottom-left-radius: $wrap-radious;
+          }
+          th:last-child,
+          td:last-child {
+            border-bottom-right-radius: $wrap-radious;
+          }
+        }
+        &:hover {
+          th,
+          td {
+            @include activeStyle(false);
+          }
+          th {
+            @include name;
+          }
+        }
+      }
+    }
+  }
+
+  .postInfoEmpty {
+    min-height: 300px;
+    padding: 20px;
+  }
+
+  .postInfoInput {
+    & * {
+      border: 0;
+    }
+  }
+}
+
+//게시물작성 내부 postBox 영역
+:global(.writeStyle) {
+  .writeInfoBox {
+    padding: 20px;
+  }
+  .writeInfoTitBox {
+    background-color: $foundation-light-bg;
+  }
+  .postInfoBox {
+    .table {
+      border-color: $foundation-light-grid;
+    }
+  }
+}

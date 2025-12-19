@@ -1,0 +1,86 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+.paginationCustom {
+  padding-top: 24px;
+  width: 100%;
+  ul {
+    @include centerCenter;
+    gap: 4px;
+    li {
+      button {
+        @include centerCenter;
+        min-width: 32px;
+        height: 32px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: -0.28px;
+        color: $pagenation-color;
+        border-radius: $basic-radious;
+
+        svg path {
+          stroke: $pagenation-color;
+        }
+
+        //active & 현재 페이지
+        &:active,
+        &.on {
+          color: $foundation-grayscale-shade-33;
+          font-weight: 500;
+
+          svg path {
+            stroke: $foundation-grayscale-shade-33;
+          }
+        }
+
+        //현재페이지
+        &.on {
+          border: 1px solid $foundation-grayscale-base-shade-8;
+          background: $foundation-light-base-shade-100;
+        }
+
+        //hover (disabled 제외)
+        &:hover:not([disabled]) {
+          color: $primary-color;
+          font-weight: 500;
+          border-color: $primary-color;
+          background: $hover-color;
+
+          svg path {
+            stroke: $foundation-grayscale-shade-33;
+          }
+        }
+
+        // Disabled styles
+        &[disabled] {
+          cursor: default;
+          background-color: transparent;
+          outline: none;
+
+          /* disabled + 현재 페이지(on) */
+          &.on {
+            border: 1px solid $foundation-grayscale-base-shade-8;
+            background: $foundation-light-base-shade-100;
+            color: $foundation-grayscale-shade-33;
+          }
+
+          svg path {
+            stroke: $pagenation-color;
+          }
+        }
+
+        // Disabled styles
+        &.svgButton[disabled] {
+          opacity: $opacity-04;
+        }
+
+        &:focus-visible {
+          outline: 1px solid $foundation-grayscale-base-shade-40;
+          outline-offset: -1px;
+        }
+      }
+    }
+  }
+}

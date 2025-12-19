@@ -1,0 +1,221 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+
+// ============================================================
+// InputTit - 결재선 레이블 스타일
+// ============================================================
+.inputTit {
+  @include btmLeft;
+  min-height: 32px;
+  padding-left: 16px;
+  padding-bottom: 8px;
+  cursor: default;
+  span {
+    @include txt_ellipsis;
+    color: $input-color;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.26px;
+
+    &.disabled {
+      color: $foundation-grayscale-shade-88;
+    }
+    &.hasStar {
+      padding-left: 14px;
+      position: relative;
+
+      &::before {
+        content: '*';
+        color: $primary-color;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 16px;
+        font-size: 16px;
+      }
+      &.disabled::before {
+        color: $foundation-primary-alpha-20percent;
+      }
+    }
+  }
+}
+
+:global(.innerWrap) .inputTit {
+  padding-left: 4px;
+}
+
+// ============================================================
+// UploadBox - 결재선 박스 스타일
+// ============================================================
+.uploadBox {
+  @include basicBox;
+  .plusWrap {
+    height: 96px;
+    position: relative;
+    @include centerCenter;
+
+    &:hover .clearBtn {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  .uploadBoxName {
+    @include centerCenter;
+    border-top: 1px solid $foundation-light-line-shade-100;
+    min-height: 48px;
+
+    span {
+      @include txt_ellipsis;
+      font-weight: 400;
+      line-height: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+    .inputSearch {
+      border-radius: 0 0 10px 10px;
+      border: 0;
+      input {
+        min-height: 48px;
+        padding-right: 47px;
+        @include searchXDelete;
+      }
+      i {
+        display: none;
+      }
+    }
+  }
+
+  // 추가전 레이아웃 (EmptyBox)
+  &.emptyBox {
+    background: none;
+    border-style: dashed;
+    cursor: pointer;
+    transition: $transition-base;
+    &:hover {
+      border-style: solid;
+      background: #f7f6fd;
+      .uploadBoxName {
+        border-style: solid;
+      }
+    }
+
+    .uploadBoxName {
+      border-style: dashed;
+      span {
+        color: $foundation-grayscale-shade-75;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .clearBtn {
+    transition: 0.3s;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+    rect {
+      fill: #f4f5f6;
+    }
+    path {
+      fill: #757575;
+    }
+  }
+
+  .teamName {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    width: 100%;
+    padding: 0 24px;
+    font-size: clamp(14px, 1vw, 16px);
+    padding: 0 clamp(16px, 1vw, 24px);
+  }
+
+  // 결재 상태 박스 (읽기 전용)
+  &.statusBox {
+    // FullUpBox 스타일 적용
+  }
+
+  .hasDate {
+    display: flex;
+    flex-direction: column;
+    gap: 6px 0;
+  }
+
+  .upBoxDates {
+    // 승인부분 날짜
+    flex-direction: column;
+    @include centerCenter;
+    span {
+      color: $foundation-grayscale-shade-66;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 120%;
+    }
+  }
+
+  // 승인자 이름
+  .checkName {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+  }
+}
+
+// ============================================================
+// InputSearch - 결재자 검색 인풋 스타일
+// ============================================================
+$search-width: 20px;
+$clear-width: 16px;
+
+.inputSearch {
+  @include basic_box;
+  & {
+    border: 0;
+    cursor: text;
+    position: relative;
+  }
+  input {
+    padding-right: calc($search-width + 2 * 16px);
+    @include searchInput;
+    &:disabled ~ button {
+      cursor: default;
+    }
+  }
+
+  i {
+    width: $clear-width;
+    height: $clear-width;
+    display: none;
+    position: absolute;
+    z-index: 0;
+    right: calc($clear-width + 2 * 16px);
+
+    &.hasDelete {
+      @include centerCenter;
+    }
+  }
+
+  button {
+    @include centerCenter;
+    & {
+      min-width: $search-width;
+      min-height: $search-width;
+      position: absolute;
+      padding: 16px;
+      right: 0;
+      z-index: 1;
+      cursor: pointer;
+    }
+  }
+}

@@ -6,7 +6,7 @@ import styles from './table.module.scss';
 export default function PostInfoBox() {
   return (
     <>
-      <div className={styles.postInfoBox}>
+      <div className={`${styles.postInfoBox} postInfoBox`}>
         <table className={styles.table}>
           <tbody>
             <tr>
@@ -19,7 +19,7 @@ export default function PostInfoBox() {
         </table>
       </div>
 
-      <div className={styles.postInfoBox}>
+      <div className={`${styles.postInfoBox} postInfoBox`}>
         <table className={styles.table}>
           <colgroup>
             {/* {colWidths.map((width, i) => (

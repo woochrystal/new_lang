@@ -1,2 +1,2 @@
 'use client';
-export { default } from '@/shared/ui/ErrorPage/GlobalError';
+export { default } from '@/shared/component/errorpage/GlobalError';

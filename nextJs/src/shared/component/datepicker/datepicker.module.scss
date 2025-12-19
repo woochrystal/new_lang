@@ -1,0 +1,420 @@
+// datepicker 스타일 커스텀
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/mixins.scss' as *;
+
+.datepickerWrap {
+  position: relative;
+  *:focus-visible {
+    outline: none;
+  }
+
+  //인풋
+  .datepickerInput {
+    position: relative;
+    @include basic_box;
+
+    input {
+      padding: $basic-padding;
+      padding-right: 60px;
+    }
+
+    .icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .clearBtn {
+      position: absolute;
+      right: $search-pos;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: $search-icon-p;
+      height: $search-icon-p;
+
+      img {
+        padding: $clear-icon-p;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    // disabled 상태
+    &.disabled {
+      opacity: $opacity-05;
+
+      input {
+        background: $input-onGray;
+        cursor: default;
+      }
+
+      .icon {
+        cursor: default;
+      }
+    }
+  }
+
+  // datepickerGroupWrap > 데이트피커 2개(게시판 기간설정용)
+  // : 1개짜리 생성 대비를 위해 className 추가
+  &.datepickerGroupWrap {
+    @include centerCenter;
+    & {
+      width: 100%;
+      flex-wrap: nowrap;
+    }
+
+    //날짜 인풋 사이 ~ 기호
+    .dateBridge {
+      color: $foundation-grayscale-shade-33;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 100%;
+      margin: 0 8px;
+    }
+
+    //인풋
+    .datepickerGroup {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+  }
+
+  //기본 스타일 수정
+  :global {
+    // 인풋+달력아이콘
+    .react-datepicker-wrapper {
+      display: block;
+      flex: 1;
+    }
+
+    // 달력
+    .react-datepicker-popper {
+      z-index: 100;
+      .react-datepicker {
+        display: flex;
+        width: 240px;
+        min-height: 240px;
+        padding: 16px 12px;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 3px 0;
+        flex-wrap: wrap;
+        border: 0;
+        border-radius: $wrap-radious;
+        box-shadow: 16px 20px 20px 0 $list-shadow;
+
+        .react-datepicker__month-container {
+          // float: none;
+          // height: 100%;
+          width: 100%;
+        }
+      }
+
+      //달력헤더
+      .react-datepicker__header {
+        padding: 0;
+        padding-bottom: 13px;
+        border: 0;
+        background: none;
+      }
+
+      //날짜 전체
+      .react-datepicker__month {
+        margin: 0;
+        overflow: hidden;
+      }
+      .react-datepicker__day-names,
+      .react-datepicker__week {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 3px 0;
+      }
+      .react-datepicker__day-names {
+        padding: 0;
+        padding-bottom: 3px;
+      }
+
+      //한칸 크기
+      .react-datepicker__day-name,
+      .react-datepicker__day,
+      .react-datepicker__time-name {
+        margin: 0;
+        width: 20px;
+        height: 20px;
+        flex-direction: column;
+        font-size: 10px;
+        color: $foundation-grayscale-shade-66;
+        @include centerCenter;
+      }
+      .react-datepicker__day--today {
+        color: $foundation-grayscale-shade-33;
+      }
+      .react-datepicker__day-names {
+        .react-datepicker__day-name {
+          & {
+            font-size: 10.286px;
+            font-weight: 500;
+            color: $foundation-grayscale-shade-33;
+          }
+          &:first-of-type {
+            span {
+              color: $foundation-warning-shade-100;
+            }
+          }
+          &:last-of-type {
+            span {
+              color: $sat-color;
+            }
+          }
+        }
+      }
+
+      // 날짜 hover 표시
+      .react-datepicker__day:not([aria-disabled='true'])
+        :not(.react-datepicker__day--in-range)
+        :not(.react-datepicker__day--in-selecting-range)
+        :not(.react-datepicker__day--range-start)
+        :not(.react-datepicker__day--range-end):hover,
+      .react-datepicker__month-text:not([aria-disabled='true']):hover,
+      .react-datepicker__quarter-text:not([aria-disabled='true']):hover,
+      .react-datepicker__year-text:not([aria-disabled='true']):hover {
+        opacity: $opacity-08;
+      }
+      .react-datepicker__day--keyboard-selected:not([aria-disabled='true']):hover,
+      .react-datepicker__month-text--keyboard-selected:not([aria-disabled='true']):hover,
+      .react-datepicker__quarter-text--keyboard-selected:not([aria-disabled='true']):hover,
+      .react-datepicker__year-text--keyboard-selected:not([aria-disabled='true']):hover {
+        background-color: transparent;
+      }
+
+      // 날짜 선택 표시
+      .react-datepicker__day--keyboard-selected,
+      .react-datepicker__month-text--keyboard-selected,
+      .react-datepicker__quarter-text--keyboard-selected,
+      .react-datepicker__year-text--keyboard-selected,
+      .react-datepicker__day--selected,
+      .react-datepicker__day--in-selecting-range,
+      .react-datepicker__day--in-range,
+      .react-datepicker__month-text--selected,
+      .react-datepicker__month-text--in-selecting-range,
+      .react-datepicker__month-text--in-range,
+      .react-datepicker__quarter-text--selected,
+      .react-datepicker__quarter-text--in-selecting-range,
+      .react-datepicker__quarter-text--in-range,
+      .react-datepicker__year-text--selected,
+      .react-datepicker__year-text--in-selecting-range,
+      .react-datepicker__year-text--in-range {
+        border-radius: 100px;
+      }
+
+      // 날짜 style
+      // 지정 날짜 영역 기본 class
+      .react-datepicker__day {
+        background-color: transparent;
+        color: $foundation-grayscale-shade-66;
+        position: relative;
+        z-index: 1;
+
+        // 전/다음 월 날짜 숨기기
+        // &.react-datepicker__day--outside-month,
+        // &.react-datepicker__day--outside-month.react-datepicker__day--in-range {
+        //   &::before,
+        //   &::after {
+        //     display: none;
+        //   }
+        // }
+
+        &.react-datepicker__day--range-start,//선택 시작
+        &.react-datepicker__day--range-end,//선택 마지막
+        &.react-datepicker__day--selecting-range-start,
+        &.react-datepicker__day--selecting-range-end,
+        &.react-datepicker__day--in-selecting-range.react-datepicker__day--range-start.react-datepicker__day--outside-month,
+        &.react-datepicker__day--in-selecting-range.react-datepicker__day--range-end.react-datepicker__day--outside-month,
+        &.react-datepicker__day--selected {
+          &::before {
+            //동그라미배경
+            content: '';
+            z-index: -1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+          }
+        }
+        &.react-datepicker__day--in-selecting-range.react-datepicker__day--range-start.react-datepicker__day--outside-month,
+        &.react-datepicker__day--in-selecting-range.react-datepicker__day--range-end.react-datepicker__day--outside-month {
+          &::before {
+            //동그라미배경
+            content: '';
+            z-index: -1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+          }
+        }
+
+        // 선택중(클릭 전)
+        &.react-datepicker__day--in-range {
+          color: $foundation-primary-bg;
+          font-weight: 600;
+          position: relative;
+          z-index: 10;
+        }
+
+        &.react-datepicker__day--in-selecting-range,
+        &.react-datepicker__day--in-range,
+        &.react-datepicker__day--selected,
+        &.react-datepicker__day--in-selecting-range.react-datepicker__day--outside-month {
+          //범위영역 회색
+          &::after {
+            content: '';
+            z-index: -2;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 100%;
+            background-color: $foundation-light-bg;
+          }
+        }
+
+        // react-datepicker__day--selecting-range-end
+        // react-datepicker__day--weekend
+
+        &.react-datepicker__day--range-start,//선택 시작
+        &.react-datepicker__day--selecting-range-start {
+          &::after {
+            //회색
+            transform: translateY(-50%);
+            width: 20px;
+            left: 50%;
+          }
+        }
+        &.react-datepicker__day--range-end,//선택 마지막
+        &.react-datepicker__day--selecting-range-end {
+          &::after {
+            //회색
+            transform: translateY(-50%);
+            width: 20px;
+            right: 50%;
+            left: auto;
+          }
+        }
+
+        &.react-datepicker__day--range-start.react-datepicker__day--range-end,
+        &.react-datepicker__day--selecting-range-start.react-datepicker__day--selecting-range-end {
+          //시작만 있을때
+          &::after {
+            //회색
+            display: none;
+          }
+        }
+
+        &.react-datepicker__day--range-start,//선택 시작
+        &.react-datepicker__day--range-end,
+        &.react-datepicker__day--selected {
+          //선택 마지막
+          color: $foundation-light-base-shade-100;
+          font-weight: 600;
+          //동그라미
+          &::before {
+            background-color: $foundation-primary-font;
+          }
+        }
+
+        &.react-datepicker__day--in-range {
+          &.react-datepicker__day--in-selecting-range {
+            &.react-datepicker__day--selecting-range-start {
+              &:hover::before {
+                //동그라미
+                background-color: $foundation-primary-alpha-20percent;
+              }
+            }
+          }
+        }
+      }
+    } //달력 end
+  }
+
+  //달력헤더 커스텀
+  .customHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    // 양쪽버튼
+    .dateHeadBtn {
+      @include centerCenter;
+      gap: 4px;
+      button {
+        &:hover {
+          opacity: $opacity-07;
+        }
+      }
+
+      // 날짜증가버튼
+      &.increaseBtn {
+        button {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    // 년 월 표시
+    .dateHeadTxt {
+      display: flex;
+      padding: 0 8px;
+      justify-content: center;
+      align-items: center;
+      color: $foundation-grayscale-shade-33;
+      text-align: center;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 18px;
+      border-radius: $input-radious;
+      border: 0.527px solid $foundation-grayscale-base-shade-4;
+    }
+  }
+
+  .btnWrap {
+    width: 100%;
+    gap: 0 10px;
+    @include centerRight;
+    button {
+      min-width: 18px;
+      font-size: 10px;
+      line-height: 16px;
+      text-align: center;
+      font-weight: 500;
+      color: $foundation-grayscale-shade-66;
+      &.saveBtn {
+        font-weight: 600;
+        color: $foundation-primary-font;
+      }
+      &:hover {
+        opacity: $opacity-08;
+      }
+    }
+  }
+}

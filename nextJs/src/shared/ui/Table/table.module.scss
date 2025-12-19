@@ -2,6 +2,8 @@
 @use '@/shared/styles/abstracts/figma-token' as *;
 @use '@/shared/styles/base/mixins' as *;
 
+//퍼블용
+
 .tableLayout {
   padding-top: 20px;
   > div {
@@ -19,6 +21,54 @@
         overflow: hidden;
         th {
           @include basic_thtd;
+          & {
+            border-right-color: $primary-border;
+          }
+        }
+      }
+    }
+  }
+  tbody {
+    overflow-y: scroll;
+    tr {
+      & {
+        border-top: 1px solid $primary-border;
+        background: $foundation-light-base-shade-100;
+        cursor: pointer;
+      }
+      &:last-child {
+        border-bottom: 0;
+      }
+      &:hover {
+        td {
+          @include activeStyle;
+          font-weight: 400;
+        }
+      }
+      &.numberTd {
+        width: 80px;
+      }
+      td {
+        @include basic_thtd;
+        & {
+          border-right-color: rgba(210, 223, 255, 0.2);
+          transition: $transition-base;
+        }
+      }
+    }
+  }
+}
+.table {
+  @include basic_table;
+  thead {
+    tr {
+      border-bottom: 0;
+      text-align: center;
+      background: $hover-color;
+      overflow: hidden;
+      th {
+        @include basic_thtd;
+        & {
           border-right-color: $primary-border;
         }
       }
@@ -41,55 +91,16 @@
       }
       td {
         @include basic_thtd;
-        border-right-color: rgba(210, 223, 255, 0.2);
-        transition: $transition-base;
-      }
-      &.numberTd {
-        width: 80px;
-      }
-    }
-    overflow-y: auto;
-  }
-}
-.table {
-  @include basic_table;
-  thead {
-    tr {
-      border-bottom: 0;
-      text-align: center;
-      background: $hover-color;
-      overflow: hidden;
-      th {
-        @include basic_thtd;
-        border-right-color: $primary-border;
-      }
-    }
-  }
-  tbody {
-    tr {
-      border-top: 1px solid $primary-border;
-      // border-bottom: 1px solid $primary-border;
-      background: $foundation-light-base-shade-100;
-      cursor: pointer;
-      &:last-child {
-        border-bottom: 0;
-      }
-      &:hover {
-        td {
-          @include activeStyle;
-          font-weight: 400;
+        & {
+          border-right-color: rgba(210, 223, 255, 0.2);
+          transition: $transition-base;
         }
       }
-      td {
-        @include basic_thtd;
-        border-right-color: rgba(210, 223, 255, 0.2);
-        transition: $transition-base;
-      }
       &.numberTd {
         width: 80px;
       }
     }
-    overflow-y: auto;
+    overflow-y: scroll;
   }
 }
 
@@ -100,7 +111,6 @@
   background-color: $foundation-light-grid;
   color: $foundation-grayscale-shade-66;
 }
-
 .postInfoBox {
   .table {
     table-layout: fixed;
@@ -113,13 +123,20 @@
         border: 0;
         th,
         td {
-          border: 1px solid $foundation-light-grid;
-          box-sizing: border-box;
-          font-size: 14px;
-          text-align: left;
-          padding: 0;
-          font-weight: normal;
-          position: relative;
+          & {
+            border: 1px solid $foundation-light-grid;
+            box-sizing: border-box;
+            font-size: 14px;
+            text-align: left;
+            padding: 0;
+            font-weight: normal;
+            position: relative;
+            line-height: 100%;
+            letter-spacing: -0.28px;
+          }
+          & > div {
+            border: 0;
+          }
           input {
             width: 100%;
           }
@@ -135,8 +152,6 @@
             width: 100%;
             min-height: 47px;
             padding: 0 16px;
-          }
-          .inputFile {
           }
         }
         &:first-child {
@@ -171,6 +186,31 @@
           th {
             @include name;
           }
+        }
+      }
+    }
+  }
+
+  .postInfoEmpty {
+    min-height: 300px;
+    padding: 20px;
+  }
+}
+
+//메뉴권한관리부분 내부 table 스타일
+:global(.controlMemBox) {
+  .postInfoBox {
+    .table {
+      tr td,
+      tr th {
+        border: 0;
+        border-radius: 0 !important;
+        border-bottom: 1px solid $foundation-light-grid;
+      }
+      tbody tr:last-child {
+        td,
+        th {
+          border-bottom: 0;
         }
       }
     }

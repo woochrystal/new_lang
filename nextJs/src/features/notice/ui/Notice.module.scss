@@ -1,0 +1,241 @@
+@use 'sass:color';
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// ============================================
+// 공통 스타일
+// ============================================
+
+.loadingContainer,
+.errorContainer {
+  @include centerCenter;
+  min-height: 400px;
+}
+
+.errorContainer {
+  text-align: center;
+  gap: $space-4;
+
+  h2 {
+    color: $text-color;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin: 0;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: $font-size-md;
+    margin: 0;
+    line-height: $line-height-normal;
+  }
+}
+
+.spinner {
+  font-size: $font-size-base;
+  color: $text-secondary;
+}
+
+.buttonLarge {
+  font-size: $font-size-base;
+  padding: $space-2 $space-5;
+}
+
+// ============================================
+// 게시판 목록 (테이블, 페이지네이션)
+// ============================================
+
+.tableContainer {
+  width: 100%;
+}
+
+.pagination {
+  @include centerCenter;
+  gap: $space-2;
+  padding: $space-5 0;
+}
+
+// 조건부 스타일링을 위한 클래스
+.sysNotice {
+  color: $foundation-primary-bg; // 파란색
+  font-weight: $font-weight-bold;
+}
+
+.priorityNotice {
+  color: $foundation-warning-shade-100; // 빨간색
+  font-weight: $font-weight-bold;
+}
+
+// ============================================
+// 게시글 상세보기 (NoticeDetail)
+// ============================================
+
+.noticeDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-4 0;
+  border-bottom: 1px solid $secondary-border;
+  flex-shrink: 0;
+}
+
+.navigation {
+  @include centerLeft;
+}
+
+.backButton {
+  @include centerLeft;
+  gap: $space-1;
+  font-size: $font-size-base;
+  color: $text-secondary;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+  line-height: $line-height-tight;
+  margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+.meta {
+  @include centerLeft;
+  gap: $space-6;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  @include centerLeft;
+  gap: $space-1;
+  font-size: $font-size-base;
+}
+
+.label {
+  color: $text-secondary;
+  font-weight: $font-weight-medium;
+}
+
+.value {
+  color: $text-color;
+  font-weight: $font-weight-normal;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: $secondary-border;
+  margin: $space-2 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.contentBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.paragraph {
+  font-size: $font-size-md;
+  line-height: $line-height-relaxed;
+  color: $text-color;
+  margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.bottomActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $space-5 0;
+  border-top: 1px solid $secondary-border;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+/* 파일 목록 관련 스타일 제거 */
+/*
+.fileDisplayArea {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  padding: $space-1;
+}
+
+.fileNameSummary {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+}
+
+.moreFilesText {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+}
+
+.fileListOverlay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background-color: $fff;
+  border: 1px solid $secondary-border;
+  box-shadow: $shadow-md;
+  list-style: none;
+  padding: $space-2;
+  margin: 0;
+  min-width: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.fileItem {
+  margin-bottom: $space-1;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.fileLink {
+  color: $primary-color;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+*/

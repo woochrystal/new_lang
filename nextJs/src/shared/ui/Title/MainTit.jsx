@@ -1,4 +1,4 @@
-// 메인에만 사용하는 타이틀 - 현재 날짜, 휴가사용일 등 표시
+// 메인에만 사용하는 타이틀 - 현재 날짜, 휴가사용일(children) 등 표시
 
 import styles from './title.module.scss';
 
@@ -8,6 +8,7 @@ const MainTit = ({ children, ...rest }, ref) => {
   const year = today.getFullYear();
   const month = ('0' + (today.getMonth() + 1)).slice(-2);
   const day = ('0' + today.getDate()).slice(-2);
+
   //요일 가져오기
   const week = ['일', '월', '화', '수', '목', '금', '토'];
   const dayOfWeek = week[today.getDay()];

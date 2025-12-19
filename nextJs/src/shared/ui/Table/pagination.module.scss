@@ -4,7 +4,7 @@
 
 .paginationCustom {
   border: none !important;
-  padding: 24px 0 28px;
+  padding-top: 24px;
   ul {
     @include centerCenter;
     gap: 4px;
@@ -29,7 +29,7 @@
         }
         &.on {
           border-radius: $basic-radious;
-          border: 1px solid $primary-border;
+          border: 1px solid $foundation-grayscale-base-shade-4;
           background: $foundation-light-base-shade-100;
         }
         svg {

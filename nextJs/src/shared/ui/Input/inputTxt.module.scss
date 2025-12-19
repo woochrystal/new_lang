@@ -4,10 +4,15 @@
 
 .inputTxt {
   @include basic_box;
-  cursor: text;
-
+  & {
+    cursor: text;
+  }
   input {
-    &[type='text'] {
+    &[type='text'],
+    &[type='number'],
+    &[type='password'] &[type='url'],
+    &[type='tel'],
+    &[type='email'] {
       color: $text-color;
       cursor: text;
       min-height: 46px;
@@ -32,17 +37,24 @@
 .textarea {
   @include topLeft;
   @include basicBox;
-  min-height: 156px;
-  justify-content: space-between;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  padding: 16px;
-  outline: none;
-  resize: none;
+  & {
+    min-height: 156px;
+    justify-content: space-between;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    padding: 16px;
+    outline: none;
+    resize: none;
+  }
   &::placeholder {
     @include basic_placeholder;
+  }
+  @include bgfffScroll;
+  &:disabled {
+    border: 0;
+    background-color: $foundation-grayscale-base-shade-4;
   }
 }
 
@@ -55,7 +67,8 @@
   }
 }
 .inputFile {
-  @include centerCenter;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-self: stretch;
   flex: 1;
@@ -75,7 +88,9 @@
 }
 .inputFileWrap {
   @include centerLeft;
-  width: 100%;
+  & {
+    width: 100%;
+  }
 }
 .fileNameBtn {
   @include file_name;

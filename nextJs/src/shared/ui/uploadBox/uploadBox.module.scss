@@ -28,6 +28,7 @@
     }
     .inputSearch {
       border-radius: 0 0 10px 10px;
+      border: 0;
       input {
         min-height: 48px;
         padding-right: 47px;
@@ -64,8 +65,8 @@
   }
 
   // 결재
-  &.statusBox {
-  }
+  // &.statusBox {
+  // }
 
   // 추가전 레이아웃
   &.emptyBox {
@@ -88,15 +89,17 @@
       }
     }
   }
+
   .hasDate {
     display: flex;
     flex-direction: column;
     gap: 6px 0;
   }
+
   .upBoxDates {
     //승인부분 날짜
-    @include centerCenter;
     flex-direction: column;
+    @include centerCenter;
     span {
       color: $foundation-grayscale-shade-66;
       font-size: 14px;
@@ -104,6 +107,7 @@
       line-height: 120%;
     }
   }
+
   // 승인자 이름
   .checkName {
     font-size: 16px;
@@ -135,5 +139,128 @@
     line-height: 150%;
     width: 100%;
     padding: 0 24px;
+    font-size: clamp(14px, 1vw, 16px);
+    padding: 0 clamp(16px, 1vw, 24px);
+  }
+}
+.controlBoxWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.controlBox {
+  & {
+    display: flex;
+    align-items: stretch;
+    background-color: $foundation-light-base-shade-100;
+    cursor: pointer;
+  }
+
+  .ctrlBoxLeft {
+    flex: 1;
+    border: 1px solid $foundation-light-line-shade-100;
+    border-radius: $wrap-radious 0 0 $wrap-radious;
+    border-right: 0;
+    overflow: hidden;
+    transition: $transition-base;
+
+    .ctrlLfTxtWrap {
+      padding: 24px;
+      h4 {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 150%;
+        margin-bottom: 2px;
+      }
+      p {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .ctrlBoxRight {
+    & {
+      transition: $transition-base;
+      min-width: 100px;
+      border: 1px solid $foundation-light-line-shade-100;
+      border-radius: 0 $wrap-radious $wrap-radious 0;
+      min-width: 100px;
+      @include centerCenter;
+    }
+    span,
+    button {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 150%;
+    }
+  }
+
+  //데이터 있는 경우
+  &.controlData {
+    &.selected {
+      .ctrlBoxLeft,
+      .ctrlBoxRight {
+        border-color: $foundation-primary-alpha-40percent;
+        background: $menu-active;
+      }
+    }
+
+    &:hover {
+      .ctrlBoxLeft,
+      .ctrlBoxRight {
+        border-color: $foundation-primary-alpha-40percent;
+        background: $menu-active;
+      }
+    }
+    &:active {
+      .ctrlBoxLeft,
+      .ctrlBoxRight {
+        background: $foundation-primary-bg;
+        border-color: $foundation-primary-font;
+      }
+      .ctrlLfTxtWrap {
+        h4,
+        p {
+          color: $foundation-light-base-shade-100;
+        }
+      }
+      .ctrlBoxRight {
+        span {
+          color: $foundation-light-base-shade-100;
+        }
+      }
+    }
+  }
+
+  //데이터 없는 경우(폼만 있음)
+  &.controlForm {
+    .ctrlBoxLeft {
+      border-color: $foundation-light-grid;
+    }
+
+    .ctrlBoxRight {
+      border-color: $foundation-primary-alpha-20percent;
+      background-color: $foundation-primary-alpha-20percent;
+      @include centerCenter;
+
+      span,
+      button {
+        color: $foundation-primary-font;
+      }
+      &:hover {
+        border-color: $foundation-primary-alpha-40percent;
+      }
+      &:active {
+        background: $foundation-primary-bg;
+        border-color: $foundation-primary-font;
+        span,
+        button {
+          color: $foundation-light-base-shade-100;
+        }
+      }
+    }
   }
 }

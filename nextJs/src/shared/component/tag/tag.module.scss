@@ -1,0 +1,183 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// ============================================================================
+// Tag Base Style
+// ============================================================================
+
+//버튼형식
+.tag {
+  @include tabBoxBasic;
+  border-radius: $input-radious;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.24px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: $transition-base;
+  position: relative;
+}
+
+.tagText {
+  display: flex;
+  align-items: center;
+}
+
+// ============================================================================
+// Tag Variants
+// ============================================================================
+
+.tag {
+  // 기본
+  &.variant-default {
+    background: $foundation-light-line-shade-20;
+    border: 1px solid $secondary-border;
+    color: $foundation-grayscale-shade-66;
+    span {
+      color: $foundation-grayscale-shade-66;
+    }
+  }
+
+  // 주요색
+  &.variant-primary {
+    background: $foundation-primary-alpha-8percent;
+    border: 1px solid $foundation-primary-alpha-20percent;
+    color: $primary-color;
+    span {
+      color: $primary-color;
+    }
+  }
+
+  // 성공 (승인)
+  &.variant-success {
+    background-color: $success-bgc;
+    border-color: $success-bd;
+    color: $success-color;
+    span {
+      color: $success-color;
+    }
+  }
+
+  // 경고 (반려)
+  &.variant-warning {
+    background-color: $warning-bgc;
+    border-color: $warning-bd;
+    color: $foundation-warning-shade-100;
+    span {
+      color: $foundation-warning-shade-100;
+    }
+  }
+
+  // 위험 (에러)
+  &.variant-danger {
+    background: rgba(255, 0, 10, 0.1);
+    border: 1px solid rgba(255, 0, 10, 0.2);
+    color: #ff000a;
+    span {
+      color: #ff000a;
+    }
+  }
+
+  // 정보 (대기/미결)
+  &.variant-info {
+    background-color: $pending-bgc;
+    border-color: $pending-bd;
+    font-weight: 400;
+  }
+}
+
+// ============================================================================
+// Tag Sizes
+// ============================================================================
+
+.tag {
+  &.size-sm {
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+
+  &.size-md {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  &.size-lg {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  &.size-txtOnly {
+    @include tagTxtTable;
+
+    .tagText {
+      font-weight: 400;
+    }
+  }
+}
+
+// ============================================================================
+// Tag with Count (숫자 표시)
+// ============================================================================
+
+.tagCount {
+  @include centerCenter;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0 4px;
+}
+
+.withCount {
+  padding-right: 4px;
+}
+
+// ============================================================================
+// Tag Removable
+// ============================================================================
+
+.removeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 2px;
+  color: currentColor;
+  font-size: 12px;
+  line-height: 100%;
+  opacity: $opacity-06;
+  transition: $transition-base;
+  display: inline-flex;
+  align-items: center;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.removable {
+  padding-right: 4px;
+}
+
+// ============================================================================
+// Tag Hover/Active States
+// ============================================================================
+
+.tag {
+  &:hover {
+    opacity: $opacity-08;
+  }
+
+  &:active {
+    opacity: $opacity-06;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: $opacity-05;
+  }
+}

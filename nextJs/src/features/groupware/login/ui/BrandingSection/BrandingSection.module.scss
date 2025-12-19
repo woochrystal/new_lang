@@ -1,45 +1,51 @@
+@use '@/shared/styles/abstracts/_figma-token' as *;
 .brandingSection {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  padding: 16px;
+  padding: 16px 0;
 }
 
 .brandingContent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
-  text-align: center;
+  gap: 28px;
 }
 
 .brandSubtitle {
   font-size: 56px;
-  font-weight: 700;
-  line-height: 1.25;
-  color: #a78bfa;
+  font-weight: 800;
+  color: $foundation-primary-bg;
   position: relative;
   z-index: 1;
   margin: 0;
+  opacity: 0.4;
+
+  line-height: 58px;
+  letter-spacing: -0.5px;
 }
 
 .brandTitle {
   font-size: 56px;
-  font-weight: 700;
-  line-height: 1.25;
-  color: #5036ba;
+  font-weight: 800;
+  color: $foundation-primary-bg;
   position: relative;
   z-index: 1;
-  margin-bottom: 16px;
+
+  line-height: 72px;
+  letter-spacing: -0.5px;
 }
 
 .brandDescription {
   font-size: 24px;
-  color: #111827;
-  line-height: 1.25;
+  color: $foundation-grayscale-dark;
   position: relative;
   z-index: 1;
   margin: 0;
-  text-align: center;
+
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -1px;
 }

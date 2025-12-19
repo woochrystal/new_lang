@@ -28,13 +28,17 @@ export const BrandingSection = ({
       <div className={styles.brandingContent}>
         {' '}
         {/* 추후 이미지로 교체 必*/}
-        <h2 className={styles.brandSubtitle}>{subtitle}</h2>
-        <h1 className={styles.brandTitle}>{title}</h1>
-        {descriptionArray.map((desc, index) => (
-          <p key={index} className={styles.brandDescription}>
-            {desc}
-          </p>
-        ))}
+        <div className={styles.loginBrandTit}>
+          <h2 className={styles.brandSubtitle}>{subtitle}</h2>
+          <h1 className={styles.brandTitle}>{title}</h1>
+        </div>
+        <div className={styles.loginBrandTit}>
+          {descriptionArray.map((desc, index) => (
+            <p key={index} className={styles.brandDescription}>
+              {desc}
+            </p>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,0 +1,50 @@
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/figma-token' as *;
+@use '@/shared/styles/base/mixins' as *;
+.surveyContainer {
+  // .selectionBox {
+  //   max-width: 400px;
+  //   margin-bottom: 2rem;
+  // }
+
+  // .equipListHeader {
+  //   font-size: 1.25rem; /* 20px */
+  //   font-weight: 600;
+  //   margin-bottom: 1rem;
+  // }
+
+  // .buttonContainer {
+  //   display: flex;
+  //   justify-content: flex-end;
+  //   margin-top: 1.5rem;
+  // }
+
+  // @include topLeft;
+  display: flex;
+  flex-direction: column;
+  gap: $table-top-gap;
+
+  h3 {
+    padding-bottom: 18px;
+  }
+}
+
+// DataTable을 감싸는 div에 이 클래스를 적용
+.surveyTableContainer {
+  // 테이블 행 호버 효과
+  :global(tbody tr:hover) {
+    background-color: #f9fafb; // gray-50
+  }
+
+  // 테이블 헤더 고정
+  :global(thead th) {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+  }
+}
+
+.selectWrapper {
+  flex: 1;
+}

@@ -35,7 +35,7 @@ export default function RadioGroup({ radioGroupInfo, type = 'circle' }) {
   const RadioComp = type === 'button' ? RadioButton : RadioCircle;
 
   return (
-    <div className={styles.radioBox}>
+    <>
       {radioOp.map((option, i) => {
         return (
           <RadioComp
@@ -48,6 +48,6 @@ export default function RadioGroup({ radioGroupInfo, type = 'circle' }) {
           />
         );
       })}
-    </div>
+    </>
   );
 }

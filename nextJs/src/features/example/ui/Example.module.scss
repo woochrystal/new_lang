@@ -1,0 +1,494 @@
+@use 'sass:color';
+@use '@/shared/styles/abstracts/variables' as *;
+@use '@/shared/styles/abstracts/_figma-token' as *;
+@use '@/shared/styles/base/_mixins.scss' as *;
+
+// ============================================
+// 로컬 색상 변수 (글로벌 변수 참조)
+// ============================================
+
+$color-error: $error-color;
+$color-error-dark: color.adjust($error-color, $lightness: -10%);
+$color-success: $success-color;
+$color-warning: $warning-color;
+
+// ============================================
+// 공통 스타일
+// ============================================
+
+.loadingContainer,
+.errorContainer {
+  @include centerCenter;
+  min-height: 400px;
+}
+
+.errorContainer {
+  text-align: center;
+  gap: $space-4;
+
+  h2 {
+    color: $text-color;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin: 0;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: $font-size-md;
+    margin: 0;
+    line-height: $line-height-normal;
+  }
+}
+
+.spinner {
+  font-size: $font-size-base;
+  color: $text-secondary;
+}
+
+.errorMessage {
+  padding: $space-3 $space-4;
+  background-color: rgba($color-error, 0.1);
+  border: 1px solid rgba($color-error, 0.2);
+  border-radius: $radius-md;
+  color: $color-error;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+}
+
+// 버튼 사이즈
+.buttonSmall {
+  font-size: $font-size-sm;
+  padding: $space-1 $space-2;
+  min-height: 28px;
+}
+
+.buttonMedium {
+  font-size: $font-size-base;
+  padding: $space-2 $space-4;
+}
+
+.buttonLarge {
+  font-size: $font-size-base;
+  padding: $space-2 $space-5;
+}
+
+.buttonDanger {
+  background-color: $color-error;
+  color: $fff;
+
+  &:hover {
+    background-color: $color-error-dark;
+  }
+}
+
+// ============================================
+// 게시판 목록 (검색, 테이블, 페이지네이션)
+// ============================================
+
+// 검색 영역
+.searchContainer {
+  width: 100%;
+  margin-bottom: $space-6;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  max-width: 600px;
+}
+
+.searchInput,
+.input {
+  width: 100%;
+  padding: $space-3 $space-4;
+  border: 1px solid $secondary-border;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-family: inherit;
+  outline: none;
+  transition: border-color $transition-base;
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &:disabled {
+    background-color: $primary-border;
+    color: $text-secondary;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $text-secondary;
+  }
+}
+
+.searchInput {
+  flex: 1;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: $space-2;
+  flex-shrink: 0;
+}
+
+// 테이블
+.tableContainer {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background-color: $primary-border;
+
+    th {
+      padding: $space-3 $space-4;
+      text-align: left;
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-base;
+      color: $text-color;
+      border-bottom: 2px solid $secondary-border;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $secondary-border;
+    }
+
+    td {
+      padding: $space-3 $space-4;
+      font-size: $font-size-base;
+      color: $text-color;
+    }
+  }
+}
+
+.tableRow {
+  cursor: pointer;
+  transition: background-color $transition-base;
+
+  &:hover {
+    background-color: $primary-border;
+  }
+}
+
+.emptyMessage {
+  text-align: center;
+  padding: $space-10 $space-5;
+  color: $text-secondary;
+  font-size: $font-size-base;
+}
+
+// 액션 버튼
+.actionButtons {
+  @include centerCenter;
+  gap: $space-1;
+}
+
+// 페이지네이션
+.pagination {
+  @include centerCenter;
+  gap: $space-2;
+  padding: $space-5 0;
+}
+
+// ============================================
+// 게시글 상세보기 (BoardDetail)
+// ============================================
+
+.boardDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-4 0;
+  border-bottom: 1px solid $secondary-border;
+  flex-shrink: 0;
+}
+
+.navigation {
+  @include centerLeft;
+}
+
+.backButton {
+  @include centerLeft;
+  gap: $space-1;
+  font-size: $font-size-base;
+  color: $text-secondary;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.actions {
+  @include centerRight;
+  gap: $space-3;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+  line-height: $line-height-tight;
+  margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+.meta {
+  @include centerLeft;
+  gap: $space-6;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  @include centerLeft;
+  gap: $space-1;
+  font-size: $font-size-base;
+}
+
+.label {
+  color: $text-secondary;
+  font-weight: $font-weight-medium;
+}
+
+.value {
+  color: $text-color;
+  font-weight: $font-weight-normal;
+}
+
+.tags {
+  @include centerLeft;
+  gap: $space-2;
+  flex-wrap: wrap;
+}
+
+.tag,
+.statusBadge,
+.mockBadge {
+  display: inline-block;
+  border-radius: $radius-lg;
+  border: 1px solid;
+  font-weight: $font-weight-medium;
+}
+
+.tag {
+  padding: $space-1 $space-2;
+  background-color: rgba($primary-color, 0.1);
+  color: $primary-color;
+  font-size: $font-size-sm;
+  border-color: rgba($primary-color, 0.2);
+}
+
+.status {
+  @include centerLeft;
+  gap: $space-3;
+}
+
+.statusBadge {
+  padding: $space-1 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  border-radius: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.status-published {
+    background-color: rgba($color-success, 0.1);
+    color: $color-success;
+    border-color: rgba($color-success, 0.2);
+  }
+
+  &.status-draft {
+    background-color: rgba($color-warning, 0.1);
+    color: $color-warning;
+    border-color: rgba($color-warning, 0.2);
+  }
+
+  &.status-deleted {
+    background-color: rgba($color-error, 0.1);
+    color: $color-error;
+    border-color: rgba($color-error, 0.2);
+  }
+}
+
+.mockBadge {
+  padding: $space-1 $space-2;
+  background-color: rgba($text-secondary, 0.1);
+  color: $text-secondary;
+  font-size: $font-size-xs;
+  border-radius: 10px;
+  border-color: rgba($text-secondary, 0.2);
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: $secondary-border;
+  margin: $space-2 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 15px;
+  @include basicBox;
+}
+
+.contentBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.paragraph {
+  font-size: $font-size-md;
+  line-height: $line-height-relaxed;
+  color: $text-color;
+  margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.bottomActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $space-5 0;
+  border-top: 1px solid $secondary-border;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+// ============================================
+// 게시글 작성/수정 폼 (ExampleForm)
+// ============================================
+
+.ExampleForm {
+  width: 100%;
+  margin: 0 auto;
+  @include topLeft;
+  gap: $space-6;
+}
+
+.formSection {
+  @include topLeft;
+  gap: $space-8;
+  width: 100%;
+}
+
+.formGroup {
+  @include topLeft;
+  flex-direction: column;
+  gap: $space-2;
+  width: 100%;
+}
+
+.required {
+  color: $primary-color;
+  font-weight: $font-weight-bold;
+}
+
+.inputError {
+  border-color: $color-error;
+
+  &:focus {
+    border-color: $color-error;
+    box-shadow: 0 0 0 3px rgba($color-error, 0.1);
+  }
+}
+
+.fieldError {
+  font-size: $font-size-sm;
+  color: $color-error;
+  font-weight: $font-weight-medium;
+  @include centerLeft;
+  gap: $space-1;
+
+  &::before {
+    content: '⚠';
+    font-size: $font-size-sm;
+  }
+}
+
+.charCount {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  text-align: right;
+  margin-top: $space-1;
+
+  &.warning {
+    color: $color-warning;
+  }
+
+  &.error {
+    color: $color-error;
+  }
+}
+
+.cancelButton,
+.saveButton {
+  padding: $space-3 $space-6;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:disabled {
+    opacity: $opacity-05;
+    cursor: not-allowed;
+  }
+}
+
+.cancelButton {
+  background-color: $fff;
+  border: 1px solid $secondary-border;
+  color: $text-color;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-border;
+  }
+}
+
+.saveButton {
+  background-color: $primary-color;
+  border: none;
+  color: $fff;
+
+  &:hover:not(:disabled) {
+    background-color: color.adjust($primary-color, $lightness: -5%);
+  }
+}
