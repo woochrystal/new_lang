@@ -1,3 +1,0 @@
-export const NOTICE_CONSTANTS = {
-  DEFAULT_PAGE_SIZE: 10
-};
