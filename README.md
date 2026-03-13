@@ -89,9 +89,18 @@
 ## [💻 React](https://ko.legacy.reactjs.org/)
 
 <details>
-<summary>📖 학습과정</summary> 
+<summary>📖 복습과정</summary> 
 
-> **01. 첫 세팅**
+> **01. 첫 세팅 react_test**
+
+> **02. Ai CLI 테스트를 위한 기본 리액트 react-board**
+> 
+> 1)인텔리제이에서 게시판 폴더 만들기
+> ```bash
+> npx create-vite@latest react-board
+> React
+> JavaScript
+>```
 
 </details>
 
@@ -226,7 +235,7 @@
 > >>> Send a message
 > ```
 
-> **2) 코드용 AI 모델 다운로드**
+> **2) 코드용 AI 모델 다운로드(codellama)**
 >
 > ```bash
 > ollama pull codellama
@@ -242,13 +251,21 @@
 
 > **3) 코드 수정용 Aider 설치**
 >
-> Python 필요
+> `Python` 필요, 버전 확인하고 없으면 설치
+> ```bash
+> python --version
+> pip --version
+> ```
 > 
-> 설치
+> Aider 설치
 > ```bash
 > pip install aider-chat
 > ```
 > 설치 확인
+> ```bash
+> aider --version
+> ```
+> 설치 안될 경우
 > ```bash
 > aider --version
 > ```
@@ -313,7 +330,7 @@
 > ```
 >
 > 생성
-> ```bash
+> ```text
 > public interface BoardRepository
 >         extends JpaRepository<Board, Long> {
 > }
