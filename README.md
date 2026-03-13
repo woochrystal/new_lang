@@ -95,11 +95,25 @@
 
 > **02. Ai CLI 테스트를 위한 기본 리액트 react-board**
 > 
+> 명령어는 문장형 말고 짧게
+> 
 > 1)인텔리제이에서 게시판 폴더 만들기
 > ```bash
 > npx create-vite@latest react-board
 > React
 > JavaScript
+>```
+> 2)Ollama
+> 
+> deepseek-coder 버전 실행
+> ```bash
+> ollama run deepseek-coder
+>```
+> 3)Aider 실행
+> 
+> deepseek-coder 버전으로 강제 지정 후 실행
+> ```bash
+> aider --model ollama/deepseek-coder --edit-format whole .
 >```
 
 </details>
@@ -235,18 +249,18 @@
 > >>> Send a message
 > ```
 
-> **2) 코드용 AI 모델 다운로드(codellama)**
+> **2) 코드용 AI 모델 다운로드(codellama, deepseek-coder)**
 >
 > ```bash
 > ollama pull codellama
+> or
+> ollama pull deepseek-coder
 > ```
 > 설치 확인
 > ```bash
 > ollama run codellama
-> ```
-> 예시 질문
-> ```bash
-> create a simple spring boot controller
+> or
+> ollama run deepseek-coder
 > ```
 
 > **3) 코드 수정용 Aider 설치**
@@ -262,10 +276,6 @@
 > pip install aider-chat
 > ```
 > 설치 확인
-> ```bash
-> aider --version
-> ```
-> 설치 안될 경우
 > ```bash
 > aider --version
 > ```
@@ -309,93 +319,6 @@
 > Model: ollama/codellama
 > Repo-map: using git
 > ```
-
-### 02. 단계별로 게시판 생성
-
-> **6) 게시판 Entity 생성**
-> 
-> Aider에 입력
-> ```bash
-> Create a Board entity for a bulletin board
-> fields: id, title, content, writer, createdAt
-> use Spring Boot JPA
-> ```
-> `Board.java` 생성
-
-> **7) Repository 생성**
->
-> Aider에 입력
-> ```bash
-> Create BoardRepository using Spring Data JPA
-> ```
->
-> 생성
-> ```text
-> public interface BoardRepository
->         extends JpaRepository<Board, Long> {
-> }
-> ```
-
-> **8) Service, Controller 생성**
->
-> Service
-> ```bash
-> Create BoardService with CRUD methods
-> ```
-> Controller
-> ```bash
-> Create a REST controller for Board
-> endpoints:
-> POST /boards
-> GET /boards
-> GET /boards/{id}
-> DELETE /boards/{id}
-> ```
-
-> **9) 실행 후 테스트**
-> 
-> `run ▶` 후 서버 실행
-> ```bash
-> localhost:8080
-> ```
-> 테스트 예시
-> ```text
-> GET /boards
-> http://localhost:8080/boards
-> ```
-
-### 03. 한번에 실행 단계
-#### entity, repository 단계별로 생성시키면 실패확률 떨어짐
-> 
-> Aider 실행 확인 후 입력
-> 
-> 먼저 entity 생성
-> ```bash
-> Create a Board entity using Spring Boot JPA
-> fields: id, title, content, writer, createdAt
-> ```
-> repository 생성 
-> ```bash
-> Create repository for Board
-> ```
-> 생성 파일 확인
-> - `Board.java`
-> - `BoardRepository.java`
-> - `BoardService.java`
-> - `BoardController.java`
->
-> ```bash
-> Allow aider to edit these files? (y/n)
-> ```
-> `y` 입력
-> 
-> `src/main/java`에서 확인
-> - `entity`
-> - `repository`
-> - `service`
-> - `controller`
-> 
-> `run ▶` 후 서버 실행
 
 
   </details>

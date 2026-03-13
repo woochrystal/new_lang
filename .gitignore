@@ -1,1 +1,9 @@
 .vscode/
+# IntelliJ
+.idea/
+*.iml
+node_modules/
+build/
+out/
+dist/
+.env
