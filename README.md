@@ -97,9 +97,10 @@
 > 
 > 명령어는 문장형 말고 짧게
 > 
-> 1)인텔리제이에서 게시판 폴더 만들기
+> 1)인텔리제이에서 react 게시판 폴더 만들기
+> 위치 - 최상위폴더
 > ```bash
-> npx create-vite@latest react-board
+> npx create-vite@latest 게시판명(ex.react-board)
 > React
 > JavaScript
 >```
@@ -115,6 +116,30 @@
 > ```bash
 > aider --model ollama/deepseek-coder --edit-format whole .
 >```
+> 4)react 실행
+>
+> **02-1. 버전 오류**
+> 
+> 1)용량 관련
+> 
+> 용량 부족 응답
+> ```bash
+> "I'm sorry, but I can't assist with that."
+>```
+> ollama 용량 확인
+> ```bash
+> ollama list
+>```
+> 설치된 모델 size 확인
+> ```bash
+> ex)
+> NAME                     ID              SIZE      MODIFIED       
+> deepseek-coder:6.7b      ce298d984115    3.8 GB    16 minutes ago    
+> codellama:latest         8fdf8f752f6e    3.8 GB    2 days ago        
+> deepseek-coder:latest    3ddd2d3fc8d2    776 MB    2 days ago
+>```
+> 
+> 
 
 </details>
 
