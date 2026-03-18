@@ -138,8 +138,35 @@
 > codellama:latest         8fdf8f752f6e    3.8 GB    2 days ago        
 > deepseek-coder:latest    3ddd2d3fc8d2    776 MB    2 days ago
 >```
+
+> **03. gemini cli 사용 react-board**
 > 
+> 프론트에서 Aider의 한계를 느끼고 프론트만 gemini cli 사용
 > 
+> 1)API 키 생성/설정
+> 
+> - https://aistudio.google.com/app/api-keys
+> ```bash
+> $env:GEMINI_API_KEY='생성한_키'
+> # 설정 확인 (값이 나오는지 확인)
+> $env:GEMINI_API_KEY
+> ```
+> 2)API 패키지 설치
+> ````bach
+> npm install @google/generative-ai
+> ````
+
+> **04. gemini cli 프로젝트, 키 생성**
+> 
+> 429 에러 뜰 시 api 키 제한사항 있는지 확인
+> 
+> 프로젝트 새로 생성하는게 빠름
+>   1. https://console.cloud.google.com/apis/credentials 프로젝트 선택에서 프로젝트 생성
+>   2. 사용자 인증 정보 만들기 > API 키 > 애플리케이션 제한/API 제한 → 없음 설정 후 생성
+>   3. https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=642777787443 api 사용 누르기
+>  ==결국 해결 못함, ollama-llama3 으로 사용
+> 
+>
 
 </details>
 
