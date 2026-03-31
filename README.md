@@ -85,7 +85,6 @@
       
 </details>
 
-
 ## [💻 React](https://ko.legacy.reactjs.org/)
 
 <details>
@@ -376,5 +375,53 @@
   </details>
 
 
+## [💻 Vue.js](https://ko.vuejs.org/)
+<details>
+    <summary>🔎 리액트/자바스크립트와 문법 차이</summary>
 
+> **" @ "**
+> 
+> 원래 **v-on** 로 사용되는 이벤트 연결 문법
+> 
+> onClick(react)/addEventListener(javasctipt)등 과 사용 방법 동일
+>
+> ````example
+> @click, @dblclick, @mousedown, @mouseup, @mouseenter, @mouseleave 등
+> ````
 
+> **" : "** 
+>
+> 변수 연결하는 문법
+> 
+> react에서 {} 사용법과 동일
+> ````example
+> vue의 <img :src="imageUrl"> = react의 <img src={imageUrl} />
+> ````
+> 숫자 표현
+> ````example
+> <MyComp :age="20"> = 숫자 20
+> <MyComp age="20"> = 문자 20
+> ````
+
+> **" v-model "**
+> 
+> react에서 useState 사용법과 동일
+> ````example
+> vue
+> <input v-model="text">
+> 
+> react
+> const [text, setText] = useState('')
+>
+> <input
+> value={text}
+> onChange={(e) => setText(e.target.value)}
+> />
+
+</details>
+<details>
+    <summary>📖 학습과정</summary> 
+
+> **01. Vue 기본 세팅**
+
+</details>
