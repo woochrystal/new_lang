@@ -379,6 +379,15 @@
 <details>
     <summary>🔎 리액트/자바스크립트와 문법 차이</summary>
 
+> **" ref "**
+> 
+> useState(react) 사용 방법 동일
+>
+> ````example
+> import { ref } from 'vue'
+> const text = ref('')
+> ````
+
 > **" @ "**
 > 
 > 원래 **v-on** 로 사용되는 이벤트 연결 문법
@@ -391,7 +400,7 @@
 
 > **" : "** 
 >
-> 변수 연결하는 문법
+> 속성 바인딩, 변수 연결하는 문법
 > 
 > react에서 {} 사용법과 동일
 > ````example
@@ -417,11 +426,14 @@
 > value={text}
 > onChange={(e) => setText(e.target.value)}
 > />
-
+> 
+> 
 </details>
 <details>
     <summary>📖 학습과정</summary> 
 
 > **01. Vue 기본 세팅**
+> 
+> **02. Vue Router**
 
 </details>
