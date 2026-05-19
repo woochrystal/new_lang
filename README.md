@@ -374,7 +374,6 @@
 
   </details>
 
-
 ## [💻 Vue.js](https://ko.vuejs.org/)
 <details>
     <summary>🔎 리액트/자바스크립트와 문법 차이</summary>
@@ -436,4 +435,14 @@
 > 
 > **02. Vue Router**
 
+</details>
+
+## [💻 Java(Gradle - Groovy)](https://www.java.com/ko/)
+<details>
+    <summary>📖 학습과정</summary> 
+
+> **01. java 기본 세팅(Gradle - Groovy)**
+>
+> **02. BackendApplication**
+>
 </details>
