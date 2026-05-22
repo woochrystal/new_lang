@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>최신 CSS 예시 모음</title>
+
+    <style>
+        @layer reset, base, layout, components;
+
+        @layer reset {
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+            }
+        }
+
+        @layer base {
+            :root {
+                --primary: royalblue;
+                --bg: #111;
+                --card-bg: #1c1c1c;
+                --text: white;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family: system-ui, sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    animation: none !important;
+                    transition: none !important;
+                    scroll-behavior: auto !important;
+                }
+            }
+        }
+
+        @layer layout {
+            .hero {
+                min-height: 100dvh;
+                display: grid;
+                place-items: center;
+                padding: 40px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: clamp(36px, 8vw, 96px);
+                margin: 0;
+            }
+
+            .section {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 80px 20px;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 24px;
+            }
+        }
+
+        @layer components {
+            /* CSS Nesting */
+            .card {
+                container-type: inline-size;
+
+                padding: 24px;
+                border-radius: 24px;
+                background: var(--card-bg);
+                border: 1px solid color-mix(in srgb, var(--primary) 35%, white);
+                transition: transform 0.3s, background 0.3s;
+
+                & h2 {
+                    margin-top: 0;
+                    font-size: clamp(22px, 3vw, 34px);
+                }
+
+                & p {
+                    color: #ddd;
+                }
+
+                &:hover {
+                    transform: translateY(-8px);
+                    background: color-mix(in srgb, var(--card-bg) 85%, var(--primary));
+                }
+            }
+
+            /* Container Query */
+            @container (min-width: 420px) {
+                .card-inner {
+                    display: flex;
+                    gap: 20px;
+                    align-items: center;
+                }
+
+                .icon {
+                    font-size: 64px;
+                }
+            }
+
+            .button {
+                border: 0;
+                border-radius: 999px;
+                padding: 14px 24px;
+                background: var(--primary);
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background 0.25s, transform 0.25s;
+
+                &:hover {
+                    background: color-mix(in srgb, var(--primary) 80%, white);
+                    transform: translateY(-3px);
+                }
+
+                &:active {
+                    background: color-mix(in srgb, var(--primary) 80%, black);
+                }
+
+                &:focus-visible {
+                    outline: 4px solid white;
+                    outline-offset: 4px;
+                }
+            }
+
+            /* :has() */
+            .form-box {
+                margin-top: 40px;
+                padding: 24px;
+                border-radius: 20px;
+                background: #222;
+                border: 2px solid #444;
+
+                &:has(input:valid) {
+                    border-color: limegreen;
+                }
+
+                &:has(input:invalid) {
+                    border-color: tomato;
+                }
+
+                & input {
+                    width: 100%;
+                    padding: 14px;
+                    border-radius: 12px;
+                    border: 0;
+                    font-size: 16px;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header class="hero">
+    <div>
+        <h1>최신 CSS 예시</h1>
+        <p>clamp, dvh, nesting, container query, :has, @layer, color-mix</p>
+        <button class="button">버튼 hover 해보기</button>
+    </div>
+</header>
+
+<main class="section">
+    <div class="grid">
+        <article class="card">
+            <div class="card-inner">
+                <div class="icon">📦</div>
+                <div>
+                    <h2>Container Query</h2>
+                    <p>카드 자체의 너비가 넓어지면 내부 레이아웃이 바뀝니다.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-inner">
+                <div class="icon">🎨</div>
+                <div>
+                    <h2>color-mix()</h2>
+                    <p>border, hover 색상을 기준색에서 자동으로 섞어 만듭니다.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-inner">
+                <div class="icon">🧱</div>
+                <div>
+                    <h2>CSS Nesting</h2>
+                    <p>.card 안에서 h2, p, hover 스타일을 중첩해서 작성했습니다.</p>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <section class="form-box">
+        <h2>:has() 예시</h2>
+        <p>이메일 형식이 맞으면 초록색, 틀리면 빨간색 테두리로 바뀝니다.</p>
+
+        <input
+                type="email"
+                placeholder="example@email.com"
+                required
+        />
+    </section>
+</main>
+</body>
+</html>
