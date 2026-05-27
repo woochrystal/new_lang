@@ -282,6 +282,7 @@
 
 
 </details>
+
 <details>   
 <summary>📖 학습과정</summary>
 
@@ -372,7 +373,7 @@
 > ```
 
 
-  </details>
+</details>
 
 ## [💻 Vue.js](https://ko.vuejs.org/)
 <details>
@@ -435,6 +436,16 @@
 > 
 > **02. Vue Router**
 
+</details>
+
+## [💻 Java(Gradle - Groovy)](https://www.java.com/ko/)
+<details>
+    <summary>📖 학습과정</summary> 
+
+> **01. java 기본 세팅(Gradle - Groovy)**
+>
+> **02. BackendApplication**
+>
 </details>
 
 ## [💻 Java(Gradle - Groovy)](https://www.java.com/ko/)
