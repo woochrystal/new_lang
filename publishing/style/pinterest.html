@@ -21,6 +21,8 @@
         .gallery {
             border: 2px solid #222;
             padding: 16px;
+            columns: 4 200px;
+            column-gap: 16px;
         }
 
         .pic {
@@ -35,6 +37,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            break-inside: avoid;
+            margin-bottom: 16px;
         }
 
         /* 높이 다르게 연습용 */
@@ -74,6 +79,17 @@
 <body>
 
     <div class="gallery">
+        <div class="pic">1</div>
+        <div class="pic">2</div>
+        <div class="pic">3</div>
+        <div class="pic">4</div>
+        <div class="pic">5</div>
+        <div class="pic">6</div>
+        <div class="pic">7</div>
+        <div class="pic">8</div>
+    </div>
+
+    <div class="gallery2">
         <div class="pic">1</div>
         <div class="pic">2</div>
         <div class="pic">3</div>
