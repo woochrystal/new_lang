@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="./../../common/libs/masonry.pkgd.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -21,6 +22,8 @@
         .gallery {
             border: 2px solid #222;
             padding: 16px;
+
+            /*위 > 아래로 배치*/
             columns: 4 200px;
             column-gap: 16px;
         }
@@ -38,6 +41,7 @@
             justify-content: center;
             align-items: center;
 
+            /*안잘리게 함*/
             break-inside: avoid;
             margin-bottom: 16px;
         }
@@ -48,7 +52,7 @@
         }
 
         .pic:nth-child(2) {
-            height: 220px;
+            height: 800px;
         }
 
         .pic:nth-child(3) {
@@ -74,6 +78,11 @@
         .pic:nth-child(8) {
             height: 200px;
         }
+
+        /*masonry위한*/
+        .gallery2 .pic{
+            width: 100px;
+        }
     </style>
 </head>
 <body>
@@ -93,11 +102,30 @@
         <div class="pic">1</div>
         <div class="pic">2</div>
         <div class="pic">3</div>
-        <div class="pic">4</div>
+        <div class="pic2">4</div>
         <div class="pic">5</div>
         <div class="pic">6</div>
         <div class="pic">7</div>
         <div class="pic">8</div>
     </div>
 </body>
+<script>
+    var msnry = new Masonry( '.gallery2', {
+        // options
+        //배치 할 아이템
+        itemSelector: '.gallery2 .pic',
+        // 한 컬럼의 기준 너비 > css에서 지정하는게 나음
+        // columnWidth: 200,
+        // 아이템 사이 간격
+        gutter: 16,
+        // 컨테이너를 내용물 크기에 맞춤. 보통 가운데 정렬할 때 사용.
+        // fitWidth: true,
+        // px 대신 % 기반 계산. 반응형에서 자주 사용.
+        percentPosition: true,
+        // 가로정렬 순서 유지하려고 노력한다고함
+        // horizontalOrder: true
+        // 배치 변경 애니메이션
+        transitionDuration: '0.3s',
+    });
+</script>
 </html>
